@@ -4,501 +4,269 @@
 
 
 
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MANHWA LAND | مانهوا لند</title>
+
 <style>
-:root {
-  --ice:#eaf8ff;
-  --blue:#b9e9ff;
-  --light:#d8f3ff;
-  --primary:#55aee0;
-  --dark:#214e70;
-  --white:#fff;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0;
-  font-family:Tahoma,Arial,sans-serif;
-  color:var(--dark);
-  background:linear-gradient(135deg,#f8fdff,#d8f3ff,#eefaff);
-  min-height:100vh;
-}
-button,input,textarea { font:inherit; }
-button {
-  border:0;
-  border-radius:12px;
-  padding:12px 17px;
-  background:var(--primary);
-  color:white;
-  cursor:pointer;
-  margin:4px;
-}
-button:hover { filter:brightness(.95); }
-input,textarea {
-  width:100%;
-  padding:12px;
-  margin:7px 0;
-  border:1px solid #b9e9ff;
-  border-radius:10px;
-  background:white;
-  color:var(--dark);
-}
-textarea { min-height:100px; resize:vertical; }
-header {
-  padding:20px 14px;
-  text-align:center;
-  background:rgba(255,255,255,.85);
-  border-bottom:1px solid var(--blue);
-}
-header h1 {
-  margin:0;
-  letter-spacing:3px;
-  color:var(--dark);
-}
-nav {
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:5px;
-  padding:12px;
-}
-main {
-  width:min(1000px,94%);
-  margin:15px auto 50px;
-}
-.panel {
-  background:rgba(255,255,255,.9);
-  border:1px solid var(--blue);
-  border-radius:18px;
-  padding:20px;
-  margin:15px 0;
-  box-shadow:0 8px 30px #8bc9e322;
-}
-.hidden { display:none !important; }
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(145px,1fr));
-  gap:14px;
-}
-.manga-card {
-  background:white;
-  border:1px solid var(--blue);
-  border-radius:14px;
-  overflow:hidden;
-  cursor:pointer;
-}
-.manga-card img {
-  width:100%;
-  aspect-ratio:3/4;
-  object-fit:cover;
-  display:block;
-}
-.manga-card h3,.manga-card p { padding:0 10px; }
-.small { font-size:13px; opacity:.8; }
-#snow {
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  z-index:10;
-}
-.chapter-image {
-  display:block;
-  width:100%;
-  height:auto;
-  margin:0 auto;
-}
-.chapter-reader {
-  max-width:850px;
-  margin:auto;
-  background:white;
-}
-.notice {
-  background:#eaf8ff;
-  padding:12px;
-  border-radius:10px;
-  margin:10px 0;
-}
-label { display:block; margin-top:10px; }
-footer { text-align:center; padding:25px; }
+/* شروع سینمایی مانهوا لند */
 #intro {
-  position:fixed;
-  inset:0;
-  z-index:20;
-  background:linear-gradient(#dff5ff,#fff);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #030916;
+  color: #f4fbff;
+  transition: opacity 1.8s ease, visibility 1.8s ease;
 }
-#intro .intro-box {
-  width:min(700px,100%);
-  text-align:center;
+#intro.leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
-#intro video {
-  width:100%;
-  max-height:65vh;
-  object-fit:contain;
-  border-radius:18px;
-  background:#d8f3ff;
+#intro .night-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 75% 35%, #183b62 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 100%, #102b4a 0%, transparent 50%),
+    linear-gradient(180deg, #020610 0%, #08172b 65%, #10243b 100%);
+  opacity: 0;
+  animation: nightReveal 4s ease forwards;
+}
+#intro .moon {
+  position: absolute;
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  top: 12%;
+  right: 17%;
+  background: #e9f7ff;
+  box-shadow: 0 0 30px #b9e9ff, 0 0 100px #55aee077;
+  opacity: 0;
+  animation: moonRise 3s 2s ease forwards;
+}
+#intro .castle {
+  position: absolute;
+  inset: auto 0 0;
+  width: 100%;
+  height: 54%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  filter: brightness(.45) saturate(.7);
+  animation: castleAppear 4s 1.5s ease forwards;
+}
+#intro .snow-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+#intro .intro-content {
+  position: relative;
+  z-index: 3;
+  width: min(850px, 92%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  min-height: 75vh;
+  text-align: center;
+}
+#intro .hana-frame {
+  width: min(42%, 310px);
+  align-self: flex-end;
+  opacity: 0;
+  transform: translateY(35px);
+  animation: hanaAppear 2s 4.5s ease forwards;
+}
+#intro .hana-frame video {
+  display: block;
+  width: 100%;
+  max-height: 58vh;
+  object-fit: contain;
+  background: transparent;
+  border: 0;
+  border-radius: 18px;
+  box-shadow: 0 0 35px #8bd9ff20;
+}
+#intro .welcome {
+  flex: 1;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: subtitleAppear 1.4s 6s ease forwards;
+}
+#intro .brand {
+  font-size: clamp(24px, 5vw, 45px);
+  letter-spacing: 4px;
+  color: #e8f8ff;
+  text-shadow: 0 0 25px #70caff88;
+}
+#intro .subtitle {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: #020916bb;
+  border: 1px solid #b9e9ff55;
+  font-size: clamp(14px, 2.5vw, 20px);
+  line-height: 2;
+}
+#intro .palace-button {
+  display: block;
+  margin: 25px auto 0;
+  padding: 14px 27px;
+  color: #061426;
+  background: linear-gradient(135deg, #f5fcff, #a9e3ff);
+  border: 1px solid white;
+  border-radius: 30px;
+  box-shadow: 0 0 25px #75cfff44;
+  opacity: 0;
+  animation: buttonAppear 1.5s 8s ease forwards;
+}
+#intro .palace-button:hover {
+  box-shadow: 0 0 35px #a9e3ff99;
+  transform: translateY(-2px);
+}
+#intro .skip-intro {
+  position: absolute;
+  z-index: 5;
+  left: 15px;
+  bottom: 15px;
+  background: #071426cc;
+  border: 1px solid #b9e9ff66;
+  color: #eaf8ff;
+  font-size: 12px;
+}
+@keyframes nightReveal {
+  to { opacity: 1; }
+}
+@keyframes moonRise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: .9; transform: translateY(0); }
+}
+@keyframes castleAppear {
+  to { opacity: .8; }
+}
+@keyframes hanaAppear {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes subtitleAppear {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes buttonAppear {
+  to { opacity: 1; }
 }
 @media(max-width:600px) {
-  .panel { padding:14px; }
-  header h1 { font-size:24px; }
+  #intro .intro-content {
+    flex-direction: column-reverse;
+    gap: 8px;
+    min-height: 90vh;
+  }
+  #intro .hana-frame {
+    width: min(55%, 220px);
+    max-height: 37vh;
+  }
+  #intro .hana-frame video { max-height: 37vh; }
+  #intro .welcome { flex: 0; }
+  #intro .moon { width: 75px; height: 75px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  #intro *, #intro *::before, #intro *::after {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+  }
 }
 </style>
-</head>
-<body>
-
-<canvas id="snow"></canvas>
 
 <section id="intro">
-  <div class="intro-box">
-    <h1>❄ MANHWA LAND ❄</h1>
-    <video id="hanaVideo" controls playsinline>
-      <source src="hana-intro.mp4" type="video/mp4">
-    </video>
-    <h2>به سایت مانهوا لند خوش اومدید!</h2>
-    <p>با هانا وارد دنیای داستان‌ها شو ✨</p>
-    <p class="small">برای نمایش انیمیشن هانا، فایل hana-intro.mp4 را در مخزن سایت قرار بده.</p>
-    <button onclick="closeIntro()">ورود به سایت</button>
+  <div class="night-glow"></div>
+  <div class="moon"></div>
+
+  <div class="snow-layer" id="introSnow"></div>
+
+  <div class="intro-content">
+    <div class="welcome">
+      <div class="brand">MANHWA LAND</div>
+      <div class="subtitle" id="hanaSubtitle">
+        به مانهوا لند خوش اومدید!
+      </div>
+      <button class="palace-button" onclick="enterPalace()">
+        ✧ به قصر وارد شوید ✧
+      </button>
+    </div>
+
+    <div class="hana-frame">
+      <video id="hanaVideo" autoplay muted playsinline>
+        <source src="hana-intro.mp4" type="video/mp4">
+      </video>
+    </div>
   </div>
+
+  <button class="skip-intro" onclick="enterPalace()">
+    رد کردن مقدمه
+  </button>
 </section>
 
-<header>
-  <h1>❄ MANHWA LAND ❄</h1>
-  <p>دنیای بی‌پایان مانهواها</p>
-</header>
-
-<nav>
-  <button onclick="showPage('home')">خانه</button>
-  <button onclick="showPage('library')">کتابخانه</button>
-  <button onclick="showPage('account')">حساب شخصی</button>
-  <button onclick="showPage('adminLogin')">ورود مدیر</button>
-</nav>
-
-<main>
-  <section id="home" class="panel page">
-    <h2>به مانهوا لند خوش اومدی ❄</h2>
-    <p>مانهواهای موردعلاقه‌ات را پیدا کن و بخوان.</p>
-    <button onclick="showPage('library')">دیدن کتابخانه</button>
-  </section>
-
-  <section id="library" class="panel page hidden">
-    <h2>📚 کتابخانه مانهوا</h2>
-    <input id="searchBox" placeholder="جست‌وجوی مانهوا..." oninput="renderManga()">
-    <div id="mangaGrid" class="grid"></div>
-  </section>
-
-  <section id="account" class="panel page hidden">
-    <h2>حساب شخصی</h2>
-    <div id="accountStatus">برای ساخت حساب یا ورود، سرویس حساب کاربری باید پیکربندی شود.</div>
-    <label>ایمیل</label>
-    <input id="userEmail" type="email" autocomplete="email" placeholder="ایمیل">
-    <label>رمز عبور</label>
-    <input id="userPassword" type="password" autocomplete="current-password" placeholder="رمز عبور">
-    <button onclick="accountAction('signup')">ساخت حساب</button>
-    <button onclick="accountAction('login')">ورود</button>
-    <button onclick="accountAction('logout')">خروج</button>
-    <p class="small">حساب‌ها با سرویس احراز هویت ایجاد می‌شوند؛ اطلاعات ورود را در سایت عمومی ذخیره نکن.</p>
-  </section>
-
-  <section id="adminLogin" class="panel page hidden">
-    <h2>🔐 ورود مدیر</h2>
-    <p>ورود مدیر با حسابی انجام می‌شود که مجوز مدیر آن در سرور ثبت شده باشد.</p>
-    <label>ایمیل مدیر</label>
-    <input id="adminEmail" type="email" autocomplete="username" placeholder="ایمیل مدیر">
-    <label>رمز مدیر</label>
-    <input id="adminPassword" type="password" autocomplete="current-password" placeholder="رمز مدیر">
-    <button onclick="adminLogin()">ورود به پنل مدیریت</button>
-    <p id="adminMessage" class="notice">ابتدا تنظیمات احراز هویت و مجوز مدیر را در سرویس سرور تکمیل کن.</p>
-  </section>
-
-  <section id="adminPanel" class="panel page hidden">
-    <h2>👑 پنل مدیریت</h2>
-    <p>ساخت مانهوا و افزودن چپتر</p>
-    <div class="notice">این پنل تا اتصال به پایگاه داده و بررسی مجوز مدیر در سرور، فقط پیش‌نمایش رابط کاربری است.</div>
-
-    <label>نام مانهوا</label>
-    <input id="mangaTitle" placeholder="نام مانهوا">
-
-    <label>خلاصه داستان</label>
-    <textarea id="mangaSummary" placeholder="خلاصه داستان را بنویس..."></textarea>
-
-    <label>کاور مانهوا</label>
-    <input id="mangaCover" type="file" accept="image/*">
-
-    <button onclick="createMangaPreview()">ساخت پیش‌نمایش مانهوا</button>
-
-    <hr>
-    <h3>افزودن چپتر</h3>
-    <label>انتخاب مانهوا</label>
-    <select id="chapterManga" style="width:100%;padding:12px;border-radius:10px"></select>
-
-    <label>شماره چپتر</label>
-    <input id="chapterNumber" type="number" min="1" placeholder="مثلاً 1">
-
-    <label>انتخاب عکس‌های چپتر (۱۸۰ عکس یا بیشتر)</label>
-    <input id="chapterImages" type="file" accept="image/*" multiple>
-
-    <p id="imageCount" class="small">هنوز عکسی انتخاب نشده.</p>
-    <button onclick="previewChapter()">پیش‌نمایش چپتر</button>
-    <div id="chapterPreview"></div>
-
-    <button onclick="showPage('library')">مشاهده کتابخانه</button>
-    <button onclick="logoutAdmin()">خروج از پنل</button>
-  </section>
-
-  <section id="mangaDetails" class="panel page hidden">
-    <button onclick="showPage('library')">← بازگشت به کتابخانه</button>
-    <div id="mangaDetailsContent"></div>
-  </section>
-
-  <section id="reader" class="panel page hidden">
-    <button onclick="showPage('library')">← بازگشت</button>
-    <h2 id="readerTitle">چپتر</h2>
-    <div id="readerImages" class="chapter-reader"></div>
-  </section>
-</main>
-
-<footer>MANHWA LAND ❄ دنیای داستان‌های تو</footer>
-
 <script>
-/*
-  این نسخه پیش‌نمایش رابط کاربری است.
-  برای انتشار عمومی و ذخیره دائمی:
-  1. پروژه Supabase بساز.
-  2. حساب کاربری و Storage را پیکربندی کن.
-  3. مجوز مدیر را در پایگاه داده تعیین کن.
-  4. سیاست‌های RLS را برای همه جدول‌ها و فایل‌ها فعال کن.
-  5. عملیات انتشار را فقط از مسیر دارای مجوز مدیر انجام بده.
-*/
-const SUPABASE_URL = "";
-const SUPABASE_ANON_KEY = "";
+/* برف ابتدا کم و سپس آرام‌آرام بیشتر می‌شود */
+(function createIntroSnow() {
+  const layer = document.getElementById("introSnow");
+  if (!layer) return;
 
-let mangas = [];
-let activeManga = null;
-let adminAuthenticated = false;
-let previewUrls = [];
+  const total = 65;
 
-function closeIntro() {
+  for (let i = 0; i < total; i++) {
+    const flake = document.createElement("span");
+    const size = Math.random() * 4 + 1;
+    const duration = Math.random() * 9 + 9;
+    const delay = Math.random() * 8;
+
+    Object.assign(flake.style, {
+      position: "absolute",
+      left: Math.random() * 100 + "%",
+      top: "-12px",
+      width: size + "px",
+      height: size + "px",
+      borderRadius: "50%",
+      background: i % 3 === 0 ? "#b9e9ff" : "#ffffff",
+      opacity: "0",
+      boxShadow: "0 0 8px #b9e9ff88",
+      animation: `slowSnow ${duration}s ${delay}s linear infinite`
+    });
+
+    layer.appendChild(flake);
+  }
+
+  const snowStyle = document.createElement("style");
+  snowStyle.textContent = `
+    @keyframes slowSnow {
+      0% { transform: translate3d(0,-5vh,0); opacity:0; }
+      12% { opacity:.65; }
+      85% { opacity:.55; }
+      100% { transform: translate3d(35px,110vh,0); opacity:0; }
+    }
+  `;
+  document.head.appendChild(snowStyle);
+})();
+
+/* ورود به قصر و رفتن به صفحه اصلی */
+function enterPalace() {
   const intro = document.getElementById("intro");
   const video = document.getElementById("hanaVideo");
-  video.pause();
-  intro.classList.add("hidden");
+
+  if (video) video.pause();
+  intro.classList.add("leaving");
+
+  window.setTimeout(() => {
+    intro.style.display = "none";
+    if (typeof showPage === "function") showPage("home");
+  }, 1800);
 }
 
-function showPage(id) {
-  document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
-  const page = document.getElementById(id);
-  if (page) page.classList.remove("hidden");
-  if (id === "library") renderManga();
-}
-
-function accountAction(action) {
-  alert("برای فعال شدن حساب شخصی، ابتدا Supabase Auth را تنظیم کن. این فرم به‌تنهایی حساب دائمی ایجاد نمی‌کند.");
-}
-
-function adminLogin() {
-  document.getElementById("adminMessage").textContent =
-    "ورود امن تا اتصال Supabase Auth و بررسی نقش مدیر در سرور فعال نیست.";
-}
-
-function logoutAdmin() {
-  adminAuthenticated = false;
-  showPage("home");
-}
-
-function createMangaPreview() {
-  const title = document.getElementById("mangaTitle").value.trim();
-  const summary = document.getElementById("mangaSummary").value.trim();
-  const file = document.getElementById("mangaCover").files[0];
-
-  if (!title || !summary || !file) {
-    alert("نام، خلاصه و کاور مانهوا را وارد کن.");
-    return;
-  }
-
-  const item = {
-    id: crypto.randomUUID(),
-    title,
-    summary,
-    cover: URL.createObjectURL(file),
-    chapters: []
-  };
-
-  mangas.push(item);
-  refreshMangaSelect();
-  renderManga();
-
-  document.getElementById("mangaTitle").value = "";
-  document.getElementById("mangaSummary").value = "";
-  document.getElementById("mangaCover").value = "";
-
-  alert("پیش‌نمایش ساخته شد؛ هنوز در سرور منتشر نشده است.");
-}
-
-function refreshMangaSelect() {
-  const select = document.getElementById("chapterManga");
-  select.innerHTML = "";
-  mangas.forEach(m => {
-    const option = document.createElement("option");
-    option.value = m.id;
-    option.textContent = m.title;
-    select.appendChild(option);
-  });
-}
-
-document.getElementById("chapterImages").addEventListener("change", event => {
-  const files = [...event.target.files];
-  document.getElementById("imageCount").textContent =
-    `${files.length} عکس انتخاب شده است.`;
+/* تلاش برای شروع خودکار ویدیو؛ در صورت محدودیت مرورگر، کاربر می‌تواند پخش کند. */
+window.addEventListener("load", () => {
+  const video = document.getElementById("hanaVideo");
+  if (video) video.play().catch(() => {});
 });
-
-function previewChapter() {
-  const mangaId = document.getElementById("chapterManga").value;
-  const number = Number(document.getElementById("chapterNumber").value);
-  const files = [...document.getElementById("chapterImages").files];
-
-  if (!mangaId || !number || files.length === 0) {
-    alert("مانهوا، شماره چپتر و عکس‌های چپتر را انتخاب کن.");
-    return;
-  }
-
-  const manga = mangas.find(m => m.id === mangaId);
-  if (!manga) return;
-
-  previewUrls.forEach(url => URL.revokeObjectURL(url));
-  previewUrls = files.map(file => URL.createObjectURL(file));
-
-  const container = document.getElementById("chapterPreview");
-  container.innerHTML = "";
-  const heading = document.createElement("h3");
-  heading.textContent = `پیش‌نمایش چپتر ${number} — ${files.length} عکس`;
-  container.appendChild(heading);
-
-  previewUrls.forEach(url => {
-    const img = document.createElement("img");
-    img.src = url;
-    img.alt = `صفحه چپتر ${number}`;
-    img.className = "chapter-image";
-    container.appendChild(img);
-  });
-
-  alert("پیش‌نمایش آماده شد. برای ذخیره دائمی باید آپلود Storage و ثبت چپتر در پایگاه داده پیاده‌سازی شود.");
-}
-
-function renderManga() {
-  const grid = document.getElementById("mangaGrid");
-  const query = (document.getElementById("searchBox")?.value || "").trim().toLowerCase();
-  grid.innerHTML = "";
-
-  mangas.filter(m => m.title.toLowerCase().includes(query)).forEach(m => {
-    const card = document.createElement("article");
-    card.className = "manga-card";
-    const img = document.createElement("img");
-    img.src = m.cover;
-    img.alt = m.title;
-    const title = document.createElement("h3");
-    title.textContent = m.title;
-    const summary = document.createElement("p");
-    summary.textContent = m.summary;
-    card.append(img, title, summary);
-    card.onclick = () => openManga(m.id);
-    grid.appendChild(card);
-  });
-
-  if (!grid.children.length) {
-    const message = document.createElement("p");
-    message.textContent = "هنوز مانهوا منتشر نشده است.";
-    grid.appendChild(message);
-  }
-}
-
-function openManga(id) {
-  activeManga = mangas.find(m => m.id === id);
-  if (!activeManga) return;
-
-  const content = document.getElementById("mangaDetailsContent");
-  content.innerHTML = "";
-  const title = document.createElement("h2");
-  title.textContent = activeManga.title;
-  const summary = document.createElement("p");
-  summary.textContent = activeManga.summary;
-  content.append(title, summary);
-
-  activeManga.chapters.forEach(ch => {
-    const button = document.createElement("button");
-    button.textContent = `چپتر ${ch.number}`;
-    button.onclick = () => openChapter(ch);
-    content.appendChild(button);
-  });
-
-  showPage("mangaDetails");
-}
-
-function openChapter(chapter) {
-  document.getElementById("readerTitle").textContent = `چپتر ${chapter.number}`;
-  const container = document.getElementById("readerImages");
-  container.innerHTML = "";
-
-  chapter.images.forEach(src => {
-    const img = document.createElement("img");
-    img.src = src;
-    img.loading = "lazy";
-    img.className = "chapter-image";
-    container.appendChild(img);
-  });
-
-  showPage("reader");
-}
-
-/* برف متحرک */
-const canvas = document.getElementById("snow");
-const ctx = canvas.getContext("2d");
-let flakes = [];
-
-function resizeSnow() {
-  canvas.width = window.innerWidth * devicePixelRatio;
-  canvas.height = window.innerHeight * devicePixelRatio;
-  ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-  flakes = Array.from({length: Math.min(110, Math.floor(window.innerWidth / 7))},
-    () => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      r: Math.random() * 3 + 1,
-      speed: Math.random() * 1.1 + .3,
-      drift: Math.random() * .7 - .35
-    }));
-}
-
-function animateSnow() {
-  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-  ctx.fillStyle = "rgba(255,255,255,.9)";
-  flakes.forEach(f => {
-    ctx.beginPath();
-    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-    ctx.fill();
-    f.y += f.speed;
-    f.x += f.drift;
-    if (f.y > window.innerHeight + 5) {
-      f.y = -5;
-      f.x = Math.random() * window.innerWidth;
-    }
-    if (f.x > window.innerWidth + 5) f.x = 0;
-    if (f.x < -5) f.x = window.innerWidth;
-  });
-  requestAnimationFrame(animateSnow);
-}
-
-window.addEventListener("resize", resizeSnow);
-resizeSnow();
-animateSnow();
 </script>
-</body>
-</html>
