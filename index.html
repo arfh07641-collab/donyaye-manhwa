@@ -5,268 +5,787 @@
 
 
 
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>مانهوا لند | MANHWA LAND</title>
+
 <style>
-/* شروع سینمایی مانهوا لند */
+:root {
+  --bg:#071426;
+  --panel:#0e2138;
+  --blue:#78d2ff;
+  --white:#f2f9ff;
+  --muted:#b0c5d9;
+  --line:#294967;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  color:var(--white);
+  background:radial-gradient(ellipse at top,#173957,var(--bg) 65%);
+  font-family:Tahoma,Arial,sans-serif;
+}
+button,input,textarea,select { font:inherit; }
+button { cursor:pointer; }
+.hidden { display:none!important; }
+.container { width:min(1100px,92%); margin:auto; }
+button {
+  border:1px solid #78d2ff77;
+  border-radius:12px;
+  padding:11px 17px;
+  background:linear-gradient(135deg,#c3efff,#62bce9);
+  color:#061426;
+  font-weight:bold;
+}
+.secondary {
+  background:#122b45;
+  color:var(--white);
+  border-color:var(--line);
+}
+input,textarea,select {
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#071629;
+  color:white;
+}
+label { display:block; margin:12px 0 7px; }
+header {
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:#061322ee;
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(12px);
+}
+nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  padding:14px 0;
+}
+.logo { font-size:21px; font-weight:bold; color:var(--blue); }
+nav .actions { display:flex; flex-wrap:wrap; gap:7px; }
+.hero { padding:45px 0 25px; }
+.hero-box {
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:30px;
+  background:linear-gradient(140deg,#143653,#0b1b2e);
+  overflow:hidden;
+}
+.hero h1 { font-size:clamp(28px,5vw,48px); line-height:1.5; }
+.hero h1 span { color:var(--blue); }
+.hero p { color:var(--muted); line-height:2; }
+.search { display:flex; gap:10px; margin-top:20px; }
+.search input { flex:1; min-width:0; }
+section { margin-bottom:35px; }
+h2 { font-size:23px; }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:15px;
+}
+.card {
+  border:1px solid var(--line);
+  border-radius:15px;
+  overflow:hidden;
+  background:var(--panel);
+}
+.cover {
+  aspect-ratio:3/4;
+  display:grid;
+  place-items:center;
+  background:radial-gradient(circle,#285477,#09182b);
+  color:var(--blue);
+  font-size:48px;
+  overflow:hidden;
+}
+.cover img { width:100%; height:100%; object-fit:cover; }
+.card-content { padding:12px; }
+.card h3 { line-height:1.7; }
+.card p { color:var(--muted); font-size:13px; line-height:1.9; }
+.card button { width:100%; }
+.panel {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:22px;
+}
+.empty {
+  grid-column:1/-1;
+  text-align:center;
+  border:1px dashed var(--line);
+  border-radius:15px;
+  padding:35px 15px;
+  color:var(--muted);
+  line-height:2;
+}
+.chapter {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:12px;
+  margin:8px 0;
+  border:1px solid var(--line);
+  border-radius:12px;
+}
+.reader img {
+  display:block;
+  width:100%;
+  height:auto;
+  margin:0 auto 4px;
+}
+footer {
+  border-top:1px solid var(--line);
+  text-align:center;
+  color:var(--muted);
+  padding:25px 0;
+  line-height:2;
+}
+
+/* صفحه آغازین */
 #intro {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #030916;
-  color: #f4fbff;
-  transition: opacity 1.8s ease, visibility 1.8s ease;
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:#020711;
+  transition:opacity 1s,visibility 1s;
 }
-#intro.leaving {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+#intro.finished { opacity:0; visibility:hidden; pointer-events:none; }
+#snow {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
 }
-#intro .night-glow {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 75% 35%, #183b62 0%, transparent 40%),
-    radial-gradient(ellipse at 50% 100%, #102b4a 0%, transparent 50%),
-    linear-gradient(180deg, #020610 0%, #08172b 65%, #10243b 100%);
-  opacity: 0;
-  animation: nightReveal 4s ease forwards;
+.intro-glow {
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at 50% 65%,#183f61,#071426 55%,#020711);
+  opacity:0;
+  animation:glow 4s forwards;
 }
-#intro .moon {
-  position: absolute;
-  width: 115px;
-  height: 115px;
-  border-radius: 50%;
-  top: 12%;
-  right: 17%;
-  background: #e9f7ff;
-  box-shadow: 0 0 30px #b9e9ff, 0 0 100px #55aee077;
-  opacity: 0;
-  animation: moonRise 3s 2s ease forwards;
+.intro-title {
+  position:absolute;
+  top:9%;
+  text-align:center;
+  color:#d8f5ff;
+  opacity:0;
+  animation:appear 1.5s 1s forwards;
+  text-shadow:0 0 25px #68caff;
 }
-#intro .castle {
-  position: absolute;
-  inset: auto 0 0;
-  width: 100%;
-  height: 54%;
-  object-fit: cover;
-  object-position: center;
-  opacity: 0;
-  filter: brightness(.45) saturate(.7);
-  animation: castleAppear 4s 1.5s ease forwards;
+.intro-title strong {
+  display:block;
+  font-size:clamp(23px,5vw,38px);
+  letter-spacing:3px;
 }
-#intro .snow-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+.intro-title small {
+  display:block;
+  margin-top:12px;
+  letter-spacing:3px;
 }
-#intro .intro-content {
-  position: relative;
-  z-index: 3;
-  width: min(850px, 92%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 22px;
-  min-height: 75vh;
-  text-align: center;
+.hana {
+  position:relative;
+  z-index:2;
+  width:170px;
+  height:230px;
+  opacity:0;
+  transform:translateY(25px) scale(.8);
+  animation:hanaAppear 1.7s 2s forwards, float 3s 4s infinite ease-in-out;
 }
-#intro .hana-frame {
-  width: min(42%, 310px);
-  align-self: flex-end;
-  opacity: 0;
-  transform: translateY(35px);
-  animation: hanaAppear 2s 4.5s ease forwards;
+.hair {
+  position:absolute;
+  top:3px;
+  left:13px;
+  width:145px;
+  height:160px;
+  border-radius:48% 48% 40% 40%;
+  background:linear-gradient(110deg,#fff,#c5e6f7,#8aafce);
 }
-#intro .hana-frame video {
-  display: block;
-  width: 100%;
-  max-height: 58vh;
-  object-fit: contain;
-  background: transparent;
-  border: 0;
-  border-radius: 18px;
-  box-shadow: 0 0 35px #8bd9ff20;
+.face {
+  position:absolute;
+  z-index:2;
+  top:35px;
+  left:35px;
+  width:100px;
+  height:118px;
+  border-radius:48%;
+  background:linear-gradient(120deg,#ffebe8,#e9c5cb);
 }
-#intro .welcome {
-  flex: 1;
-  opacity: 0;
-  transform: translateY(12px);
-  animation: subtitleAppear 1.4s 6s ease forwards;
+.eye {
+  position:absolute;
+  top:51px;
+  width:17px;
+  height:22px;
+  border-radius:50%;
+  background:#69bce9;
+  box-shadow:0 0 10px #69bce9;
 }
-#intro .brand {
-  font-size: clamp(24px, 5vw, 45px);
-  letter-spacing: 4px;
-  color: #e8f8ff;
-  text-shadow: 0 0 25px #70caff88;
+.eye.left { left:19px; }
+.eye.right { right:19px; }
+.fringe {
+  position:absolute;
+  z-index:3;
+  top:23px;
+  left:29px;
+  width:113px;
+  height:67px;
+  background:#f4fbff;
+  border-radius:50% 45% 15% 20%;
+  clip-path:polygon(0 0,100% 0,94% 65%,75% 55%,67% 100%,50% 60%,34% 90%,28% 54%,4% 82%);
 }
-#intro .subtitle {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 12px 18px;
-  border-radius: 12px;
-  background: #020916bb;
-  border: 1px solid #b9e9ff55;
-  font-size: clamp(14px, 2.5vw, 20px);
-  line-height: 2;
+.body {
+  position:absolute;
+  z-index:4;
+  left:36px;
+  bottom:0;
+  width:100px;
+  height:75px;
+  background:linear-gradient(130deg,#eafaff,#77b9e6);
+  clip-path:polygon(25% 0,75% 0,100% 100%,0 100%);
 }
-#intro .palace-button {
-  display: block;
-  margin: 25px auto 0;
-  padding: 14px 27px;
-  color: #061426;
-  background: linear-gradient(135deg, #f5fcff, #a9e3ff);
-  border: 1px solid white;
-  border-radius: 30px;
-  box-shadow: 0 0 25px #75cfff44;
-  opacity: 0;
-  animation: buttonAppear 1.5s 8s ease forwards;
+.intro-subtitle {
+  position:absolute;
+  z-index:5;
+  bottom:20%;
+  width:92%;
+  text-align:center;
+  font-size:clamp(18px,4vw,28px);
+  font-weight:bold;
+  color:white;
+  text-shadow:0 2px 12px black,0 0 20px #64caff;
+  opacity:0;
+  animation:appear 1s 3.8s forwards;
 }
-#intro .palace-button:hover {
-  box-shadow: 0 0 35px #a9e3ff99;
-  transform: translateY(-2px);
+#enter {
+  position:absolute;
+  z-index:6;
+  bottom:8%;
+  opacity:0;
+  animation:appear 1s 4.8s forwards;
 }
-#intro .skip-intro {
-  position: absolute;
-  z-index: 5;
-  left: 15px;
-  bottom: 15px;
-  background: #071426cc;
-  border: 1px solid #b9e9ff66;
-  color: #eaf8ff;
-  font-size: 12px;
+#skip {
+  position:absolute;
+  z-index:7;
+  top:15px;
+  left:15px;
+  background:#102740;
+  color:white;
 }
-@keyframes nightReveal {
-  to { opacity: 1; }
+.star {
+  position:absolute;
+  color:#d9f5ff;
+  animation:twinkle 2s infinite;
 }
-@keyframes moonRise {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: .9; transform: translateY(0); }
+@keyframes glow { to { opacity:1; } }
+@keyframes appear { to { opacity:1; } }
+@keyframes hanaAppear { to { opacity:1; transform:translateY(0) scale(1); } }
+@keyframes float { 50% { translate:0 -8px; } }
+@keyframes twinkle { 50% { opacity:.3; } }
+
+@media(max-width:800px) {
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .hero-box { padding:22px; }
+  nav { align-items:flex-start; }
 }
-@keyframes castleAppear {
-  to { opacity: .8; }
-}
-@keyframes hanaAppear {
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes subtitleAppear {
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes buttonAppear {
-  to { opacity: 1; }
-}
-@media(max-width:600px) {
-  #intro .intro-content {
-    flex-direction: column-reverse;
-    gap: 8px;
-    min-height: 90vh;
-  }
-  #intro .hana-frame {
-    width: min(55%, 220px);
-    max-height: 37vh;
-  }
-  #intro .hana-frame video { max-height: 37vh; }
-  #intro .welcome { flex: 0; }
-  #intro .moon { width: 75px; height: 75px; }
-}
-@media(prefers-reduced-motion:reduce) {
-  #intro *, #intro *::before, #intro *::after {
-    animation-duration: .01ms !important;
-    animation-delay: 0ms !important;
-  }
+@media(max-width:430px) {
+  nav { flex-direction:column; }
+  .search { flex-direction:column; }
+  .card-content { padding:9px; }
 }
 </style>
+</head>
 
-<section id="intro">
-  <div class="night-glow"></div>
-  <div class="moon"></div>
+<body>
 
-  <div class="snow-layer" id="introSnow"></div>
+<!-- مقدمه متحرک هانا و برف -->
+<div id="intro">
+  <div class="intro-glow"></div>
+  <canvas id="snow"></canvas>
 
-  <div class="intro-content">
-    <div class="welcome">
-      <div class="brand">MANHWA LAND</div>
-      <div class="subtitle" id="hanaSubtitle">
-        به مانهوا لند خوش اومدید!
-      </div>
-      <button class="palace-button" onclick="enterPalace()">
-        ✧ به قصر وارد شوید ✧
-      </button>
-    </div>
-
-    <div class="hana-frame">
-      <video id="hanaVideo" autoplay muted playsinline>
-        <source src="hana-intro.mp4" type="video/mp4">
-      </video>
-    </div>
+  <div class="intro-title">
+    <strong>✧ MANHWA LAND ✧</strong>
+    <small>قصر قصه‌های بی‌پایان</small>
   </div>
 
-  <button class="skip-intro" onclick="enterPalace()">
-    رد کردن مقدمه
-  </button>
-</section>
+  <div class="hana">
+    <div class="hair"></div>
+    <div class="face">
+      <div class="eye left"></div>
+      <div class="eye right"></div>
+    </div>
+    <div class="fringe"></div>
+    <div class="body"></div>
+  </div>
+
+  <span class="star" style="top:35%;left:18%">✧</span>
+  <span class="star" style="top:55%;right:15%">❄</span>
+  <span class="star" style="top:72%;left:25%">✦</span>
+
+  <div class="intro-subtitle">«به مانهوا لند خوش اومدید!»</div>
+  <button id="enter">✧ به قصر وارد شوید ✧</button>
+  <button id="skip" class="secondary">رد کردن مقدمه</button>
+</div>
+
+<header>
+  <nav class="container">
+    <div class="logo">❄ مانهوا لند</div>
+    <div class="actions">
+      <button class="secondary" onclick="goHome()">خانه</button>
+      <button class="secondary" onclick="goLibrary()">کتابخانه</button>
+      <button class="secondary" onclick="showAccount()">حساب کاربری</button>
+      <button id="adminButton" class="hidden" onclick="showAdmin()">پنل مدیر</button>
+      <button id="logoutButton" class="secondary hidden" onclick="logout()">خروج</button>
+    </div>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero" id="home">
+    <div class="hero-box">
+      <p>✦ دنیایی فراتر از خیال ✦</p>
+      <h1>به دنیای <span>مانهوا</span> خوش اومدی!</h1>
+      <p>قصه‌های تازه، شخصیت‌های فراموش‌نشدنی و دنیاهایی که منتظر کشف شدن‌اند.</p>
+      <div class="search">
+        <input id="search" placeholder="اسم مانهوا را جست‌وجو کن...">
+        <button onclick="renderLibrary()">جست‌وجو</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="library">
+    <h2>❄ کتابخانه مانهوا</h2>
+    <div id="mangaGrid" class="grid"></div>
+  </section>
+
+  <section id="readerSection" class="hidden">
+    <div class="panel">
+      <button class="secondary" onclick="backToLibrary()">← بازگشت به کتابخانه</button>
+      <h2 id="readerTitle"></h2>
+      <div id="chapters"></div>
+    </div>
+    <div id="reader" class="reader"></div>
+  </section>
+
+  <section id="accountSection" class="hidden">
+    <div class="panel">
+      <h2>حساب کاربری</h2>
+      <p class="muted">ورود یا ساخت حساب آزمایشی</p>
+      <form id="accountForm">
+        <label>ایمیل</label>
+        <input id="email" type="email" required placeholder="ایمیل شما">
+        <label>رمز عبور</label>
+        <input id="password" type="password" required minlength="6" placeholder="حداقل ۶ نویسه">
+        <br><br>
+        <button type="submit">ورود / ثبت‌نام آزمایشی</button>
+      </form>
+      <p id="accountMessage"></p>
+      <p class="muted">این بخش فعلاً آزمایشی است؛ برای حساب واقعی باید سرویس احراز هویت متصل شود.</p>
+      <button class="secondary" onclick="hideSections()">بستن</button>
+    </div>
+  </section>
+
+  <section id="adminSection" class="hidden">
+    <div class="panel">
+      <h2>👑 پنل مدیر</h2>
+      <p class="muted">از اینجا می‌توانی مانهوا و فصل‌هایش را اضافه کنی.</p>
+
+      <form id="mangaForm">
+        <label>عنوان مانهوا</label>
+        <input id="mangaTitle" required placeholder="عنوان داستان">
+
+        <label>خلاصه داستان</label>
+        <textarea id="mangaSummary" required placeholder="خلاصه مانهوا"></textarea>
+
+        <label>تصویر کاور</label>
+        <input id="mangaCover" type="file" accept="image/*" required>
+
+        <br><br>
+        <button type="submit">ساخت مانهوا</button>
+      </form>
+
+      <hr style="border-color:#294967;margin:25px 0">
+
+      <h3>افزودن فصل</h3>
+      <form id="chapterForm">
+        <label>انتخاب مانهوا</label>
+        <select id="chapterManga" required></select>
+
+        <label>شماره فصل</label>
+        <input id="chapterNumber" type="number" min="1" value="1" required>
+
+        <label>نام فصل</label>
+        <input id="chapterName" placeholder="نام فصل">
+
+        <label>تصاویر فصل — چند تصویر را باهم انتخاب کن</label>
+        <input id="chapterImages" type="file" accept="image/*" multiple required>
+
+        <p class="muted">تصاویر را از صفحهٔ اول تا آخر به ترتیب انتخاب کن.</p>
+        <button type="submit">افزودن فصل</button>
+      </form>
+
+      <hr style="border-color:#294967;margin:25px 0">
+      <h3>مانهواهای من</h3>
+      <div id="adminList"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  ✧ مانهوا لند — قصر قصه‌های بی‌پایان ✧<br>
+  دنیایی از داستان‌ها برای عاشقان مانهوا
+</footer>
 
 <script>
-/* برف ابتدا کم و سپس آرام‌آرام بیشتر می‌شود */
-(function createIntroSnow() {
-  const layer = document.getElementById("introSnow");
-  if (!layer) return;
+/*
+  نسخه آزمایشی سایت.
+  داده‌ها در همین مرورگر ذخیره می‌شوند.
+  برای ذخیره آنلاین و حساب امن باید بک‌اند متصل شود.
+*/
 
-  const total = 65;
+const ADMIN_PASSWORD = "۱۳۹۲";
+const ADMIN_PASSWORD_EN = "1392";
 
-  for (let i = 0; i < total; i++) {
-    const flake = document.createElement("span");
-    const size = Math.random() * 4 + 1;
-    const duration = Math.random() * 9 + 9;
-    const delay = Math.random() * 8;
+let mangas = [];
+let loggedIn = false;
+let isAdmin = false;
+let currentManga = null;
 
-    Object.assign(flake.style, {
-      position: "absolute",
-      left: Math.random() * 100 + "%",
-      top: "-12px",
-      width: size + "px",
-      height: size + "px",
-      borderRadius: "50%",
-      background: i % 3 === 0 ? "#b9e9ff" : "#ffffff",
-      opacity: "0",
-      boxShadow: "0 0 8px #b9e9ff88",
-      animation: `slowSnow ${duration}s ${delay}s linear infinite`
-    });
-
-    layer.appendChild(flake);
-  }
-
-  const snowStyle = document.createElement("style");
-  snowStyle.textContent = `
-    @keyframes slowSnow {
-      0% { transform: translate3d(0,-5vh,0); opacity:0; }
-      12% { opacity:.65; }
-      85% { opacity:.55; }
-      100% { transform: translate3d(35px,110vh,0); opacity:0; }
-    }
-  `;
-  document.head.appendChild(snowStyle);
-})();
-
-/* ورود به قصر و رفتن به صفحه اصلی */
-function enterPalace() {
-  const intro = document.getElementById("intro");
-  const video = document.getElementById("hanaVideo");
-
-  if (video) video.pause();
-  intro.classList.add("leaving");
-
-  window.setTimeout(() => {
-    intro.style.display = "none";
-    if (typeof showPage === "function") showPage("home");
-  }, 1800);
+try {
+  mangas = JSON.parse(localStorage.getItem("manhwaLandMangas") || "[]");
+} catch (e) {
+  mangas = [];
 }
 
-/* تلاش برای شروع خودکار ویدیو؛ در صورت محدودیت مرورگر، کاربر می‌تواند پخش کند. */
-window.addEventListener("load", () => {
-  const video = document.getElementById("hanaVideo");
-  if (video) video.play().catch(() => {});
+function saveData() {
+  try {
+    localStorage.setItem("manhwaLandMangas", JSON.stringify(mangas));
+  } catch (e) {
+    alert("فضای ذخیره مرورگر کافی نیست. برای تصاویر زیاد، ذخیره‌سازی آنلاین لازم است.");
+  }
+}
+
+function hideSections() {
+  ["accountSection","adminSection","readerSection"].forEach(id =>
+    document.getElementById(id).classList.add("hidden")
+  );
+}
+
+function goHome() {
+  hideSections();
+  document.getElementById("home").scrollIntoView({behavior:"smooth"});
+}
+
+function goLibrary() {
+  hideSections();
+  document.getElementById("library").scrollIntoView({behavior:"smooth"});
+}
+
+function showAccount() {
+  hideSections();
+  document.getElementById("accountSection").classList.remove("hidden");
+  document.getElementById("accountSection").scrollIntoView({behavior:"smooth"});
+}
+
+function showAdmin() {
+  if (!isAdmin) {
+    alert("این بخش فقط برای مدیر است.");
+    return;
+  }
+  hideSections();
+  document.getElementById("adminSection").classList.remove("hidden");
+  renderAdmin();
+  document.getElementById("adminSection").scrollIntoView({behavior:"smooth"});
+}
+
+function logout() {
+  loggedIn = false;
+  isAdmin = false;
+  document.getElementById("adminButton").classList.add("hidden");
+  document.getElementById("logoutButton").classList.add("hidden");
+  alert("از حساب آزمایشی خارج شدی.");
+  goHome();
+}
+
+/* ورود نمایشی؛ هنوز حساب امن آنلاین نیست */
+document.getElementById("accountForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  loggedIn = true;
+  document.getElementById("accountMessage").textContent =
+    "ورود نمایشی انجام شد. برای فعال‌سازی حساب واقعی، اتصال پایگاه داده لازم است.";
+  document.getElementById("logoutButton").classList.remove("hidden");
 });
+
+/* ورود مدیر نمایشی */
+function tryAdminLogin() {
+  const pass = prompt("رمز مدیر را وارد کن:");
+  if (pass === ADMIN_PASSWORD || pass === ADMIN_PASSWORD_EN) {
+    isAdmin = true;
+    loggedIn = true;
+    document.getElementById("adminButton").classList.remove("hidden");
+    document.getElementById("logoutButton").classList.remove("hidden");
+    alert("پنل مدیر در این نسخه آزمایشی باز شد.");
+    showAdmin();
+  } else if (pass !== null) {
+    alert("رمز مدیر درست نیست.");
+  }
+}
+
+/* دوبار روی لوگو بزن تا ورود نمایشی مدیر باز شود */
+document.querySelector(".logo").addEventListener("dblclick", tryAdminLogin);
+
+function readFileAsDataURL(file) {
+  return new Promise((resolve,reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+document.getElementById("mangaForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  if (!isAdmin) return alert("ابتدا وارد پنل مدیر شو.");
+
+  const title = document.getElementById("mangaTitle").value.trim();
+  const summary = document.getElementById("mangaSummary").value.trim();
+  const file = document.getElementById("mangaCover").files[0];
+  if (!file) return;
+
+  try {
+    const cover = await readFileAsDataURL(file);
+    mangas.push({
+      id: Date.now(),
+      title,
+      summary,
+      cover,
+      chapters: []
+    });
+    saveData();
+    this.reset();
+    renderLibrary();
+    renderAdmin();
+    alert("مانهوا اضافه شد!");
+  } catch {
+    alert("خواندن تصویر کاور ناموفق بود.");
+  }
+});
+
+document.getElementById("chapterForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  if (!isAdmin) return alert("ابتدا وارد پنل مدیر شو.");
+
+  const mangaId = Number(document.getElementById("chapterManga").value);
+  const number = Number(document.getElementById("chapterNumber").value);
+  const title = document.getElementById("chapterName").value.trim() || ("فصل " + number);
+  const files = Array.from(document.getElementById("chapterImages").files);
+  const manga = mangas.find(m => m.id === mangaId);
+
+  if (!manga || !files.length) return alert("مانهوا و تصاویر فصل را انتخاب کن.");
+
+  const button = this.querySelector('button[type="submit"]');
+  button.disabled = true;
+  button.textContent = "در حال آماده‌سازی تصاویر...";
+
+  try {
+    const images = [];
+    for (let i = 0; i < files.length; i++) {
+      button.textContent = `در حال خواندن تصویر ${i+1} از ${files.length}`;
+      images.push(await readFileAsDataURL(files[i]));
+    }
+
+    manga.chapters.push({number,title,images});
+    manga.chapters.sort((a,b) => a.number-b.number);
+    saveData();
+    this.reset();
+    renderLibrary();
+    renderAdmin();
+    alert("فصل اضافه شد!");
+  } catch {
+    alert("این فصل برای ذخیره در مرورگر بیش از حد بزرگ است. برای فصل‌های طولانی، ذخیره‌سازی آنلاین لازم است.");
+  } finally {
+    button.disabled = false;
+    button.textContent = "افزودن فصل";
+  }
+});
+
+function renderLibrary() {
+  const grid = document.getElementById("mangaGrid");
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  const list = mangas.filter(m =>
+    m.title.toLowerCase().includes(q) || m.summary.toLowerCase().includes(q)
+  );
+
+  if (!list.length) {
+    grid.innerHTML = '<div class="empty">❄<br>هنوز مانهوا‌ای منتشر نشده است.<br>بعد از ورود به پنل مدیر، اولین داستانت را اضافه کن.</div>';
+    updateMangaSelect();
+    return;
+  }
+
+  grid.innerHTML = list.map(m => `
+    <article class="card">
+      <div class="cover">
+        <img src="${m.cover}" alt="کاور مانهوا">
+      </div>
+      <div class="card-content">
+        <h3>${escapeHTML(m.title)}</h3>
+        <p>${escapeHTML(m.summary)}</p>
+        <button onclick="openManga(${m.id})">مطالعه مانهوا</button>
+      </div>
+    </article>
+  `).join("");
+
+  updateMangaSelect();
+}
+
+function updateMangaSelect() {
+  const select = document.getElementById("chapterManga");
+  select.innerHTML = '<option value="">انتخاب مانهوا</option>' +
+    mangas.map(m => `<option value="${m.id}">${escapeHTML(m.title)}</option>`).join("");
+}
+
+function renderAdmin() {
+  const box = document.getElementById("adminList");
+  if (!mangas.length) {
+    box.innerHTML = '<p>هنوز مانهوا‌ای نساخته‌ای.</p>';
+    return;
+  }
+
+  box.innerHTML = mangas.map(m => `
+    <div class="chapter">
+      <span>${escapeHTML(m.title)}</span>
+      <button class="secondary" onclick="deleteManga(${m.id})">حذف</button>
+    </div>
+  `).join("");
+}
+
+function deleteManga(id) {
+  if (!isAdmin) return;
+  if (!confirm("این مانهوا و فصل‌هایش حذف شوند؟")) return;
+  mangas = mangas.filter(m => m.id !== id);
+  saveData();
+  renderLibrary();
+  renderAdmin();
+}
+
+function openManga(id) {
+  currentManga = mangas.find(m => m.id === id);
+  if (!currentManga) return;
+
+  hideSections();
+  document.getElementById("readerSection").classList.remove("hidden");
+  document.getElementById("readerTitle").textContent = currentManga.title;
+  document.getElementById("reader").innerHTML = "";
+
+  const box = document.getElementById("chapters");
+  if (!currentManga.chapters.length) {
+    box.innerHTML = "<p>هنوز فصلی برای این مانهوا اضافه نشده است.</p>";
+  } else {
+    box.innerHTML = currentManga.chapters.map((c,i) => `
+      <div class="chapter">
+        <span>${escapeHTML(c.title)}</span>
+        <button onclick="readChapter(${i})">خواندن فصل</button>
+      </div>
+    `).join("");
+  }
+
+  document.getElementById("readerSection").scrollIntoView({behavior:"smooth"});
+}
+
+function readChapter(index) {
+  const chapter = currentManga.chapters[index];
+  document.getElementById("reader").innerHTML =
+    chapter.images.map((src,i) =>
+      `<img src="${src}" alt="صفحه ${i+1}" loading="lazy">`
+    ).join("");
+  document.getElementById("reader").scrollIntoView({behavior:"smooth"});
+}
+
+function backToLibrary() {
+  hideSections();
+  document.getElementById("library").scrollIntoView({behavior:"smooth"});
+}
+
+function escapeHTML(text) {
+  return String(text).replace(/[&<>"']/g, c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[c]));
+}
+
+/* بستن مقدمه */
+function closeIntro() {
+  document.getElementById("intro").classList.add("finished");
+}
+document.getElementById("enter").addEventListener("click",closeIntro);
+document.getElementById("skip").addEventListener("click",closeIntro);
+
+/* برف متحرک */
+(function snowAnimation() {
+  const canvas = document.getElementById("snow");
+  const ctx = canvas.getContext("2d");
+  let width,height,flakes=[];
+
+  function resize() {
+    const ratio = Math.min(window.devicePixelRatio || 1,2);
+    width = canvas.clientWidth;
+    height = canvas.clientHeight;
+    canvas.width = width * ratio;
+    canvas.height = height * ratio;
+    ctx.setTransform(ratio,0,0,ratio,0,0);
+
+    flakes = Array.from({length:Math.max(65,Math.floor(width/5))},() => ({
+      x:Math.random()*width,
+      y:Math.random()*height,
+      r:Math.random()*2+0.5,
+      speed:Math.random()*0.6+0.2,
+      drift:(Math.random()-0.5)*0.35,
+      alpha:Math.random()*0.7+0.2
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0,0,width,height);
+    flakes.forEach(f => {
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(220,245,255,${f.alpha})`;
+      ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
+      ctx.fill();
+      f.y += f.speed;
+      f.x += f.drift;
+      if (f.y > height+5) {
+        f.y = -5;
+        f.x = Math.random()*width;
+      }
+      if (f.x > width+5) f.x = -5;
+      if (f.x < -5) f.x = width+5;
+    });
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener("resize",resize);
+  resize();
+  draw();
+})();
+
+renderLibrary();
 </script>
+</body>
+</html>
