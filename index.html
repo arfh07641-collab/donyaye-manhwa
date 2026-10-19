@@ -1,223 +1,152 @@
 
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>مانهوا لند | دنیای سلطنتی</title>
+<meta name="theme-color" content="#eaf6ff">
+<meta name="description" content="مانهوا لند؛ قصر آبی یخی داستان‌های فانتزی، عاشقانه و درباری.">
+<title>مانهوا لند | قصر داستان‌های سلطنتی</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+:root{
+  --ice:#edf8ff;
+  --blue:#477bb8;
+  --deep:#294c79;
+  --pale:#d8edff;
+  --white:#fff;
 }
-
-body {
-  margin: 0;
-  font-family: Tahoma, sans-serif;
-  background: #eef8ff;
-  color: #243b64;
+body{
+  margin:0;
+  font-family:Tahoma,sans-serif;
+  background:var(--ice);
+  color:var(--deep);
 }
-
-header {
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  padding: 35px 15px 30px;
-  color: #ffffff;
-  background: linear-gradient(145deg, #477bb8, #a8d9f5, #f7fcff);
-  border-bottom: 4px solid #d5eaff;
-  border-radius: 0 0 35px 35px;
+header{
+  text-align:center;
+  padding:30px 15px;
+  color:white;
+  background:linear-gradient(145deg,#315b91,#78b5e5,#edf8ff);
+  border-radius:0 0 32px 32px;
+  box-shadow:0 5px 18px #527fa333;
 }
-
-header .crown {
-  font-size: 35px;
+.crown{font-size:34px}
+h1{margin:10px 0;font-size:30px}
+header p{line-height:2}
+.palace{
+  max-width:460px;
+  margin:18px auto 0;
+  padding:20px 10px;
+  border:1px solid white;
+  border-radius:24px;
+  background:linear-gradient(#e6f5ff,#fff);
+  box-shadow:0 5px 20px #244e7822;
+  color:var(--blue);
 }
-
-header h1 {
-  margin: 10px 0;
-  font-size: 29px;
-  text-shadow: 0 2px 8px #557da5;
+.castle{font-size:72px}
+.palace p{margin:8px 0;font-size:13px}
+nav{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:15px 8px;
+  background:white;
+  border-bottom:1px solid var(--pale);
 }
-
-header p {
-  line-height: 2;
-  margin-bottom: 5px;
+nav a{
+  color:var(--blue);
+  font-weight:bold;
+  text-decoration:none;
+  padding:9px 12px;
+  border-radius:12px;
 }
-
-.palace {
-  margin: 18px auto 0;
-  padding: 18px 10px;
-  max-width: 450px;
-  border: 1px solid #ffffff;
-  border-radius: 22px;
-  background: linear-gradient(180deg, #e9f7ff, #ffffff);
-  box-shadow: 0 5px 20px #5d8fc044;
+nav a:hover{background:var(--ice)}
+main{
+  max-width:850px;
+  margin:auto;
+  padding:20px 15px;
 }
-
-.palace .castle {
-  font-size: 68px;
+input{
+  width:100%;
+  padding:14px;
+  border:2px solid #c4e2fa;
+  border-radius:15px;
+  font-size:16px;
+  font-family:inherit;
+  background:white;
+  color:var(--deep);
 }
-
-.palace p {
-  color: #4774a8;
-  font-size: 13px;
-  margin: 8px 0 0;
+h2{color:var(--blue);margin-top:28px}
+.subtitle{color:#7897b8;font-size:13px;line-height:2}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
 }
-
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 17px 8px;
-  background: #ffffff;
-  border-bottom: 1px solid #d8eaff;
+.card{
+  min-width:0;
+  padding:10px;
+  background:white;
+  border:1px solid #d8eafa;
+  border-radius:19px;
+  box-shadow:0 5px 16px #7fa9d522;
 }
-
-nav a {
-  color: #426fa6;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 8px 10px;
-  border-radius: 12px;
+.cover{
+  height:155px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  border:1px solid #e3f2ff;
+  background:linear-gradient(145deg,#d9f0ff,#fff,#b8dcf8);
+  font-size:48px;
 }
-
-nav a:hover {
-  background: #e7f4ff;
+.card h3{font-size:14px;line-height:1.9;color:#315b91}
+.tag{color:#7899bd;font-size:12px;line-height:1.8}
+.btn{
+  display:block;
+  padding:12px 5px;
+  border-radius:11px;
+  text-align:center;
+  text-decoration:none;
+  color:white;
+  font-size:12px;
+  font-weight:bold;
+  background:linear-gradient(120deg,#4e83bd,#8fc9ee);
 }
-
-main {
-  max-width: 850px;
-  margin: auto;
-  padding: 20px 15px;
+.btn:hover{background:#315f99}
+.empty{
+  display:none;
+  text-align:center;
+  padding:20px;
+  color:#7899bd;
 }
-
-input {
-  width: 100%;
-  padding: 14px;
-  border: 2px solid #c4e2fa;
-  border-radius: 15px;
-  font-size: 16px;
-  font-family: inherit;
-  background: #ffffff;
-  color: #243b64;
-  outline: none;
+footer{
+  margin-top:30px;
+  padding:25px 15px;
+  text-align:center;
+  line-height:2;
+  color:white;
+  background:linear-gradient(135deg,#315b91,#78acd8);
+  border-radius:25px 25px 0 0;
+  font-size:13px;
 }
-
-input:focus {
-  border-color: #76b7e8;
-}
-
-h2 {
-  color: #416fa9;
-  margin-top: 28px;
-  font-size: 21px;
-}
-
-.subtitle {
-  color: #7794b6;
-  font-size: 13px;
-  line-height: 2;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.card {
-  min-width: 0;
-  background: #ffffff;
-  padding: 10px;
-  border: 1px solid #d9eafa;
-  border-radius: 19px;
-  box-shadow: 0 5px 16px #7fa9d522;
-}
-
-.cover {
-  height: 155px;
-  border-radius: 14px;
-  background: linear-gradient(145deg, #d9f0ff, #ffffff, #b8dcf8);
-  display: grid;
-  place-items: center;
-  font-size: 48px;
-  border: 1px solid #e3f2ff;
-}
-
-.card h3 {
-  font-size: 14px;
-  line-height: 1.9;
-  color: #315b91;
-}
-
-.tag {
-  color: #7899bd;
-  font-size: 12px;
-  line-height: 1.8;
-}
-
-.btn {
-  display: block;
-  background: linear-gradient(120deg, #4e83bd, #8fc9ee);
-  color: white;
-  text-align: center;
-  padding: 12px 5px;
-  border-radius: 11px;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.btn:hover {
-  background: #315f99;
-}
-
-.empty {
-  display: none;
-  text-align: center;
-  padding: 20px;
-  color: #7899bd;
-}
-
-footer {
-  margin-top: 30px;
-  padding: 25px 15px;
-  text-align: center;
-  line-height: 2;
-  color: #ffffff;
-  background: linear-gradient(135deg, #315b91, #78acd8);
-  border-radius: 25px 25px 0 0;
-  font-size: 13px;
-}
-
-footer p {
-  margin: 5px;
-}
-
-@media (max-width: 360px) {
-  .grid {
-    gap: 8px;
-  }
-
-  .cover {
-    height: 125px;
-  }
-
-  header h1 {
-    font-size: 24px;
-  }
+footer p{margin:5px}
+@media(max-width:360px){
+  .grid{gap:8px}
+  .cover{height:125px}
+  h1{font-size:25px}
 }
 </style>
 </head>
 
 <body>
-
 <header>
   <div class="crown">👑 ❄️ 👑</div>
   <h1>مانهوا لند</h1>
   <p>به قصر داستان‌های خیال‌انگیز خوش اومدی!</p>
-
   <div class="palace">
     <div class="castle">🏰</div>
     <p>قلمرو شاهزاده‌ها، دوک‌ها و داستان‌های جادویی</p>
@@ -232,18 +161,14 @@ footer p {
 </nav>
 
 <main>
-  <input
-    id="search"
-    type="search"
+  <input id="search" type="search"
     placeholder="🔎 اسم مانهوا رو جست‌وجو کن..."
-    aria-label="جست‌وجوی مانهوا"
-  >
+    aria-label="جست‌وجوی مانهوا">
 
   <h2 id="popular">❄️ مانهواهای محبوب</h2>
   <p class="subtitle">داستان مورد علاقه‌ات رو انتخاب کن، شاهزاده!</p>
 
   <section class="grid" id="all">
-
     <article class="card">
       <div class="cover">🧸🌷</div>
       <h3>زندگی دوباره دختر دوک</h3>
@@ -257,7 +182,6 @@ footer p {
       <p class="tag">درباری • عاشقانه • فانتزی</p>
       <a class="btn" href="princess.html">مشاهده داستان ♡</a>
     </article>
-
   </section>
 
   <p id="empty" class="empty">مانهوایی پیدا نشد! اسم دیگه‌ای امتحان کن. ❄️</p>
@@ -270,23 +194,20 @@ footer p {
 </footer>
 
 <script>
-const search = document.getElementById("search");
-const cards = document.querySelectorAll(".card");
-const empty = document.getElementById("empty");
+const search=document.getElementById("search");
+const cards=document.querySelectorAll(".card");
+const empty=document.getElementById("empty");
 
-search.addEventListener("input", function () {
-  const q = this.value.trim().toLowerCase();
-  let count = 0;
-
-  cards.forEach(function (card) {
-    const match = card.innerText.toLowerCase().includes(q);
-    card.style.display = match ? "" : "none";
-    if (match) count++;
+search.addEventListener("input",function(){
+  const q=this.value.trim().toLowerCase();
+  let count=0;
+  cards.forEach(function(card){
+    const match=card.innerText.toLowerCase().includes(q);
+    card.style.display=match?"":"none";
+    if(match)count++;
   });
-
-  empty.style.display = count === 0 ? "block" : "none";
+  empty.style.display=count===0?"block":"none";
 });
 </script>
-
 </body>
 </html>
