@@ -1,180 +1,368 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#050b18">
-<title>مانهوا لند ❄️</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;background:#050b18;color:#eaf7ff;font-family:Tahoma,Arial,sans-serif}
-button,input{font:inherit}
-button{cursor:pointer}
-.sky{position:fixed;inset:0;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 50% 35%,#164c78 0%,transparent 45%),linear-gradient(#030713,#102746 65%,#050b18);z-index:0}
-.moon{position:absolute;top:8%;left:12%;width:75px;height:75px;border-radius:50%;background:#e4f8ff;box-shadow:0 0 35px #73caff,0 0 100px #258bdf}
-.glow{position:absolute;width:240px;height:240px;border-radius:50%;background:#168dff;filter:blur(85px);opacity:.2;animation:glow 6s infinite alternate}
-.g1{top:30%;right:-120px}.g2{bottom:-100px;left:-100px}
-#snow{position:absolute;inset:0}
-.flake{position:absolute;top:-25px;color:#fff;text-shadow:0 0 12px #69caff;animation:fall linear infinite}
-main{position:relative;z-index:1}
-header{display:flex;justify-content:space-between;align-items:center;padding:22px 20px}
-.logo{font-size:20px;font-weight:bold;text-shadow:0 0 20px #64caff}
-.logo span{color:#70ceff}
-.tag{font-size:9px;letter-spacing:2px;color:#a8dfff}
-.hero{min-height:85vh;min-height:85svh;padding:28px 20px 55px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-.eyebrow{font-size:11px;letter-spacing:2px;color:#a4ddff;animation:show 1s both}
-h1{font-size:clamp(36px,10vw,65px);line-height:1.5;margin:12px 0;background:linear-gradient(120deg,#fff,#76d5ff,#fff);background-size:200% auto;color:transparent;background-clip:text;-webkit-background-clip:text;animation:show 1.3s both,shine 5s linear infinite}
-.sub{font-size:13px;color:#b6d4ee;line-height:2;max-width:400px;animation:show 1.5s .2s both}
-.hana-stage{width:155px;height:155px;margin:22px 0 15px;border:1px solid #85d8ff80;border-radius:50%;display:grid;place-items:center;position:relative;box-shadow:0 0 35px #36aaff30,inset 0 0 35px #36aaff25;animation:float 4s ease-in-out infinite}
-.hana-stage:before{content:"✦";position:absolute;top:12px;right:22px;color:white}
-.hana-stage:after{content:"❄";position:absolute;bottom:15px;left:19px;color:#8bdcff}
-.hana{width:115px;height:115px;border-radius:50%;display:grid;place-items:center;font-size:70px;background:radial-gradient(circle,#b5eaff50,#102c4b)}
-.hana-caption{font-size:10px;letter-spacing:2px;color:#90bddf}
-.welcome{font-size:clamp(16px,4.5vw,21px);line-height:2.2;margin-top:18px;animation:show 1.5s .5s both}
-.welcome strong{color:#c0ecff}
-.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:22px;animation:show 1.5s 1s both}
-.btn{border-radius:30px;padding:14px 22px;border:1px solid #9bdfff80;background:#112c49;color:white}
-.btn.primary{background:linear-gradient(120deg,#83d9ff,#e5f8ff);border:0;color:#06172c;font-weight:bold;box-shadow:0 0 25px #4bbcff50}
-.content{max-width:1000px;margin:auto;padding:40px 18px 65px}
-.heading{text-align:center;margin-bottom:25px}
-.heading small{letter-spacing:2px;color:#84d3ff}
-.heading h2{font-size:27px;margin:12px 0}
-.heading p{color:#a9c8e2;font-size:13px;line-height:2}
-.search{width:100%;padding:14px;border:1px solid #6dbdff55;background:#0b1c32;color:white;border-radius:13px;margin-bottom:18px}
-.search::placeholder{color:#9cb5cc}
-.books{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.book{overflow:hidden;border:1px solid #75caff40;border-radius:17px;background:#10233bdc}
-.cover{height:145px;display:grid;place-items:center;background:radial-gradient(circle,#347eb4,#10182f 75%);font-size:55px}
-.cover.purple{background:radial-gradient(circle,#654a9b,#10132d 75%)}
-.cover.teal{background:radial-gradient(circle,#287a83,#081c2b 75%)}
-.info{padding:13px}
-.info h3{font-size:14px;margin:0 0 9px}
-.info p{font-size:11px;color:#a9c8e2;line-height:1.9}
-.info button{width:100%;padding:10px 5px;border-radius:10px;background:#183a5b;border:1px solid #75caff60;color:#e8f8ff}
-footer{text-align:center;color:#789bb9;padding:25px 15px 35px;border-top:1px solid #6dbdff20;font-size:11px;line-height:2}
-#reader{display:none;text-align:center;padding:50px 20px;min-height:55vh}
-.readerbox{max-width:550px;margin:auto;padding:25px;border:1px solid #70caff50;background:#10233b;border-radius:18px}
-.readerbox p{color:#b6d4ee;line-height:2}
-.empty{grid-column:1/-1;text-align:center;color:#a9c8e2;padding:25px}
-[hidden]{display:none!important}
-@keyframes show{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes glow{from{transform:scale(.8)}to{transform:scale(1.3)}}
-@keyframes shine{to{background-position:200% center}}
-@keyframes fall{to{transform:translateY(110vh) translateX(30px) rotate(360deg)}}
-@media(min-width:650px){.books{grid-template-columns:repeat(3,minmax(0,1fr))}.cover{height:210px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مانهوا لند | دنیای داستان‌ها</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blue: #62c5ff;
+      --dark: #071126;
+      --panel: #101e3a;
+      --text: #f3f7ff;
+      --muted: #b7c5df;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+      background:
+        radial-gradient(ellipse at top, #193d70 0%, transparent 55%),
+        linear-gradient(160deg, #071126, #101c3b 55%, #050b19);
+      overflow-x: hidden;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      color: #b9e8ff;
+      animation: twinkle 3s infinite ease-in-out;
+      opacity: .7;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: .2; transform: scale(.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    header, main, footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px 7%;
+      border-bottom: 1px solid #ffffff17;
+      background: #07112680;
+      backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      color: var(--blue);
+      font-size: 23px;
+      font-weight: 900;
+      text-shadow: 0 0 18px #62c5ff70;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      color: var(--text);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 9px 13px;
+    }
+
+    nav button:hover {
+      border-color: #62c5ff70;
+      background: #62c5ff12;
+    }
+
+    .hero {
+      min-height: 72vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 50px 20px 70px;
+      animation: appear 1.2s ease both;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .moon {
+      width: 110px;
+      height: 110px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      margin-bottom: 18px;
+      font-size: 57px;
+      background: radial-gradient(circle, #dff6ff, #73c7ff 50%, #2856a0);
+      box-shadow: 0 0 35px #62c5ff70, 0 0 100px #62c5ff25;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero h1 {
+      margin: 8px 0;
+      font-size: clamp(32px, 7vw, 58px);
+      line-height: 1.5;
+      background: linear-gradient(90deg, #ffffff, #75d2ff, #d6f5ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero .subtitle {
+      max-width: 620px;
+      color: var(--muted);
+      line-height: 2.1;
+      font-size: 16px;
+    }
+
+    .welcome {
+      max-width: 600px;
+      margin: 15px auto 25px;
+      padding: 17px 22px;
+      border: 1px solid #8bd9ff55;
+      border-radius: 18px;
+      background: #102b4b9c;
+      box-shadow: 0 0 30px #62c5ff12;
+      line-height: 2.1;
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 15px #62c5ff10; }
+      50% { box-shadow: 0 0 30px #62c5ff30; }
+    }
+
+    .primary {
+      border: none;
+      border-radius: 14px;
+      padding: 13px 25px;
+      color: #061126;
+      font-weight: 800;
+      background: linear-gradient(120deg, #9ce4ff, #58baff);
+      box-shadow: 0 5px 25px #62c5ff30;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px #62c5ff60;
+    }
+
+    .content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 35px 20px 70px;
+    }
+
+    .heading {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .heading small {
+      color: var(--blue);
+      letter-spacing: 3px;
+    }
+
+    .heading h2 {
+      margin: 10px 0;
+      font-size: clamp(27px, 5vw, 38px);
+    }
+
+    .heading p {
+      color: var(--muted);
+      line-height: 2;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 45px 20px;
+      border: 1px dashed #62c5ff70;
+      border-radius: 22px;
+      background: #10203b90;
+    }
+
+    .empty .empty-icon {
+      font-size: 55px;
+      margin-bottom: 12px;
+    }
+
+    .empty h3 {
+      color: #a9e4ff;
+      font-size: 22px;
+    }
+
+    .empty p {
+      max-width: 450px;
+      margin: 0 auto;
+      color: var(--muted);
+      line-height: 2.2;
+    }
+
+    .back-button {
+      display: block;
+      margin: 25px auto 0;
+      padding: 11px 20px;
+      color: var(--text);
+      background: #ffffff0b;
+      border: 1px solid #ffffff25;
+      border-radius: 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 15px;
+      border-top: 1px solid #ffffff17;
+      color: #a8b7d1;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 520px) {
+      header {
+        flex-direction: column;
+        padding: 16px 12px;
+      }
+
+      .hero {
+        min-height: 68vh;
+        padding-top: 35px;
+      }
+
+      .welcome {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="sky" aria-hidden="true">
-<div class="moon"></div><div class="glow g1"></div><div class="glow g2"></div><div id="snow"></div>
-</div>
-<main>
-<header>
-<div class="logo">مانهوا <span>لند</span> ✦</div>
-<div class="tag">ENTER YOUR STORY</div>
-</header>
+  <div class="stars" id="stars"></div>
 
-<section class="hero" id="intro">
-<div class="eyebrow">✦ دریچه‌ای به دنیاهای دیگر ✦</div>
-<h1>داستانت از اینجا<br>شروع می‌شه</h1>
-<p class="sub">جایی میان خیال و واقعیت؛ هر مانهوا، دری به یک دنیای تازه است.</p>
-<div class="hana-stage"><div class="hana">🧸</div></div>
-<div class="hana-caption">HANA · YOUR LITTLE GUIDE</div>
-<div class="welcome">
-<strong>سلام مخاطب عزیز، به مانهوا لند خوش اومدین!</strong><br>
-امیدوارم که روز خوبی داشته باشین ✨
-</div>
-<div class="actions">
-<button class="btn primary" onclick="enterLibrary()">ورود به دنیای مانهوا ❄</button>
-<button class="btn" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">دربارهٔ ما</button>
-</div>
-</section>
+  <header>
+    <div class="logo">❄ مانهوا لند</div>
+    <nav>
+      <button onclick="showHome()">صفحهٔ اصلی</button>
+      <button onclick="showLibrary()">کتابخانه</button>
+    </nav>
+  </header>
 
-<section class="content" id="library" hidden>
-<div class="heading">
-<small>YOUR NEXT OBSESSION</small>
-<h2>کتابخانهٔ اسرارآمیز</h2>
-<p>داستان بعدی‌ات رو پیدا کن؛ ماجراجویی منتظرته.</p>
-</div>
-<input class="search" id="search" type="search" placeholder="🔎 اسم مانهوا رو جست‌وجو کن..." oninput="filterBooks()">
-<div class="books" id="books">
-<article class="book" data-name="زندگی دوباره دختر دوک هانا تناسخ فانتزی">
-<div class="cover">❄️</div><div class="info"><h3>زندگی دوباره دختر دوک</h3><p>فانتزی · تناسخ · داستان هانا</p><button onclick="openBook('زندگی دوباره دختر دوک')">دیدن داستان</button></div>
-</article>
-<article class="book" data-name="قصه شاهزاده گمشده سلطنتی">
-<div class="cover purple">👑</div><div class="info"><h3>قصهٔ شاهزادهٔ گمشده</h3><p>سلطنتی · رازآلود · ماجراجویی</p><button onclick="openBook('قصهٔ شاهزادهٔ گمشده')">دیدن داستان</button></div>
-</article>
-<article class="book" data-name="باغ جادویی ماه فانتزی">
-<div class="cover teal">🌙</div><div class="info"><h3>باغ جادویی ماه</h3><p>جادو · فانتزی · رازهای شب</p><button onclick="openBook('باغ جادویی ماه')">دیدن داستان</button></div>
-</article>
-</div>
-<p id="noResults" class="empty" hidden>چیزی پیدا نشد؛ اسم دیگری رو امتحان کن.</p>
-</section>
+  <main>
+    <section class="hero" id="home">
+      <div class="moon" aria-label="ماه جادویی">🌙</div>
 
-<section id="reader">
-<div class="readerbox">
-<div class="tag">STORY PORTAL</div>
-<h2 id="readerTitle"></h2>
-<p>دروازهٔ داستان باز شده، اما هنوز فصل‌های واقعی این مانهوا اضافه نشده‌اند.</p>
-<button class="btn primary" onclick="closeBook()">بازگشت به کتابخانه</button>
-</div>
-</section>
+      <h1>به مانهوا لند خوش اومدی!</h1>
 
-<section class="content" id="about">
-<div class="heading">
-<small>A WORLD MADE OF STORIES</small>
-<h2>این فقط شروع ماجراست ✦</h2>
-<p>هر جلد، یک جهان تازه؛ هر فصل، یک ماجراجویی تازه.<br>به دنیای مانهوا لند خوش اومدی 💙</p>
-</div>
-</section>
-<footer>مانهوا لند · دنیایی فراتر از صفحات ✦<br>ساخته‌شده با عشق به داستان‌ها 💙</footer>
-</main>
+      <p class="subtitle">
+        جایی میان جادو، رویا و داستان‌های بی‌پایان...
+        دنیای خودت رو اینجا بساز.
+      </p>
 
-<script>
-const snow=document.getElementById("snow");
-for(let i=0;i<28;i++){
- const f=document.createElement("span");
- f.className="flake";
- f.textContent=Math.random()>.5?"❄":"✧";
- f.style.left=Math.random()*100+"%";
- f.style.animationDuration=(7+Math.random()*12)+"s";
- f.style.animationDelay=(-Math.random()*15)+"s";
- f.style.fontSize=(9+Math.random()*12)+"px";
- f.style.opacity=(.3+Math.random()*.7).toString();
- snow.appendChild(f);
-}
-function enterLibrary(){
- document.getElementById("intro").hidden=true;
- document.getElementById("library").hidden=false;
- document.getElementById("reader").style.display="none";
- document.getElementById("library").scrollIntoView({behavior:"smooth"});
-}
-function openBook(name){
- document.getElementById("library").hidden=true;
- document.getElementById("readerTitle").textContent=name;
- document.getElementById("reader").style.display="block";
- document.getElementById("reader").scrollIntoView({behavior:"smooth"});
-}
-function closeBook(){
- document.getElementById("reader").style.display="none";
- document.getElementById("library").hidden=false;
- document.getElementById("library").scrollIntoView({behavior:"smooth"});
-}
-function filterBooks(){
- const q=document.getElementById("search").value.trim().toLowerCase();
- let count=0;
- document.querySelectorAll(".book").forEach(book=>{
-  const match=book.dataset.name.toLowerCase().includes(q);
-  book.hidden=!match;
-  if(match)count++;
- });
- document.getElementById("noResults").hidden=count!==0;
-}
-</script>
+      <div class="welcome">
+        ✨ سلام مخاطب عزیز، به مانهوا لند خوش اومدین!
+        امیدوارم که روز خوبی داشته باشین. 💙
+      </div>
+
+      <button class="primary" onclick="showLibrary()">
+        ورود به کتابخانه ❄️
+      </button>
+    </section>
+
+    <section class="content" id="library" hidden>
+      <div class="heading">
+        <small>YOUR NEXT OBSESSION</small>
+        <h2>کتابخانهٔ اسرارآمیز</h2>
+        <p>اینجا منتظر مانهواهایی می‌مونیم که خودت اضافه می‌کنی. 💙</p>
+      </div>
+
+      <div class="empty">
+        <div class="empty-icon">📚❄️</div>
+        <h3>کتابخانه فعلاً خالیه!</h3>
+        <p>
+          هنوز هیچ مانهوايی منتشر نشده.
+          به‌زودی می‌تونی داستان‌های موردعلاقه‌ات رو اینجا قرار بدی.
+        </p>
+      </div>
+
+      <button class="back-button" onclick="showHome()">
+        برگشت به صفحهٔ اصلی
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <div>❄️ مانهوا لند؛ دنیایی برای عاشقان مانهوا ❄️</div>
+    <div>ساخته‌شده با عشق و کمی جادو 💙</div>
+  </footer>
+
+  <script>
+    function showHome() {
+      document.getElementById("home").hidden = false;
+      document.getElementById("library").hidden = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showLibrary() {
+      document.getElementById("home").hidden = true;
+      document.getElementById("library").hidden = false;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    const stars = document.getElementById("stars");
+
+    for (let i = 0; i < 35; i++) {
+      const star = document.createElement("span");
+      star.className = "star";
+      star.textContent = Math.random() > 0.5 ? "✦" : "·";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+      star.style.animationDelay = Math.random() * 3 + "s";
+      star.style.fontSize = (8 + Math.random() * 15) + "px";
+      stars.appendChild(star);
+    }
+  </script>
 </body>
 </html>
