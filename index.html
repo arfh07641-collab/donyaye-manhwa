@@ -1,127 +1,292 @@
-DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>مانهوا لند ❤️</title>
+<title>مانهوا لند | دنیای سلطنتی</title>
+
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Tahoma, sans-serif;
-  background: #fff0f5;
-  color: #59152e;
+  background: #eef8ff;
+  color: #243b64;
 }
+
 header {
-  background: linear-gradient(135deg,#97002f,#ed679a);
-  color: white;
+  position: relative;
+  overflow: hidden;
   text-align: center;
-  padding: 30px 12px;
-  border-radius: 0 0 25px 25px;
+  padding: 35px 15px 30px;
+  color: #ffffff;
+  background: linear-gradient(145deg, #477bb8, #a8d9f5, #f7fcff);
+  border-bottom: 4px solid #d5eaff;
+  border-radius: 0 0 35px 35px;
 }
-header h1 { margin: 0 0 10px; }
+
+header .crown {
+  font-size: 35px;
+}
+
+header h1 {
+  margin: 10px 0;
+  font-size: 29px;
+  text-shadow: 0 2px 8px #557da5;
+}
+
+header p {
+  line-height: 2;
+  margin-bottom: 5px;
+}
+
+.palace {
+  margin: 18px auto 0;
+  padding: 18px 10px;
+  max-width: 450px;
+  border: 1px solid #ffffff;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #e9f7ff, #ffffff);
+  box-shadow: 0 5px 20px #5d8fc044;
+}
+
+.palace .castle {
+  font-size: 68px;
+}
+
+.palace p {
+  color: #4774a8;
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
 nav {
   display: flex;
   justify-content: center;
-  gap: 20px;
   flex-wrap: wrap;
-  padding: 16px 8px;
-  background: white;
+  gap: 12px;
+  padding: 17px 8px;
+  background: #ffffff;
+  border-bottom: 1px solid #d8eaff;
 }
+
 nav a {
-  color: #ad164c;
+  color: #426fa6;
   text-decoration: none;
   font-weight: bold;
+  padding: 8px 10px;
+  border-radius: 12px;
 }
-main { padding: 16px; }
+
+nav a:hover {
+  background: #e7f4ff;
+}
+
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 20px 15px;
+}
+
 input {
   width: 100%;
   padding: 14px;
-  border: 2px solid #f0b4ca;
-  border-radius: 14px;
+  border: 2px solid #c4e2fa;
+  border-radius: 15px;
   font-size: 16px;
+  font-family: inherit;
+  background: #ffffff;
+  color: #243b64;
+  outline: none;
 }
-h2 { color: #a60039; }
+
+input:focus {
+  border-color: #76b7e8;
+}
+
+h2 {
+  color: #416fa9;
+  margin-top: 28px;
+  font-size: 21px;
+}
+
+.subtitle {
+  color: #7794b6;
+  font-size: 13px;
+  line-height: 2;
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(2,minmax(0,1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
+
 .card {
-  background: white;
+  min-width: 0;
+  background: #ffffff;
   padding: 10px;
-  border-radius: 16px;
-  box-shadow: 0 3px 12px #e8c4d1;
+  border: 1px solid #d9eafa;
+  border-radius: 19px;
+  box-shadow: 0 5px 16px #7fa9d522;
 }
+
 .cover {
   height: 155px;
-  border-radius: 12px;
-  background: linear-gradient(145deg,#ffd4e3,#f5a4c1);
+  border-radius: 14px;
+  background: linear-gradient(145deg, #d9f0ff, #ffffff, #b8dcf8);
   display: grid;
   place-items: center;
   font-size: 48px;
+  border: 1px solid #e3f2ff;
 }
-.card h3 { font-size: 14px; line-height: 1.8; }
-.tag { color: #bd426e; font-size: 12px; }
+
+.card h3 {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #315b91;
+}
+
+.tag {
+  color: #7899bd;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
 .btn {
   display: block;
-  background: #b3134b;
+  background: linear-gradient(120deg, #4e83bd, #8fc9ee);
   color: white;
   text-align: center;
-  padding: 11px 4px;
-  border-radius: 10px;
+  padding: 12px 5px;
+  border-radius: 11px;
   text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #315f99;
+}
+
+.empty {
+  display: none;
+  text-align: center;
+  padding: 20px;
+  color: #7899bd;
+}
+
+footer {
+  margin-top: 30px;
+  padding: 25px 15px;
+  text-align: center;
+  line-height: 2;
+  color: #ffffff;
+  background: linear-gradient(135deg, #315b91, #78acd8);
+  border-radius: 25px 25px 0 0;
   font-size: 13px;
 }
-footer {
-  margin-top: 28px;
-  padding: 22px;
-  text-align: center;
-  background: #8d1037;
-  color: white;
+
+footer p {
+  margin: 5px;
+}
+
+@media (max-width: 360px) {
+  .grid {
+    gap: 8px;
+  }
+
+  .cover {
+    height: 125px;
+  }
+
+  header h1 {
+    font-size: 24px;
+  }
 }
 </style>
 </head>
+
 <body>
+
 <header>
-  <h1>🌸 مانهوا لند ❤️</h1>
-  <p>دنیایی فراتر از داستان‌ها!</p>
+  <div class="crown">👑 ❄️ 👑</div>
+  <h1>مانهوا لند</h1>
+  <p>به قصر داستان‌های خیال‌انگیز خوش اومدی!</p>
+
+  <div class="palace">
+    <div class="castle">🏰</div>
+    <p>قلمرو شاهزاده‌ها، دوک‌ها و داستان‌های جادویی</p>
+    <p>❄️ ✧ ♔ ✧ ❄️</p>
+  </div>
 </header>
+
 <nav>
   <a href="#">خانه</a>
   <a href="#popular">محبوب‌ها</a>
   <a href="#all">همه مانهواها</a>
 </nav>
+
 <main>
-  <input id="search" type="search"
-    placeholder="🔎 اسم مانهوا رو جست‌وجو کن...">
-  <h2 id="popular">🔥 مانهواهای محبوب</h2>
+  <input
+    id="search"
+    type="search"
+    placeholder="🔎 اسم مانهوا رو جست‌وجو کن..."
+    aria-label="جست‌وجوی مانهوا"
+  >
+
+  <h2 id="popular">❄️ مانهواهای محبوب</h2>
+  <p class="subtitle">داستان مورد علاقه‌ات رو انتخاب کن، شاهزاده!</p>
+
   <section class="grid" id="all">
+
     <article class="card">
       <div class="cover">🧸🌷</div>
       <h3>زندگی دوباره دختر دوک</h3>
-      <p class="tag">فانتزی • تناسخ</p>
-      <a class="btn" href="hana.html">مشاهده داستان</a>
+      <p class="tag">فانتزی • تناسخ • درباری</p>
+      <a class="btn" href="hana.html">مشاهده داستان ♡</a>
     </article>
+
     <article class="card">
       <div class="cover">👑🌹</div>
       <h3>داستان شاهزاده</h3>
-      <p class="tag">درباری • عاشقانه</p>
-      <a class="btn" href="princess.html">مشاهده داستان</a>
+      <p class="tag">درباری • عاشقانه • فانتزی</p>
+      <a class="btn" href="princess.html">مشاهده داستان ♡</a>
     </article>
+
   </section>
+
+  <p id="empty" class="empty">مانهوایی پیدا نشد! اسم دیگه‌ای امتحان کن. ❄️</p>
 </main>
+
 <footer>
-  ❤️ مانهوا لند؛ خانه‌ی عاشقان داستان
+  <p>❄️ ♔ ❄️</p>
+  <p>مانهوا لند؛ قصر سفید داستان‌ها</p>
+  <p>با عشق برای عاشقان مانهوا 💙</p>
 </footer>
+
 <script>
-document.getElementById("search").addEventListener("input",function(){
+const search = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+const empty = document.getElementById("empty");
+
+search.addEventListener("input", function () {
   const q = this.value.trim().toLowerCase();
-  document.querySelectorAll(".card").forEach(function(card){
-    card.style.display =
-      card.innerText.toLowerCase().includes(q) ? "" : "none";
+  let count = 0;
+
+  cards.forEach(function (card) {
+    const match = card.innerText.toLowerCase().includes(q);
+    card.style.display = match ? "" : "none";
+    if (match) count++;
   });
+
+  empty.style.display = count === 0 ? "block" : "none";
 });
 </script>
+
 </body>
 </html>
