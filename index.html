@@ -2,367 +2,686 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مانهوا لند | دنیای داستان‌ها</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    :root {
-      --blue: #62c5ff;
-      --dark: #071126;
-      --panel: #101e3a;
-      --text: #f3f7ff;
-      --muted: #b7c5df;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
-      background:
-        radial-gradient(ellipse at top, #193d70 0%, transparent 55%),
-        linear-gradient(160deg, #071126, #101c3b 55%, #050b19);
-      overflow-x: hidden;
-    }
-
-    button, input {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    .stars {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .star {
-      position: absolute;
-      color: #b9e8ff;
-      animation: twinkle 3s infinite ease-in-out;
-      opacity: .7;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: .2; transform: scale(.8); }
-      50% { opacity: 1; transform: scale(1.2); }
-    }
-
-    header, main, footer {
-      position: relative;
-      z-index: 1;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 18px 7%;
-      border-bottom: 1px solid #ffffff17;
-      background: #07112680;
-      backdrop-filter: blur(12px);
-    }
-
-    .logo {
-      color: var(--blue);
-      font-size: 23px;
-      font-weight: 900;
-      text-shadow: 0 0 18px #62c5ff70;
-    }
-
-    nav {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    nav button {
-      color: var(--text);
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: 12px;
-      padding: 9px 13px;
-    }
-
-    nav button:hover {
-      border-color: #62c5ff70;
-      background: #62c5ff12;
-    }
-
-    .hero {
-      min-height: 72vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 50px 20px 70px;
-      animation: appear 1.2s ease both;
-    }
-
-    @keyframes appear {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .moon {
-      width: 110px;
-      height: 110px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      margin-bottom: 18px;
-      font-size: 57px;
-      background: radial-gradient(circle, #dff6ff, #73c7ff 50%, #2856a0);
-      box-shadow: 0 0 35px #62c5ff70, 0 0 100px #62c5ff25;
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-
-    .hero h1 {
-      margin: 8px 0;
-      font-size: clamp(32px, 7vw, 58px);
-      line-height: 1.5;
-      background: linear-gradient(90deg, #ffffff, #75d2ff, #d6f5ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero .subtitle {
-      max-width: 620px;
-      color: var(--muted);
-      line-height: 2.1;
-      font-size: 16px;
-    }
-
-    .welcome {
-      max-width: 600px;
-      margin: 15px auto 25px;
-      padding: 17px 22px;
-      border: 1px solid #8bd9ff55;
-      border-radius: 18px;
-      background: #102b4b9c;
-      box-shadow: 0 0 30px #62c5ff12;
-      line-height: 2.1;
-      animation: glow 3s ease-in-out infinite;
-    }
-
-    @keyframes glow {
-      0%, 100% { box-shadow: 0 0 15px #62c5ff10; }
-      50% { box-shadow: 0 0 30px #62c5ff30; }
-    }
-
-    .primary {
-      border: none;
-      border-radius: 14px;
-      padding: 13px 25px;
-      color: #061126;
-      font-weight: 800;
-      background: linear-gradient(120deg, #9ce4ff, #58baff);
-      box-shadow: 0 5px 25px #62c5ff30;
-      transition: transform .2s, box-shadow .2s;
-    }
-
-    .primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px #62c5ff60;
-    }
-
-    .content {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 35px 20px 70px;
-    }
-
-    .heading {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .heading small {
-      color: var(--blue);
-      letter-spacing: 3px;
-    }
-
-    .heading h2 {
-      margin: 10px 0;
-      font-size: clamp(27px, 5vw, 38px);
-    }
-
-    .heading p {
-      color: var(--muted);
-      line-height: 2;
-    }
-
-    .empty {
-      text-align: center;
-      padding: 45px 20px;
-      border: 1px dashed #62c5ff70;
-      border-radius: 22px;
-      background: #10203b90;
-    }
-
-    .empty .empty-icon {
-      font-size: 55px;
-      margin-bottom: 12px;
-    }
-
-    .empty h3 {
-      color: #a9e4ff;
-      font-size: 22px;
-    }
-
-    .empty p {
-      max-width: 450px;
-      margin: 0 auto;
-      color: var(--muted);
-      line-height: 2.2;
-    }
-
-    .back-button {
-      display: block;
-      margin: 25px auto 0;
-      padding: 11px 20px;
-      color: var(--text);
-      background: #ffffff0b;
-      border: 1px solid #ffffff25;
-      border-radius: 12px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px 15px;
-      border-top: 1px solid #ffffff17;
-      color: #a8b7d1;
-      font-size: 13px;
-      line-height: 2;
-    }
-
-    [hidden] {
-      display: none !important;
-    }
-
-    @media (max-width: 520px) {
-      header {
-        flex-direction: column;
-        padding: 16px 12px;
-      }
-
-      .hero {
-        min-height: 68vh;
-        padding-top: 35px;
-      }
-
-      .welcome {
-        font-size: 14px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANHWA LAND | مانهوا لند</title>
+<style>
+:root {
+  --ice: #eaf8ff;
+  --blue: #b9e9ff;
+  --light: #d8f3ff;
+  --primary: #55aee0;
+  --dark: #214e70;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  color: var(--dark);
+  background: linear-gradient(#eaf8ff, #fff);
+}
+button, input, textarea { font: inherit; }
+button {
+  border: 0;
+  border-radius: 13px;
+  padding: 11px 16px;
+  background: var(--light);
+  color: var(--dark);
+  cursor: pointer;
+}
+button:hover { background: var(--blue); }
+header {
+  text-align: center;
+  padding: 28px 12px;
+  background: linear-gradient(135deg,#aee3ff,#f3fcff,#cdefff);
+}
+.logo {
+  font-size: clamp(28px,6vw,43px);
+  font-weight: 900;
+  color: #287db0;
+  text-shadow: 2px 2px white;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.hero, .section {
+  width: min(1100px,92%);
+  margin: 25px auto;
+}
+.hero {
+  text-align: center;
+  padding: 35px 18px;
+  border-radius: 25px;
+  background: linear-gradient(135deg,#b9e9ff,#f5fcff,#d8f3ff);
+}
+.hero h1 { font-size: clamp(25px,5vw,38px); }
+.hero p { line-height: 2.2; }
+.section h2 {
+  border-right: 5px solid #72c8f5;
+  padding-right: 12px;
+}
+.hidden { display: none !important; }
+.search {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #b9e4f8;
+  border-radius: 13px;
+  margin: 12px 0 20px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+  gap: 18px;
+}
+.card {
+  background: white;
+  border: 1px solid #d7effb;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.cover {
+  height: 240px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+  background: linear-gradient(145deg,#b8e7ff,#f1edff,#e0f8ff);
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+.cover-symbol { font-size: 65px; }
+.cover h3 { position: relative; line-height: 1.8; }
+.card-body { padding: 15px; }
+.card-body p { font-size: 14px; line-height: 2; }
+.tag {
+  display: inline-block;
+  background: #e5f6ff;
+  border-radius: 10px;
+  padding: 5px 8px;
+  font-size: 12px;
+}
+.primary { background: #4ca7dc; color: white; }
+.full { width: 100%; margin-top: 10px; }
+.reader, .admin-box {
+  background: white;
+  border: 1px solid #d3edfb;
+  border-radius: 18px;
+  padding: 20px;
+  line-height: 2.2;
+  overflow-wrap: anywhere;
+}
+.hana-banner {
+  text-align: center;
+  padding: 25px 10px;
+  border-radius: 16px;
+  background: linear-gradient(135deg,#d6f2ff,#f8f4ff);
+}
+.hana-banner h2 { border: 0; }
+.chapter-button {
+  width: 100%;
+  text-align: right;
+  margin: 6px 0;
+}
+.admin-box input, .admin-box textarea {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 14px;
+  border: 1px solid #bfdfef;
+  border-radius: 10px;
+}
+.admin-box textarea { min-height: 110px; }
+.notice {
+  background: #fff5d9;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #dff4ff;
+  line-height: 2;
+}
+</style>
 </head>
-
 <body>
-  <div class="stars" id="stars"></div>
 
-  <header>
-    <div class="logo">❄ مانهوا لند</div>
-    <nav>
-      <button onclick="showHome()">صفحهٔ اصلی</button>
-      <button onclick="showLibrary()">کتابخانه</button>
-    </nav>
-  </header>
+<header>
+  <div class="logo">❄ MANHWA LAND ❄</div>
+  <p>دنیای جادویی مانهواها 🩵</p>
+</header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="moon" aria-label="ماه جادویی">🌙</div>
+<nav>
+  <button onclick="showPage('home')">خانه</button>
+  <button onclick="showPage('library')">کتابخانه</button>
+  <button onclick="showPage('hana')">داستان هانا</button>
+  <button onclick="showPage('admin')">مدیریت</button>
+</nav>
 
-      <h1>به مانهوا لند خوش اومدی!</h1>
+<main>
+<section id="home">
+  <div class="hero">
+    <div style="font-size:48px">❄️ 🩵 ❄️</div>
+    <h1>به مانهوا لند خوش اومدی!</h1>
+    <p>دنیایی از دوک‌ها، قصرهای سلطنتی، تناسخ، فانتزی و ماجراجویی منتظرته.</p>
+    <button class="primary" onclick="showPage('library')">ورود به کتابخانه</button>
+  </div>
+  <section class="section">
+    <h2>🌟 پیشنهاد ویژه</h2>
+    <div class="grid" id="featured"></div>
+  </section>
+</section>
 
-      <p class="subtitle">
-        جایی میان جادو، رویا و داستان‌های بی‌پایان...
-        دنیای خودت رو اینجا بساز.
-      </p>
+<section id="library" class="section hidden">
+  <h2>📚 کتابخانه مانهوا</h2>
+  <input class="search" id="search" placeholder="جست‌وجوی مانهوا..." oninput="renderLibrary()">
+  <div class="grid" id="mangaGrid"></div>
+</section>
 
-      <div class="welcome">
-        ✨ سلام مخاطب عزیز، به مانهوا لند خوش اومدین!
-        امیدوارم که روز خوبی داشته باشین. 💙
-      </div>
+<section id="hana" class="section hidden">
+  <div class="reader">
+    <div class="hana-banner">
+      <div style="font-size:70px">❄️ 🧸 ❄️</div>
+      <h2>زندگی دوباره دختر دوک</h2>
+      <p>داستان هانا اورگاردن</p>
+      <p>تناسخ • فانتزی • خانوادگی • اشرافی</p>
+    </div>
+    <h3>درباره داستان</h3>
+    <p>
+      هانا در زندگی تازه‌اش به‌عنوان دختر خانواده دوک اورگاردن
+      متولد می‌شود. او موهای سفید دارد و چشمانش در آغاز، به‌دلیل
+      تاری دید نوزادی، خاکستری به نظر می‌رسند. با واضح‌تر شدن
+      دیدش، رنگ آبی چشمانش نمایان می‌شود.
+    </p>
+    <p>رازهای قصر، خانواده‌ای قدرتمند و ماجراهای تازه در انتظار او هستند.</p>
+    <h3>📖 چپترها</h3>
+    <div id="chapters"></div>
+  </div>
+</section>
 
-      <button class="primary" onclick="showLibrary()">
-        ورود به کتابخانه ❄️
-      </button>
-    </section>
+<section id="readerPage" class="section hidden">
+  <div class="reader">
+    <h2 id="readerTitle"></h2>
+    <div id="readerContent"></div>
+    <button onclick="showPage('hana')">بازگشت به هانا</button>
+  </div>
+</section>
 
-    <section class="content" id="library" hidden>
-      <div class="heading">
-        <small>YOUR NEXT OBSESSION</small>
-        <h2>کتابخانهٔ اسرارآمیز</h2>
-        <p>اینجا منتظر مانهواهایی می‌مونیم که خودت اضافه می‌کنی. 💙</p>
-      </div>
+<section id="admin" class="section hidden">
+  <h2>🔐 مدیریت سایت</h2>
+  <div class="admin-box">
+    <p class="notice">
+      نسخه آزمایشی: این بخش هنوز ورود امن مدیر ندارد و اطلاعات
+      فقط در مرورگر ذخیره می‌شوند. برای انتشار واقعی روی سایت
+      و محدودکردن دسترسی به خودت، باید سیستم ورود امن و پایگاه
+      داده متصل شود.
+    </p>
 
-      <div class="empty">
-        <div class="empty-icon">📚❄️</div>
-        <h3>کتابخانه فعلاً خالیه!</h3>
-        <p>
-          هنوز هیچ مانهوايی منتشر نشده.
-          به‌زودی می‌تونی داستان‌های موردعلاقه‌ات رو اینجا قرار بدی.
-        </p>
-      </div>
+    <h3>افزودن مانهوا</h3>
+    <label for="title">نام مانهوا</label>
+    <input id="title" placeholder="نام مانهوا">
+    <label for="genre">ژانر</label>
+    <input id="genre" placeholder="فانتزی، تناسخ و...">
+    <label for="description">توضیحات</label>
+    <textarea id="description" placeholder="توضیحات داستان"></textarea>
+    <label for="cover">لینک تصویر کاور</label>
+    <input id="cover" type="url" placeholder="https://example.com/cover.jpg">
+    <button class="primary full" onclick="addManga()">افزودن به کتابخانه</button>
 
-      <button class="back-button" onclick="showHome()">
-        برگشت به صفحهٔ اصلی
-      </button>
-    </section>
-  </main>
+    <hr>
 
-  <footer>
-    <div>❄️ مانهوا لند؛ دنیایی برای عاشقان مانهوا ❄️</div>
-    <div>ساخته‌شده با عشق و کمی جادو 💙</div>
-  </footer>
+    <h3>انتشار چپتر هانا</h3>
+    <label for="chapterNo">شماره چپتر</label>
+    <input id="chapterNo" placeholder="۱">
+    <label for="chapterTitle">عنوان چپتر</label>
+    <input id="chapterTitle" placeholder="عنوان">
+    <label for="chapterText">متن چپتر</label>
+    <textarea id="chapterText" placeholder="متن چپتر"></textarea>
+    <button class="primary full" onclick="addChapter()">ذخیره چپتر</button>
 
-  <script>
-    function showHome() {
-      document.getElementById("home").hidden = false;
-      document.getElementById("library").hidden = true;
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    <hr>
+
+    <h3>افزودن تصویر چپتر</h3>
+    <label for="imageNo">شماره چپتر</label>
+    <input id="imageNo" placeholder="۱">
+    <label for="imageUrl">لینک تصویر</label>
+    <input id="imageUrl" type="url" placeholder="https://example.com/page.jpg">
+    <button class="primary full" onclick="addChapterImage()">افزودن تصویر</button>
+
+    <hr>
+    <h3>محتوای منتشرشده</h3>
+    <div id="adminList"></div>
+    <button class="full" onclick="exportData()">دریافت نسخه پشتیبان</button>
+    <label for="backup">انتخاب فایل پشتیبان</label>
+    <input id="backup" type="file" accept=".json,application/json">
+    <button class="full" onclick="importData()">بازیابی نسخه پشتیبان</button>
+    <p id="message" aria-live="polite"></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <strong>❄ MANHWA LAND ❄</strong>
+  <p>با عشق برای دوست‌داران مانهوا 🩵</p>
+</footer>
+
+<script>
+"use strict";
+
+const DEFAULT_MANGA = {
+  id: "hana",
+  title: "زندگی دوباره دختر دوک",
+  genre: "تناسخ، فانتزی، خانوادگی",
+  description: "داستان هانا اورگاردن با موهای سفید و چشم‌های آبی.",
+  cover: "",
+  symbol: "🧸",
+  featured: true
+};
+
+function load(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    if (!value) return fallback;
+    const data = JSON.parse(value);
+    return Array.isArray(data) ? data : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+let mangaList = load("ml_manga", [DEFAULT_MANGA]);
+let chapterList = load("ml_chapters", []);
+let imageList = load("ml_images", []);
+
+if (!mangaList.some(item => item.id === "hana")) {
+  mangaList.unshift(DEFAULT_MANGA);
+}
+
+function save() {
+  try {
+    localStorage.setItem("ml_manga", JSON.stringify(mangaList));
+    localStorage.setItem("ml_chapters", JSON.stringify(chapterList));
+    localStorage.setItem("ml_images", JSON.stringify(imageList));
+    return true;
+  } catch {
+    message("ذخیره‌سازی انجام نشد.");
+    return false;
+  }
+}
+
+function message(text) {
+  document.getElementById("message").textContent = text;
+}
+
+function showPage(id) {
+  ["home","library","hana","readerPage","admin"].forEach(page => {
+    document.getElementById(page).classList.add("hidden");
+  });
+  document.getElementById(id).classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+  if (id === "library") renderLibrary();
+  if (id === "home") renderFeatured();
+  if (id === "hana") renderChapters();
+  if (id === "admin") renderAdmin();
+}
+
+function createCard(manga) {
+  const card = document.createElement("article");
+  card.className = "card";
+
+  const cover = document.createElement("div");
+  cover.className = "cover";
+
+  if (manga.cover) {
+    const img = document.createElement("img");
+    img.src = manga.cover;
+    img.alt = "کاور " + manga.title;
+    img.loading = "lazy";
+    img.onerror = () => img.remove();
+    cover.append(img);
+  } else {
+    const icon = document.createElement("div");
+    icon.className = "cover-symbol";
+    icon.textContent = manga.symbol || "❄️";
+    const heading = document.createElement("h3");
+    heading.textContent = manga.title;
+    cover.append(icon,heading);
+  }
+
+  const body = document.createElement("div");
+  body.className = "card-body";
+
+  const title = document.createElement("h3");
+  title.textContent = manga.title;
+
+  const genre = document.createElement("span");
+  genre.className = "tag";
+  genre.textContent = manga.genre || "فانتزی";
+
+  const description = document.createElement("p");
+  description.textContent = manga.description || "";
+
+  const open = document.createElement("button");
+  open.className = "primary full";
+  open.textContent = "مشاهده داستان";
+  open.onclick = () => {
+    if (manga.id === "hana") showPage("hana");
+    else alert("صفحه چپترهای این مانهوا هنوز آماده نیست.");
+  };
+
+  body.append(title,genre,description,open);
+  card.append(cover,body);
+  return card;
+}
+
+function renderLibrary() {
+  const grid = document.getElementById("mangaGrid");
+  const query = document.getElementById("search").value.trim().toLowerCase();
+  grid.replaceChildren();
+
+  const results = mangaList.filter(manga =>
+    (manga.title + " " + manga.genre).toLowerCase().includes(query)
+  );
+
+  if (!results.length) {
+    grid.textContent = "مانهوایی پیدا نشد.";
+    return;
+  }
+
+  results.forEach(manga => grid.append(createCard(manga)));
+}
+
+function renderFeatured() {
+  const grid = document.getElementById("featured");
+  grid.replaceChildren();
+  mangaList.filter(item => item.featured)
+    .forEach(item => grid.append(createCard(item)));
+}
+
+function renderChapters() {
+  const list = document.getElementById("chapters");
+  list.replaceChildren();
+
+  const numbers = [...new Set([
+    ...chapterList.map(item => String(item.number)),
+    ...imageList.map(item => String(item.number))
+  ])].sort((a,b) => Number(a)-Number(b));
+
+  if (!numbers.length) {
+    list.textContent = "هنوز چپتری منتشر نشده است.";
+    return;
+  }
+
+  numbers.forEach(number => {
+    const chapter = chapterList.find(item => String(item.number) === number);
+    const button = document.createElement("button");
+    button.className = "chapter-button";
+    button.textContent = "چپتر " + number +
+      (chapter ? " — " + chapter.title : "");
+    button.onclick = () => openChapter(number);
+    list.append(button);
+  });
+}
+
+function openChapter(number) {
+  document.getElementById("readerTitle").textContent = "چپتر " + number;
+  const content = document.getElementById("readerContent");
+  content.replaceChildren();
+
+  const chapter = chapterList.find(item => String(item.number) === String(number));
+
+  if (chapter && chapter.text) {
+    const p = document.createElement("p");
+    p.style.whiteSpace = "pre-wrap";
+    p.textContent = chapter.text;
+    content.append(p);
+  }
+
+  imageList.filter(item => String(item.number) === String(number))
+    .forEach(item => {
+      const img = document.createElement("img");
+      img.src = item.url;
+      img.alt = "صفحه چپتر " + number;
+      img.loading = "lazy";
+      img.style.width = "100%";
+      img.style.height = "auto";
+      img.style.display = "block";
+      img.style.margin = "15px auto";
+      content.append(img);
+    });
+
+  if ((!chapter || !chapter.text) &&
+      !imageList.some(item => String(item.number) === String(number))) {
+    content.textContent = "محتوایی برای این چپتر موجود نیست.";
+  }
+
+  showPage("readerPage");
+}
+
+function validUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" || url.protocol === "http:";
+  } catch {
+    return false;
+  }
+}
+
+function addManga() {
+  const title = document.getElementById("title").value.trim();
+  const genre = document.getElementById("genre").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const cover = document.getElementById("cover").value.trim();
+
+  if (!title) return message("نام مانهوا را وارد کن.");
+  if (cover && !validUrl(cover)) return message("لینک کاور معتبر نیست.");
+
+  mangaList.push({
+    id: "manga-" + Date.now(),
+    title,
+    genre: genre || "فانتزی",
+    description,
+    cover,
+    symbol: "❄️",
+    featured: false
+  });
+
+  if (!save()) return;
+
+  ["title","genre","description","cover"].forEach(id => {
+    document.getElementById(id).value = "";
+  });
+
+  message("مانهوا ذخیره شد.");
+  renderLibrary();
+  renderFeatured();
+  renderAdmin();
+}
+
+function addChapter() {
+  const number = document.getElementById("chapterNo").value.trim();
+  const title = document.getElementById("chapterTitle").value.trim();
+  const text = document.getElementById("chapterText").value.trim();
+
+  if (!number || !title || !text) {
+    return message("شماره، عنوان و متن چپتر را وارد کن.");
+  }
+
+  const index = chapterList.findIndex(item => String(item.number) === number);
+  const chapter = {number,title,text};
+
+  if (index >= 0) chapterList[index] = chapter;
+  else chapterList.push(chapter);
+
+  if (!save()) return;
+
+  ["chapterNo","chapterTitle","chapterText"].forEach(id => {
+    document.getElementById(id).value = "";
+  });
+
+  message("چپتر ذخیره شد.");
+  renderChapters();
+  renderAdmin();
+}
+
+function addChapterImage() {
+  const number = document.getElementById("imageNo").value.trim();
+  const url = document.getElementById("imageUrl").value.trim();
+
+  if (!number || !validUrl(url)) {
+    return message("شماره چپتر و لینک معتبر تصویر را وارد کن.");
+  }
+
+  imageList.push({id:"image-"+Date.now(),number,url});
+  if (!save()) return;
+
+  document.getElementById("imageNo").value = "";
+  document.getElementById("imageUrl").value = "";
+
+  message("تصویر چپتر ذخیره شد.");
+  renderChapters();
+  renderAdmin();
+}
+
+function renderAdmin() {
+  const list = document.getElementById("adminList");
+  list.replaceChildren();
+
+  mangaList.forEach(manga => {
+    const row = document.createElement("p");
+    const name = document.createElement("span");
+    name.textContent = "📚 " + manga.title + " ";
+
+    const remove = document.createElement("button");
+    remove.textContent = "حذف";
+    remove.onclick = () => {
+      if (manga.id === "hana") return alert("داستان اصلی هانا حذف نمی‌شود.");
+      if (!confirm("این مانهوا حذف شود؟")) return;
+      mangaList = mangaList.filter(item => item.id !== manga.id);
+      save();
+      renderAdmin();
+      renderLibrary();
+      renderFeatured();
+    };
+
+    row.append(name,remove);
+    list.append(row);
+  });
+
+  chapterList.forEach(chapter => {
+    const row = document.createElement("p");
+    row.append(document.createTextNode(
+      "📖 چپتر " + chapter.number + " — " + chapter.title + " "
+    ));
+
+    const remove = document.createElement("button");
+    remove.textContent = "حذف چپتر";
+    remove.onclick = () => {
+      if (!confirm("چپتر حذف شود؟")) return;
+      chapterList = chapterList.filter(item => item !== chapter);
+      save();
+      renderAdmin();
+      renderChapters();
+    };
+
+    row.append(remove);
+    list.append(row);
+  });
+
+  imageList.forEach(item => {
+    const row = document.createElement("p");
+    row.append(document.createTextNode("🖼 تصویر چپتر " + item.number + " "));
+
+    const remove = document.createElement("button");
+    remove.textContent = "حذف تصویر";
+    remove.onclick = () => {
+      if (!confirm("تصویر حذف شود؟")) return;
+      imageList = imageList.filter(image => image.id !== item.id);
+      save();
+      renderAdmin();
+      renderChapters();
+    };
+
+    row.append(remove);
+    list.append(row);
+  });
+}
+
+function exportData() {
+  const data = {mangaList,chapterList,imageList};
+  const blob = new Blob([JSON.stringify(data,null,2)], {
+    type:"application/json"
+  });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "manhwa-land-backup.json";
+  link.click();
+  URL.revokeObjectURL(url);
+  message("نسخه پشتیبان آماده شد.");
+}
+
+function importData() {
+  const file = document.getElementById("backup").files[0];
+  if (!file) return message("ابتدا فایل پشتیبان را انتخاب کن.");
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const data = JSON.parse(reader.result);
+      if (!Array.isArray(data.mangaList) ||
+          !Array.isArray(data.chapterList) ||
+          !Array.isArray(data.imageList)) {
+        throw new Error("Invalid file");
+      }
+
+      mangaList = data.mangaList;
+      chapterList = data.chapterList;
+      imageList = data.imageList;
+
+      if (!mangaList.some(item => item.id === "hana")) {
+        mangaList.unshift(DEFAULT_MANGA);
+      }
+
+      if (!save()) return;
+
+      renderLibrary();
+      renderFeatured();
+      renderChapters();
+      renderAdmin();
+      message("نسخه پشتیبان بازیابی شد.");
+    } catch {
+      message("فایل پشتیبان معتبر نیست.");
     }
+  };
+  reader.readAsText(file);
+}
 
-    function showLibrary() {
-      document.getElementById("home").hidden = true;
-      document.getElementById("library").hidden = false;
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    const stars = document.getElementById("stars");
-
-    for (let i = 0; i < 35; i++) {
-      const star = document.createElement("span");
-      star.className = "star";
-      star.textContent = Math.random() > 0.5 ? "✦" : "·";
-      star.style.left = Math.random() * 100 + "%";
-      star.style.top = Math.random() * 100 + "%";
-      star.style.animationDelay = Math.random() * 3 + "s";
-      star.style.fontSize = (8 + Math.random() * 15) + "px";
-      stars.appendChild(star);
-    }
-  </script>
+renderLibrary();
+renderFeatured();
+renderChapters();
+renderAdmin();
+</script>
 </body>
 </html>
