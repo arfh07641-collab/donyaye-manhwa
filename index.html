@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مانهوا لند ❤️</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Tahoma, sans-serif;
+  background: #fff0f5;
+  color: #59152e;
+}
+header {
+  background: linear-gradient(135deg,#97002f,#ed679a);
+  color: white;
+  text-align: center;
+  padding: 30px 12px;
+  border-radius: 0 0 25px 25px;
+}
+header h1 { margin: 0 0 10px; }
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 16px 8px;
+  background: white;
+}
+nav a {
+  color: #ad164c;
+  text-decoration: none;
+  font-weight: bold;
+}
+main { padding: 16px; }
+input {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #f0b4ca;
+  border-radius: 14px;
+  font-size: 16px;
+}
+h2 { color: #a60039; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 14px;
+}
+.card {
+  background: white;
+  padding: 10px;
+  border-radius: 16px;
+  box-shadow: 0 3px 12px #e8c4d1;
+}
+.cover {
+  height: 155px;
+  border-radius: 12px;
+  background: linear-gradient(145deg,#ffd4e3,#f5a4c1);
+  display: grid;
+  place-items: center;
+  font-size: 48px;
+}
+.card h3 { font-size: 14px; line-height: 1.8; }
+.tag { color: #bd426e; font-size: 12px; }
+.btn {
+  display: block;
+  background: #b3134b;
+  color: white;
+  text-align: center;
+  padding: 11px 4px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 13px;
+}
+footer {
+  margin-top: 28px;
+  padding: 22px;
+  text-align: center;
+  background: #8d1037;
+  color: white;
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>🌸 مانهوا لند ❤️</h1>
+  <p>دنیایی فراتر از داستان‌ها!</p>
+</header>
+<nav>
+  <a href="#">خانه</a>
+  <a href="#popular">محبوب‌ها</a>
+  <a href="#all">همه مانهواها</a>
+</nav>
+<main>
+  <input id="search" type="search"
+    placeholder="🔎 اسم مانهوا رو جست‌وجو کن...">
+  <h2 id="popular">🔥 مانهواهای محبوب</h2>
+  <section class="grid" id="all">
+    <article class="card">
+      <div class="cover">🧸🌷</div>
+      <h3>زندگی دوباره دختر دوک</h3>
+      <p class="tag">فانتزی • تناسخ</p>
+      <a class="btn" href="hana.html">مشاهده داستان</a>
+    </article>
+    <article class="card">
+      <div class="cover">👑🌹</div>
+      <h3>داستان شاهزاده</h3>
+      <p class="tag">درباری • عاشقانه</p>
+      <a class="btn" href="princess.html">مشاهده داستان</a>
+    </article>
+  </section>
+</main>
+<footer>
+  ❤️ مانهوا لند؛ خانه‌ی عاشقان داستان
+</footer>
+<script>
+document.getElementById("search").addEventListener("input",function(){
+  const q = this.value.trim().toLowerCase();
+  document.querySelectorAll(".card").forEach(function(card){
+    card.style.display =
+      card.innerText.toLowerCase().includes(q) ? "" : "none";
+  });
+});
+</script>
+</body>
+</html>
