@@ -1,213 +1,180 @@
 
 
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#eaf6ff">
-<meta name="description" content="مانهوا لند؛ قصر آبی یخی داستان‌های فانتزی، عاشقانه و درباری.">
-<title>مانهوا لند | قصر داستان‌های سلطنتی</title>
-
+<meta name="theme-color" content="#050b18">
+<title>مانهوا لند ❄️</title>
 <style>
 *{box-sizing:border-box}
-:root{
-  --ice:#edf8ff;
-  --blue:#477bb8;
-  --deep:#294c79;
-  --pale:#d8edff;
-  --white:#fff;
-}
-body{
-  margin:0;
-  font-family:Tahoma,sans-serif;
-  background:var(--ice);
-  color:var(--deep);
-}
-header{
-  text-align:center;
-  padding:30px 15px;
-  color:white;
-  background:linear-gradient(145deg,#315b91,#78b5e5,#edf8ff);
-  border-radius:0 0 32px 32px;
-  box-shadow:0 5px 18px #527fa333;
-}
-.crown{font-size:34px}
-h1{margin:10px 0;font-size:30px}
-header p{line-height:2}
-.palace{
-  max-width:460px;
-  margin:18px auto 0;
-  padding:20px 10px;
-  border:1px solid white;
-  border-radius:24px;
-  background:linear-gradient(#e6f5ff,#fff);
-  box-shadow:0 5px 20px #244e7822;
-  color:var(--blue);
-}
-.castle{font-size:72px}
-.palace p{margin:8px 0;font-size:13px}
-nav{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-  padding:15px 8px;
-  background:white;
-  border-bottom:1px solid var(--pale);
-}
-nav a{
-  color:var(--blue);
-  font-weight:bold;
-  text-decoration:none;
-  padding:9px 12px;
-  border-radius:12px;
-}
-nav a:hover{background:var(--ice)}
-main{
-  max-width:850px;
-  margin:auto;
-  padding:20px 15px;
-}
-input{
-  width:100%;
-  padding:14px;
-  border:2px solid #c4e2fa;
-  border-radius:15px;
-  font-size:16px;
-  font-family:inherit;
-  background:white;
-  color:var(--deep);
-}
-h2{color:var(--blue);margin-top:28px}
-.subtitle{color:#7897b8;font-size:13px;line-height:2}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:14px;
-}
-.card{
-  min-width:0;
-  padding:10px;
-  background:white;
-  border:1px solid #d8eafa;
-  border-radius:19px;
-  box-shadow:0 5px 16px #7fa9d522;
-}
-.cover{
-  height:155px;
-  display:grid;
-  place-items:center;
-  border-radius:14px;
-  border:1px solid #e3f2ff;
-  background:linear-gradient(145deg,#d9f0ff,#fff,#b8dcf8);
-  font-size:48px;
-}
-.card h3{font-size:14px;line-height:1.9;color:#315b91}
-.tag{color:#7899bd;font-size:12px;line-height:1.8}
-.btn{
-  display:block;
-  padding:12px 5px;
-  border-radius:11px;
-  text-align:center;
-  text-decoration:none;
-  color:white;
-  font-size:12px;
-  font-weight:bold;
-  background:linear-gradient(120deg,#4e83bd,#8fc9ee);
-}
-.btn:hover{background:#315f99}
-.empty{
-  display:none;
-  text-align:center;
-  padding:20px;
-  color:#7899bd;
-}
-footer{
-  margin-top:30px;
-  padding:25px 15px;
-  text-align:center;
-  line-height:2;
-  color:white;
-  background:linear-gradient(135deg,#315b91,#78acd8);
-  border-radius:25px 25px 0 0;
-  font-size:13px;
-}
-footer p{margin:5px}
-@media(max-width:360px){
-  .grid{gap:8px}
-  .cover{height:125px}
-  h1{font-size:25px}
-}
+body{margin:0;background:#050b18;color:#eaf7ff;font-family:Tahoma,Arial,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+.sky{position:fixed;inset:0;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 50% 35%,#164c78 0%,transparent 45%),linear-gradient(#030713,#102746 65%,#050b18);z-index:0}
+.moon{position:absolute;top:8%;left:12%;width:75px;height:75px;border-radius:50%;background:#e4f8ff;box-shadow:0 0 35px #73caff,0 0 100px #258bdf}
+.glow{position:absolute;width:240px;height:240px;border-radius:50%;background:#168dff;filter:blur(85px);opacity:.2;animation:glow 6s infinite alternate}
+.g1{top:30%;right:-120px}.g2{bottom:-100px;left:-100px}
+#snow{position:absolute;inset:0}
+.flake{position:absolute;top:-25px;color:#fff;text-shadow:0 0 12px #69caff;animation:fall linear infinite}
+main{position:relative;z-index:1}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 20px}
+.logo{font-size:20px;font-weight:bold;text-shadow:0 0 20px #64caff}
+.logo span{color:#70ceff}
+.tag{font-size:9px;letter-spacing:2px;color:#a8dfff}
+.hero{min-height:85vh;min-height:85svh;padding:28px 20px 55px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
+.eyebrow{font-size:11px;letter-spacing:2px;color:#a4ddff;animation:show 1s both}
+h1{font-size:clamp(36px,10vw,65px);line-height:1.5;margin:12px 0;background:linear-gradient(120deg,#fff,#76d5ff,#fff);background-size:200% auto;color:transparent;background-clip:text;-webkit-background-clip:text;animation:show 1.3s both,shine 5s linear infinite}
+.sub{font-size:13px;color:#b6d4ee;line-height:2;max-width:400px;animation:show 1.5s .2s both}
+.hana-stage{width:155px;height:155px;margin:22px 0 15px;border:1px solid #85d8ff80;border-radius:50%;display:grid;place-items:center;position:relative;box-shadow:0 0 35px #36aaff30,inset 0 0 35px #36aaff25;animation:float 4s ease-in-out infinite}
+.hana-stage:before{content:"✦";position:absolute;top:12px;right:22px;color:white}
+.hana-stage:after{content:"❄";position:absolute;bottom:15px;left:19px;color:#8bdcff}
+.hana{width:115px;height:115px;border-radius:50%;display:grid;place-items:center;font-size:70px;background:radial-gradient(circle,#b5eaff50,#102c4b)}
+.hana-caption{font-size:10px;letter-spacing:2px;color:#90bddf}
+.welcome{font-size:clamp(16px,4.5vw,21px);line-height:2.2;margin-top:18px;animation:show 1.5s .5s both}
+.welcome strong{color:#c0ecff}
+.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:22px;animation:show 1.5s 1s both}
+.btn{border-radius:30px;padding:14px 22px;border:1px solid #9bdfff80;background:#112c49;color:white}
+.btn.primary{background:linear-gradient(120deg,#83d9ff,#e5f8ff);border:0;color:#06172c;font-weight:bold;box-shadow:0 0 25px #4bbcff50}
+.content{max-width:1000px;margin:auto;padding:40px 18px 65px}
+.heading{text-align:center;margin-bottom:25px}
+.heading small{letter-spacing:2px;color:#84d3ff}
+.heading h2{font-size:27px;margin:12px 0}
+.heading p{color:#a9c8e2;font-size:13px;line-height:2}
+.search{width:100%;padding:14px;border:1px solid #6dbdff55;background:#0b1c32;color:white;border-radius:13px;margin-bottom:18px}
+.search::placeholder{color:#9cb5cc}
+.books{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.book{overflow:hidden;border:1px solid #75caff40;border-radius:17px;background:#10233bdc}
+.cover{height:145px;display:grid;place-items:center;background:radial-gradient(circle,#347eb4,#10182f 75%);font-size:55px}
+.cover.purple{background:radial-gradient(circle,#654a9b,#10132d 75%)}
+.cover.teal{background:radial-gradient(circle,#287a83,#081c2b 75%)}
+.info{padding:13px}
+.info h3{font-size:14px;margin:0 0 9px}
+.info p{font-size:11px;color:#a9c8e2;line-height:1.9}
+.info button{width:100%;padding:10px 5px;border-radius:10px;background:#183a5b;border:1px solid #75caff60;color:#e8f8ff}
+footer{text-align:center;color:#789bb9;padding:25px 15px 35px;border-top:1px solid #6dbdff20;font-size:11px;line-height:2}
+#reader{display:none;text-align:center;padding:50px 20px;min-height:55vh}
+.readerbox{max-width:550px;margin:auto;padding:25px;border:1px solid #70caff50;background:#10233b;border-radius:18px}
+.readerbox p{color:#b6d4ee;line-height:2}
+.empty{grid-column:1/-1;text-align:center;color:#a9c8e2;padding:25px}
+[hidden]{display:none!important}
+@keyframes show{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes glow{from{transform:scale(.8)}to{transform:scale(1.3)}}
+@keyframes shine{to{background-position:200% center}}
+@keyframes fall{to{transform:translateY(110vh) translateX(30px) rotate(360deg)}}
+@media(min-width:650px){.books{grid-template-columns:repeat(3,minmax(0,1fr))}.cover{height:210px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
-
 <body>
+<div class="sky" aria-hidden="true">
+<div class="moon"></div><div class="glow g1"></div><div class="glow g2"></div><div id="snow"></div>
+</div>
+<main>
 <header>
-  <div class="crown">👑 ❄️ 👑</div>
-  <h1>مانهوا لند</h1>
-  <p>به قصر داستان‌های خیال‌انگیز خوش اومدی!</p>
-  <div class="palace">
-    <div class="castle">🏰</div>
-    <p>قلمرو شاهزاده‌ها، دوک‌ها و داستان‌های جادویی</p>
-    <p>❄️ ✧ ♔ ✧ ❄️</p>
-  </div>
+<div class="logo">مانهوا <span>لند</span> ✦</div>
+<div class="tag">ENTER YOUR STORY</div>
 </header>
 
-<nav>
-  <a href="#">خانه</a>
-  <a href="#popular">محبوب‌ها</a>
-  <a href="#all">همه مانهواها</a>
-</nav>
+<section class="hero" id="intro">
+<div class="eyebrow">✦ دریچه‌ای به دنیاهای دیگر ✦</div>
+<h1>داستانت از اینجا<br>شروع می‌شه</h1>
+<p class="sub">جایی میان خیال و واقعیت؛ هر مانهوا، دری به یک دنیای تازه است.</p>
+<div class="hana-stage"><div class="hana">🧸</div></div>
+<div class="hana-caption">HANA · YOUR LITTLE GUIDE</div>
+<div class="welcome">
+<strong>سلام مخاطب عزیز، به مانهوا لند خوش اومدین!</strong><br>
+امیدوارم که روز خوبی داشته باشین ✨
+</div>
+<div class="actions">
+<button class="btn primary" onclick="enterLibrary()">ورود به دنیای مانهوا ❄</button>
+<button class="btn" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">دربارهٔ ما</button>
+</div>
+</section>
 
-<main>
-  <input id="search" type="search"
-    placeholder="🔎 اسم مانهوا رو جست‌وجو کن..."
-    aria-label="جست‌وجوی مانهوا">
+<section class="content" id="library" hidden>
+<div class="heading">
+<small>YOUR NEXT OBSESSION</small>
+<h2>کتابخانهٔ اسرارآمیز</h2>
+<p>داستان بعدی‌ات رو پیدا کن؛ ماجراجویی منتظرته.</p>
+</div>
+<input class="search" id="search" type="search" placeholder="🔎 اسم مانهوا رو جست‌وجو کن..." oninput="filterBooks()">
+<div class="books" id="books">
+<article class="book" data-name="زندگی دوباره دختر دوک هانا تناسخ فانتزی">
+<div class="cover">❄️</div><div class="info"><h3>زندگی دوباره دختر دوک</h3><p>فانتزی · تناسخ · داستان هانا</p><button onclick="openBook('زندگی دوباره دختر دوک')">دیدن داستان</button></div>
+</article>
+<article class="book" data-name="قصه شاهزاده گمشده سلطنتی">
+<div class="cover purple">👑</div><div class="info"><h3>قصهٔ شاهزادهٔ گمشده</h3><p>سلطنتی · رازآلود · ماجراجویی</p><button onclick="openBook('قصهٔ شاهزادهٔ گمشده')">دیدن داستان</button></div>
+</article>
+<article class="book" data-name="باغ جادویی ماه فانتزی">
+<div class="cover teal">🌙</div><div class="info"><h3>باغ جادویی ماه</h3><p>جادو · فانتزی · رازهای شب</p><button onclick="openBook('باغ جادویی ماه')">دیدن داستان</button></div>
+</article>
+</div>
+<p id="noResults" class="empty" hidden>چیزی پیدا نشد؛ اسم دیگری رو امتحان کن.</p>
+</section>
 
-  <h2 id="popular">❄️ مانهواهای محبوب</h2>
-  <p class="subtitle">داستان مورد علاقه‌ات رو انتخاب کن، شاهزاده!</p>
+<section id="reader">
+<div class="readerbox">
+<div class="tag">STORY PORTAL</div>
+<h2 id="readerTitle"></h2>
+<p>دروازهٔ داستان باز شده، اما هنوز فصل‌های واقعی این مانهوا اضافه نشده‌اند.</p>
+<button class="btn primary" onclick="closeBook()">بازگشت به کتابخانه</button>
+</div>
+</section>
 
-  <section class="grid" id="all">
-    <article class="card">
-      <div class="cover">🧸🌷</div>
-      <h3>زندگی دوباره دختر دوک</h3>
-      <p class="tag">فانتزی • تناسخ • درباری</p>
-      <a class="btn" href="hana.html">مشاهده داستان ♡</a>
-    </article>
-
-    <article class="card">
-      <div class="cover">👑🌹</div>
-      <h3>داستان شاهزاده</h3>
-      <p class="tag">درباری • عاشقانه • فانتزی</p>
-      <a class="btn" href="princess.html">مشاهده داستان ♡</a>
-    </article>
-  </section>
-
-  <p id="empty" class="empty">مانهوایی پیدا نشد! اسم دیگه‌ای امتحان کن. ❄️</p>
+<section class="content" id="about">
+<div class="heading">
+<small>A WORLD MADE OF STORIES</small>
+<h2>این فقط شروع ماجراست ✦</h2>
+<p>هر جلد، یک جهان تازه؛ هر فصل، یک ماجراجویی تازه.<br>به دنیای مانهوا لند خوش اومدی 💙</p>
+</div>
+</section>
+<footer>مانهوا لند · دنیایی فراتر از صفحات ✦<br>ساخته‌شده با عشق به داستان‌ها 💙</footer>
 </main>
 
-<footer>
-  <p>❄️ ♔ ❄️</p>
-  <p>مانهوا لند؛ قصر سفید داستان‌ها</p>
-  <p>با عشق برای عاشقان مانهوا 💙</p>
-</footer>
-
 <script>
-const search=document.getElementById("search");
-const cards=document.querySelectorAll(".card");
-const empty=document.getElementById("empty");
-
-search.addEventListener("input",function(){
-  const q=this.value.trim().toLowerCase();
-  let count=0;
-  cards.forEach(function(card){
-    const match=card.innerText.toLowerCase().includes(q);
-    card.style.display=match?"":"none";
-    if(match)count++;
-  });
-  empty.style.display=count===0?"block":"none";
-});
+const snow=document.getElementById("snow");
+for(let i=0;i<28;i++){
+ const f=document.createElement("span");
+ f.className="flake";
+ f.textContent=Math.random()>.5?"❄":"✧";
+ f.style.left=Math.random()*100+"%";
+ f.style.animationDuration=(7+Math.random()*12)+"s";
+ f.style.animationDelay=(-Math.random()*15)+"s";
+ f.style.fontSize=(9+Math.random()*12)+"px";
+ f.style.opacity=(.3+Math.random()*.7).toString();
+ snow.appendChild(f);
+}
+function enterLibrary(){
+ document.getElementById("intro").hidden=true;
+ document.getElementById("library").hidden=false;
+ document.getElementById("reader").style.display="none";
+ document.getElementById("library").scrollIntoView({behavior:"smooth"});
+}
+function openBook(name){
+ document.getElementById("library").hidden=true;
+ document.getElementById("readerTitle").textContent=name;
+ document.getElementById("reader").style.display="block";
+ document.getElementById("reader").scrollIntoView({behavior:"smooth"});
+}
+function closeBook(){
+ document.getElementById("reader").style.display="none";
+ document.getElementById("library").hidden=false;
+ document.getElementById("library").scrollIntoView({behavior:"smooth"});
+}
+function filterBooks(){
+ const q=document.getElementById("search").value.trim().toLowerCase();
+ let count=0;
+ document.querySelectorAll(".book").forEach(book=>{
+  const match=book.dataset.name.toLowerCase().includes(q);
+  book.hidden=!match;
+  if(match)count++;
+ });
+ document.getElementById("noResults").hidden=count!==0;
+}
 </script>
 </body>
 </html>
