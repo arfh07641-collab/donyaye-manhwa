@@ -10,782 +10,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#071426">
 <title>مانهوا لند | MANHWA LAND</title>
-
 <style>
-:root {
-  --bg:#071426;
-  --panel:#0e2138;
-  --blue:#78d2ff;
-  --white:#f2f9ff;
-  --muted:#b0c5d9;
-  --line:#294967;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0;
-  color:var(--white);
-  background:radial-gradient(ellipse at top,#173957,var(--bg) 65%);
-  font-family:Tahoma,Arial,sans-serif;
-}
-button,input,textarea,select { font:inherit; }
-button { cursor:pointer; }
-.hidden { display:none!important; }
-.container { width:min(1100px,92%); margin:auto; }
-button {
-  border:1px solid #78d2ff77;
-  border-radius:12px;
-  padding:11px 17px;
-  background:linear-gradient(135deg,#c3efff,#62bce9);
-  color:#061426;
-  font-weight:bold;
-}
-.secondary {
-  background:#122b45;
-  color:var(--white);
-  border-color:var(--line);
-}
-input,textarea,select {
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid var(--line);
-  background:#071629;
-  color:white;
-}
-label { display:block; margin:12px 0 7px; }
-header {
-  position:sticky;
-  top:0;
-  z-index:10;
-  background:#061322ee;
-  border-bottom:1px solid var(--line);
-  backdrop-filter:blur(12px);
-}
-nav {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:12px;
-  padding:14px 0;
-}
-.logo { font-size:21px; font-weight:bold; color:var(--blue); }
-nav .actions { display:flex; flex-wrap:wrap; gap:7px; }
-.hero { padding:45px 0 25px; }
-.hero-box {
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:30px;
-  background:linear-gradient(140deg,#143653,#0b1b2e);
-  overflow:hidden;
-}
-.hero h1 { font-size:clamp(28px,5vw,48px); line-height:1.5; }
-.hero h1 span { color:var(--blue); }
-.hero p { color:var(--muted); line-height:2; }
-.search { display:flex; gap:10px; margin-top:20px; }
-.search input { flex:1; min-width:0; }
-section { margin-bottom:35px; }
-h2 { font-size:23px; }
-.grid {
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:15px;
-}
-.card {
-  border:1px solid var(--line);
-  border-radius:15px;
-  overflow:hidden;
-  background:var(--panel);
-}
-.cover {
-  aspect-ratio:3/4;
-  display:grid;
-  place-items:center;
-  background:radial-gradient(circle,#285477,#09182b);
-  color:var(--blue);
-  font-size:48px;
-  overflow:hidden;
-}
-.cover img { width:100%; height:100%; object-fit:cover; }
-.card-content { padding:12px; }
-.card h3 { line-height:1.7; }
-.card p { color:var(--muted); font-size:13px; line-height:1.9; }
-.card button { width:100%; }
-.panel {
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:22px;
-}
-.empty {
-  grid-column:1/-1;
-  text-align:center;
-  border:1px dashed var(--line);
-  border-radius:15px;
-  padding:35px 15px;
-  color:var(--muted);
-  line-height:2;
-}
-.chapter {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:10px;
-  padding:12px;
-  margin:8px 0;
-  border:1px solid var(--line);
-  border-radius:12px;
-}
-.reader img {
-  display:block;
-  width:100%;
-  height:auto;
-  margin:0 auto 4px;
-}
-footer {
-  border-top:1px solid var(--line);
-  text-align:center;
-  color:var(--muted);
-  padding:25px 0;
-  line-height:2;
-}
-
-/* صفحه آغازین */
-#intro {
-  position:fixed;
-  inset:0;
-  z-index:100;
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  background:#020711;
-  transition:opacity 1s,visibility 1s;
-}
-#intro.finished { opacity:0; visibility:hidden; pointer-events:none; }
-#snow {
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-}
-.intro-glow {
-  position:absolute;
-  inset:0;
-  background:radial-gradient(ellipse at 50% 65%,#183f61,#071426 55%,#020711);
-  opacity:0;
-  animation:glow 4s forwards;
-}
-.intro-title {
-  position:absolute;
-  top:9%;
-  text-align:center;
-  color:#d8f5ff;
-  opacity:0;
-  animation:appear 1.5s 1s forwards;
-  text-shadow:0 0 25px #68caff;
-}
-.intro-title strong {
-  display:block;
-  font-size:clamp(23px,5vw,38px);
-  letter-spacing:3px;
-}
-.intro-title small {
-  display:block;
-  margin-top:12px;
-  letter-spacing:3px;
-}
-.hana {
-  position:relative;
-  z-index:2;
-  width:170px;
-  height:230px;
-  opacity:0;
-  transform:translateY(25px) scale(.8);
-  animation:hanaAppear 1.7s 2s forwards, float 3s 4s infinite ease-in-out;
-}
-.hair {
-  position:absolute;
-  top:3px;
-  left:13px;
-  width:145px;
-  height:160px;
-  border-radius:48% 48% 40% 40%;
-  background:linear-gradient(110deg,#fff,#c5e6f7,#8aafce);
-}
-.face {
-  position:absolute;
-  z-index:2;
-  top:35px;
-  left:35px;
-  width:100px;
-  height:118px;
-  border-radius:48%;
-  background:linear-gradient(120deg,#ffebe8,#e9c5cb);
-}
-.eye {
-  position:absolute;
-  top:51px;
-  width:17px;
-  height:22px;
-  border-radius:50%;
-  background:#69bce9;
-  box-shadow:0 0 10px #69bce9;
-}
-.eye.left { left:19px; }
-.eye.right { right:19px; }
-.fringe {
-  position:absolute;
-  z-index:3;
-  top:23px;
-  left:29px;
-  width:113px;
-  height:67px;
-  background:#f4fbff;
-  border-radius:50% 45% 15% 20%;
-  clip-path:polygon(0 0,100% 0,94% 65%,75% 55%,67% 100%,50% 60%,34% 90%,28% 54%,4% 82%);
-}
-.body {
-  position:absolute;
-  z-index:4;
-  left:36px;
-  bottom:0;
-  width:100px;
-  height:75px;
-  background:linear-gradient(130deg,#eafaff,#77b9e6);
-  clip-path:polygon(25% 0,75% 0,100% 100%,0 100%);
-}
-.intro-subtitle {
-  position:absolute;
-  z-index:5;
-  bottom:20%;
-  width:92%;
-  text-align:center;
-  font-size:clamp(18px,4vw,28px);
-  font-weight:bold;
-  color:white;
-  text-shadow:0 2px 12px black,0 0 20px #64caff;
-  opacity:0;
-  animation:appear 1s 3.8s forwards;
-}
-#enter {
-  position:absolute;
-  z-index:6;
-  bottom:8%;
-  opacity:0;
-  animation:appear 1s 4.8s forwards;
-}
-#skip {
-  position:absolute;
-  z-index:7;
-  top:15px;
-  left:15px;
-  background:#102740;
-  color:white;
-}
-.star {
-  position:absolute;
-  color:#d9f5ff;
-  animation:twinkle 2s infinite;
-}
-@keyframes glow { to { opacity:1; } }
-@keyframes appear { to { opacity:1; } }
-@keyframes hanaAppear { to { opacity:1; transform:translateY(0) scale(1); } }
-@keyframes float { 50% { translate:0 -8px; } }
-@keyframes twinkle { 50% { opacity:.3; } }
-
-@media(max-width:800px) {
-  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
-  .hero-box { padding:22px; }
-  nav { align-items:flex-start; }
-}
-@media(max-width:430px) {
-  nav { flex-direction:column; }
-  .search { flex-direction:column; }
-  .card-content { padding:9px; }
-}
+:root{--bg:#080e20;--panel:#111c35;--blue:#8bcaff;--white:#f1f7ff;--muted:#a8b9d6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Tahoma,Arial,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--blue)}
+.hidden{display:none!important}
+a{color:var(--blue)}
+header{position:sticky;top:0;z-index:5;background:#080e20ed;border-bottom:1px solid #293958;padding:13px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{font-size:22px;font-weight:bold;color:var(--blue);cursor:pointer}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+button,.btn{border:1px solid #415779;background:#172644;color:white;border-radius:10px;padding:10px 14px}
+button:hover,.btn:hover{background:#243b62}
+.primary{background:#8bcaff;color:#071126;border:0;font-weight:bold}
+main{max-width:1150px;margin:auto;padding:22px 16px}
+.hero{min-height:210px;border:1px solid #314c73;border-radius:20px;padding:28px;background:radial-gradient(ellipse at top,#203f70,#101a34 65%,#0a1021);position:relative;overflow:hidden}
+.hero h1{font-size:clamp(26px,5vw,42px);color:#d9edff;margin:0 0 12px}
+.hero p{color:#c2d5ee;line-height:2}
+#snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:8}
+.search{display:flex;gap:8px;margin:20px 0}
+input{min-width:0;width:100%;padding:12px;border-radius:10px;border:1px solid #344b70;background:#0c162c;color:white}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:15px}
+.card{overflow:hidden;background:var(--panel);border:1px solid #263957;border-radius:13px;cursor:pointer}
+.card img{width:100%;height:210px;object-fit:cover;background:#182947}
+.cover-placeholder{height:210px;display:grid;place-items:center;background:linear-gradient(145deg,#1e3b66,#101629);color:#b9dfff;font-size:45px}
+.card-body{padding:11px}
+.card h3{font-size:14px;margin:0 0 8px;line-height:1.8}
+.muted{color:var(--muted);font-size:12px;line-height:1.8}
+.panel{background:var(--panel);border:1px solid #293d60;border-radius:15px;padding:18px;margin:18px 0}
+label{display:block;margin:12px 0 6px;color:#d4e5ff}
+.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+#reader img{display:block;width:100%;height:auto;margin:0 auto 8px;max-width:850px}
+.chapter-button{display:block;width:100%;text-align:right;margin:8px 0}
+footer{text-align:center;color:#8398ba;padding:30px}
+.modal{position:fixed;inset:0;background:#000b;z-index:20;display:grid;place-items:center;padding:15px}
+.modal-box{background:#101b33;border:1px solid #45618b;border-radius:16px;padding:20px;width:min(440px,100%);max-height:90vh;overflow:auto}
+#intro{position:fixed;inset:0;z-index:15;display:grid;place-items:center;overflow:hidden;background:linear-gradient(#08142be8,#08142bf2),url('hana-intro.png') center 25%/cover,#091329}
+.intro-content{text-align:center;width:min(620px,92%);padding:25px;border:1px solid #9ed5ff88;border-radius:20px;background:#07132ac9;box-shadow:0 0 50px #5aaeff20}
+.intro-content h1{font-size:clamp(28px,7vw,48px);color:#c6e6ff}
+.intro-content p{line-height:2;color:#e0edff}
+.intro-skip{position:absolute;top:18px;left:18px}
+@keyframes glow{50%{box-shadow:0 0 30px #8bcaff55}}
+.primary{animation:glow 3s infinite}
+@media(max-width:500px){header{padding:12px}.logo{font-size:19px}.hero{padding:20px}.card img,.cover-placeholder{height:180px}}
 </style>
 </head>
-
 <body>
+<canvas id="snow"></canvas>
 
-<!-- مقدمه متحرک هانا و برف -->
-<div id="intro">
-  <div class="intro-glow"></div>
-  <canvas id="snow"></canvas>
-
-  <div class="intro-title">
-    <strong>✧ MANHWA LAND ✧</strong>
-    <small>قصر قصه‌های بی‌پایان</small>
+<section id="intro">
+  <button class="intro-skip" onclick="enterSite()">رد کردن مقدمه ⏭</button>
+  <div class="intro-content">
+    <div style="font-size:64px">❄️ 👑 ❄️</div>
+    <h1>به مانهوا لند خوش اومدید!</h1>
+    <p id="hana-line">سلام! من هانا هستم... به دنیای جادویی مانهواها خوش اومدید!</p>
+    <button class="primary" onclick="enterSite()">✧ به قصر وارد شوید ✧</button>
   </div>
-
-  <div class="hana">
-    <div class="hair"></div>
-    <div class="face">
-      <div class="eye left"></div>
-      <div class="eye right"></div>
-    </div>
-    <div class="fringe"></div>
-    <div class="body"></div>
-  </div>
-
-  <span class="star" style="top:35%;left:18%">✧</span>
-  <span class="star" style="top:55%;right:15%">❄</span>
-  <span class="star" style="top:72%;left:25%">✦</span>
-
-  <div class="intro-subtitle">«به مانهوا لند خوش اومدید!»</div>
-  <button id="enter">✧ به قصر وارد شوید ✧</button>
-  <button id="skip" class="secondary">رد کردن مقدمه</button>
-</div>
+</section>
 
 <header>
-  <nav class="container">
-    <div class="logo">❄ مانهوا لند</div>
-    <div class="actions">
-      <button class="secondary" onclick="goHome()">خانه</button>
-      <button class="secondary" onclick="goLibrary()">کتابخانه</button>
-      <button class="secondary" onclick="showAccount()">حساب کاربری</button>
-      <button id="adminButton" class="hidden" onclick="showAdmin()">پنل مدیر</button>
-      <button id="logoutButton" class="secondary hidden" onclick="logout()">خروج</button>
-    </div>
+  <div class="logo" onclick="adminLogin()">❄ MANHWA LAND</div>
+  <nav>
+    <button onclick="showPage('home')">خانه</button>
+    <button onclick="showPage('library')">کتابخانه</button>
+    <button onclick="openAccount()">حساب کاربری</button>
   </nav>
 </header>
 
-<main class="container">
-  <section class="hero" id="home">
-    <div class="hero-box">
-      <p>✦ دنیایی فراتر از خیال ✦</p>
-      <h1>به دنیای <span>مانهوا</span> خوش اومدی!</h1>
-      <p>قصه‌های تازه، شخصیت‌های فراموش‌نشدنی و دنیاهایی که منتظر کشف شدن‌اند.</p>
-      <div class="search">
-        <input id="search" placeholder="اسم مانهوا را جست‌وجو کن...">
-        <button onclick="renderLibrary()">جست‌وجو</button>
+<main>
+  <section id="home">
+    <div class="hero">
+      <h1>به مانهوا لند خوش اومدی ❄</h1>
+      <p>دنیایی از داستان‌ها، قصرهای اسرارآمیز و ماجراجویی‌های فراموش‌نشدنی.<br>مانهوای موردعلاقه‌ات رو پیدا کن و وارد دنیای داستان شو.</p>
+      <button class="primary" onclick="showPage('library')">گشت‌وگذار در کتابخانه</button>
+    </div>
+    <div class="search">
+      <input id="homeSearch" placeholder="اسم مانهوا رو جست‌وجو کن..." oninput="renderManga('homeGrid',this.value)">
+      <button onclick="showPage('library')">همه مانهواها</button>
+    </div>
+    <div class="section-title"><h2>📚 کتابخانه مانهوا</h2><span class="muted">داستان بعدی تو منتظرته</span></div>
+    <div id="homeGrid" class="grid"></div>
+  </section>
+
+  <section id="library" class="hidden">
+    <h1>📚 کتابخانه مانهوا</h1>
+    <div class="search"><input id="librarySearch" placeholder="جست‌وجوی عنوان..." oninput="renderManga('libraryGrid',this.value)"></div>
+    <div id="libraryGrid" class="grid"></div>
+  </section>
+
+  <section id="details" class="hidden">
+    <button onclick="showPage('library')">← بازگشت به کتابخانه</button>
+    <div id="mangaDetails" class="panel"></div>
+  </section>
+
+  <section id="readerPage" class="hidden">
+    <button onclick="showPage('details')">← بازگشت به مانهوا</button>
+    <div id="reader" class="panel"></div>
+  </section>
+
+  <section id="accountPage" class="hidden">
+    <h1>حساب کاربری</h1>
+    <div class="panel">
+      <p>برای ساخت حساب یا ورود، اطلاعاتت رو وارد کن.</p>
+      <label>نام کاربری</label><input id="username" autocomplete="username" placeholder="نام کاربری">
+      <label>رمز عبور</label><input id="password" type="password" autocomplete="current-password" placeholder="رمز عبور">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:15px">
+        <button class="primary" onclick="accountAction('register')">ثبت‌نام</button>
+        <button onclick="accountAction('login')">ورود</button>
+        <button onclick="logout()">خروج</button>
       </div>
+      <p id="accountMessage" class="muted"></p>
+      <p class="muted">توجه: این نسخه آزمایشی است؛ حساب‌ها فقط روی همین مرورگر ذخیره می‌شوند و احراز هویت امن آنلاین نیست.</p>
     </div>
   </section>
 
-  <section id="library">
-    <h2>❄ کتابخانه مانهوا</h2>
-    <div id="mangaGrid" class="grid"></div>
-  </section>
-
-  <section id="readerSection" class="hidden">
+  <section id="adminPage" class="hidden">
+    <h1>👑 پنل مدیر</h1>
+    <p class="muted">نسخه آزمایشی — اطلاعات فقط در مرورگر فعلی ذخیره می‌شود.</p>
     <div class="panel">
-      <button class="secondary" onclick="backToLibrary()">← بازگشت به کتابخانه</button>
-      <h2 id="readerTitle"></h2>
-      <div id="chapters"></div>
+      <h2>افزودن مانهوا</h2>
+      <label>عنوان</label><input id="newTitle" placeholder="عنوان مانهوا">
+      <label>خلاصه داستان</label><textarea id="newSummary" rows="3" style="width:100%;background:#0c162c;color:white;border:1px solid #344b70;border-radius:10px;padding:12px"></textarea>
+      <label>تصویر کاور</label><input id="newCover" type="file" accept="image/*">
+      <button class="primary" style="margin-top:14px" onclick="addManga()">انتشار مانهوا</button>
     </div>
-    <div id="reader" class="reader"></div>
-  </section>
-
-  <section id="accountSection" class="hidden">
     <div class="panel">
-      <h2>حساب کاربری</h2>
-      <p class="muted">ورود یا ساخت حساب آزمایشی</p>
-      <form id="accountForm">
-        <label>ایمیل</label>
-        <input id="email" type="email" required placeholder="ایمیل شما">
-        <label>رمز عبور</label>
-        <input id="password" type="password" required minlength="6" placeholder="حداقل ۶ نویسه">
-        <br><br>
-        <button type="submit">ورود / ثبت‌نام آزمایشی</button>
-      </form>
-      <p id="accountMessage"></p>
-      <p class="muted">این بخش فعلاً آزمایشی است؛ برای حساب واقعی باید سرویس احراز هویت متصل شود.</p>
-      <button class="secondary" onclick="hideSections()">بستن</button>
+      <h2>افزودن فصل و تصاویر</h2>
+      <label>انتخاب مانهوا</label><select id="chapterManga" style="width:100%;padding:12px;background:#0c162c;color:white;border-radius:10px"></select>
+      <label>عنوان فصل</label><input id="chapterTitle" placeholder="مثلاً فصل ۱">
+      <label>تصاویر فصل (می‌توانی چندین تصویر انتخاب کنی)</label><input id="chapterImages" type="file" accept="image/*" multiple>
+      <button class="primary" style="margin-top:14px" onclick="addChapter()">ذخیره فصل</button>
     </div>
-  </section>
-
-  <section id="adminSection" class="hidden">
-    <div class="panel">
-      <h2>👑 پنل مدیر</h2>
-      <p class="muted">از اینجا می‌توانی مانهوا و فصل‌هایش را اضافه کنی.</p>
-
-      <form id="mangaForm">
-        <label>عنوان مانهوا</label>
-        <input id="mangaTitle" required placeholder="عنوان داستان">
-
-        <label>خلاصه داستان</label>
-        <textarea id="mangaSummary" required placeholder="خلاصه مانهوا"></textarea>
-
-        <label>تصویر کاور</label>
-        <input id="mangaCover" type="file" accept="image/*" required>
-
-        <br><br>
-        <button type="submit">ساخت مانهوا</button>
-      </form>
-
-      <hr style="border-color:#294967;margin:25px 0">
-
-      <h3>افزودن فصل</h3>
-      <form id="chapterForm">
-        <label>انتخاب مانهوا</label>
-        <select id="chapterManga" required></select>
-
-        <label>شماره فصل</label>
-        <input id="chapterNumber" type="number" min="1" value="1" required>
-
-        <label>نام فصل</label>
-        <input id="chapterName" placeholder="نام فصل">
-
-        <label>تصاویر فصل — چند تصویر را باهم انتخاب کن</label>
-        <input id="chapterImages" type="file" accept="image/*" multiple required>
-
-        <p class="muted">تصاویر را از صفحهٔ اول تا آخر به ترتیب انتخاب کن.</p>
-        <button type="submit">افزودن فصل</button>
-      </form>
-
-      <hr style="border-color:#294967;margin:25px 0">
-      <h3>مانهواهای من</h3>
-      <div id="adminList"></div>
-    </div>
+    <div class="panel"><h2>مدیریت مانهواها</h2><div id="adminList"></div></div>
   </section>
 </main>
+<footer>MANHWA LAND ❄ دنیایی برای عاشقان مانهوا</footer>
 
-<footer>
-  ✧ مانهوا لند — قصر قصه‌های بی‌پایان ✧<br>
-  دنیایی از داستان‌ها برای عاشقان مانهوا
-</footer>
+<div id="accountModal" class="modal hidden">
+  <div class="modal-box">
+    <button style="float:left" onclick="closeAccount()">✕</button>
+    <h2>خوش اومدی!</h2>
+    <p>برای ورود یا ثبت‌نام به صفحه حساب کاربری برو.</p>
+    <button class="primary" onclick="closeAccount();showPage('accountPage')">ادامه</button>
+  </div>
+</div>
 
 <script>
-/*
-  نسخه آزمایشی سایت.
-  داده‌ها در همین مرورگر ذخیره می‌شوند.
-  برای ذخیره آنلاین و حساب امن باید بک‌اند متصل شود.
-*/
+const $=id=>document.getElementById(id);
+let mangas=[];
+try{mangas=JSON.parse(localStorage.getItem('ml_mangas')||'[]')}catch(e){mangas=[]}
+let users={};
+try{users=JSON.parse(localStorage.getItem('ml_users')||'{}')}catch(e){users={}}
+let currentUser=localStorage.getItem('ml_user')||'';
+let currentManga=null;
 
-const ADMIN_PASSWORD = "۱۳۹۲";
-const ADMIN_PASSWORD_EN = "1392";
-
-let mangas = [];
-let loggedIn = false;
-let isAdmin = false;
-let currentManga = null;
-
-try {
-  mangas = JSON.parse(localStorage.getItem("manhwaLandMangas") || "[]");
-} catch (e) {
-  mangas = [];
+function persist(){
+  try{localStorage.setItem('ml_mangas',JSON.stringify(mangas));return true}
+  catch(e){alert('فضای ذخیره مرورگر کافی نیست. تعداد یا حجم تصاویر را کمتر کن.');return false}
 }
-
-function saveData() {
-  try {
-    localStorage.setItem("manhwaLandMangas", JSON.stringify(mangas));
-  } catch (e) {
-    alert("فضای ذخیره مرورگر کافی نیست. برای تصاویر زیاد، ذخیره‌سازی آنلاین لازم است.");
-  }
+function enterSite(){$('intro').classList.add('hidden')}
+function showPage(id){
+  ['home','library','details','readerPage','accountPage','adminPage'].forEach(x=>$(x).classList.add('hidden'));
+  $(id).classList.remove('hidden');
+  if(id==='library')renderManga('libraryGrid',$('librarySearch').value);
+  if(id==='home')renderManga('homeGrid',$('homeSearch').value);
+  if(id==='adminPage')refreshAdmin();
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-
-function hideSections() {
-  ["accountSection","adminSection","readerSection"].forEach(id =>
-    document.getElementById(id).classList.add("hidden")
-  );
+function renderManga(target,query=''){
+  const root=$(target),q=(query||'').trim().toLowerCase();
+  const found=mangas.filter(m=>m.title.toLowerCase().includes(q));
+  if(!found.length){root.innerHTML='<p class="muted">هنوز مانهواای اینجا نیست. منتظر داستان‌های تو هستیم! ❄</p>';return}
+  root.innerHTML=found.map(m=>`<article class="card" onclick="openManga('${m.id}')">${m.cover?`<img src="${m.cover}" alt="">`:'<div class="cover-placeholder">❄</div>'}<div class="card-body"><h3>${escapeHTML(m.title)}</h3><div class="muted">${m.chapters.length} فصل</div></div></article>`).join('');
 }
-
-function goHome() {
-  hideSections();
-  document.getElementById("home").scrollIntoView({behavior:"smooth"});
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function openManga(id){
+  currentManga=mangas.find(m=>m.id===id);if(!currentManga)return;
+  $('mangaDetails').innerHTML=`<h1>${escapeHTML(currentManga.title)}</h1>${currentManga.cover?`<img style="width:min(240px,100%);border-radius:12px" src="${currentManga.cover}">`:''}<p style="line-height:2">${escapeHTML(currentManga.summary)}</p><h2>فصل‌ها</h2><div id="chapterList"></div>`;
+  const list=$('mangaDetails').querySelector('#chapterList');
+  if(!currentManga.chapters.length)list.innerHTML='<p class="muted">هنوز فصلی منتشر نشده.</p>';
+  else list.innerHTML=currentManga.chapters.map((c,i)=>`<button class="chapter-button" onclick="openChapter(${i})">${escapeHTML(c.title||'فصل '+(i+1))}　❄</button>`).join('');
+  showPage('details');
 }
-
-function goLibrary() {
-  hideSections();
-  document.getElementById("library").scrollIntoView({behavior:"smooth"});
+function openChapter(index){
+  const c=currentManga.chapters[index];
+  $('reader').innerHTML=`<h2>${escapeHTML(currentManga.title)} — ${escapeHTML(c.title)}</h2><p class="muted">برای خواندن، صفحه را به پایین بکش.</p>`+(c.images||[]).map(src=>`<img src="${src}" alt="صفحه مانهوا" loading="lazy">`).join('');
+  showPage('readerPage');
 }
-
-function showAccount() {
-  hideSections();
-  document.getElementById("accountSection").classList.remove("hidden");
-  document.getElementById("accountSection").scrollIntoView({behavior:"smooth"});
+function openAccount(){$('accountModal').classList.remove('hidden')}
+function closeAccount(){$('accountModal').classList.add('hidden')}
+function accountAction(action){
+  const u=$('username').value.trim(),p=$('password').value;
+  if(!u||!p){$('accountMessage').textContent='نام کاربری و رمز عبور را وارد کن.';return}
+  if(action==='register'){
+    if(users[u]){$('accountMessage').textContent='این نام کاربری قبلاً ثبت شده.';return}
+    users[u]=p;localStorage.setItem('ml_users',JSON.stringify(users));
+  }else if(users[u]!==p){$('accountMessage').textContent='نام کاربری یا رمز عبور اشتباه است.';return}
+  currentUser=u;localStorage.setItem('ml_user',u);
+  $('accountMessage').textContent='سلام '+u+'! وارد شدی.';
 }
-
-function showAdmin() {
-  if (!isAdmin) {
-    alert("این بخش فقط برای مدیر است.");
-    return;
-  }
-  hideSections();
-  document.getElementById("adminSection").classList.remove("hidden");
-  renderAdmin();
-  document.getElementById("adminSection").scrollIntoView({behavior:"smooth"});
+function logout(){currentUser='';localStorage.removeItem('ml_user');$('accountMessage').textContent='از حساب خارج شدی.'}
+function adminLogin(){
+  const code=prompt('رمز مدیر را وارد کن:');
+  if(code==='۱۳۹۲'||code==='1392'){showPage('adminPage')}
+  else if(code!==null)alert('رمز مدیر اشتباه است.');
 }
-
-function logout() {
-  loggedIn = false;
-  isAdmin = false;
-  document.getElementById("adminButton").classList.add("hidden");
-  document.getElementById("logoutButton").classList.add("hidden");
-  alert("از حساب آزمایشی خارج شدی.");
-  goHome();
+function readFile(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
+async function addManga(){
+  const title=$('newTitle').value.trim(),summary=$('newSummary').value.trim(),file=$('newCover').files[0];
+  if(!title){alert('عنوان مانهوا را بنویس.');return}
+  const cover=file?await readFile(file):'';
+  mangas.push({id:Date.now().toString(),title,summary,cover,chapters:[]});
+  if(persist()){ $('newTitle').value='';$('newSummary').value='';$('newCover').value='';refreshAdmin();renderManga('homeGrid');alert('مانهوا اضافه شد!')}
 }
-
-/* ورود نمایشی؛ هنوز حساب امن آنلاین نیست */
-document.getElementById("accountForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  loggedIn = true;
-  document.getElementById("accountMessage").textContent =
-    "ورود نمایشی انجام شد. برای فعال‌سازی حساب واقعی، اتصال پایگاه داده لازم است.";
-  document.getElementById("logoutButton").classList.remove("hidden");
-});
-
-/* ورود مدیر نمایشی */
-function tryAdminLogin() {
-  const pass = prompt("رمز مدیر را وارد کن:");
-  if (pass === ADMIN_PASSWORD || pass === ADMIN_PASSWORD_EN) {
-    isAdmin = true;
-    loggedIn = true;
-    document.getElementById("adminButton").classList.remove("hidden");
-    document.getElementById("logoutButton").classList.remove("hidden");
-    alert("پنل مدیر در این نسخه آزمایشی باز شد.");
-    showAdmin();
-  } else if (pass !== null) {
-    alert("رمز مدیر درست نیست.");
-  }
+async function addChapter(){
+  const m=mangas.find(x=>x.id===$('chapterManga').value);
+  const title=$('chapterTitle').value.trim(),files=Array.from($('chapterImages').files);
+  if(!m){alert('اول یک مانهوا منتشر کن.');return}
+  if(!files.length){alert('تصاویر فصل را انتخاب کن.');return}
+  if(files.some(f=>!f.type.startsWith('image/'))){alert('فقط فایل تصویر مجاز است.');return}
+  const images=[];
+  try{for(const file of files)images.push(await readFile(file))}
+  catch(e){alert('خواندن تصاویر ناموفق بود.');return}
+  m.chapters.push({title:title||'فصل '+(m.chapters.length+1),images});
+  if(persist()){ $('chapterTitle').value='';$('chapterImages').value='';refreshAdmin();alert('فصل ذخیره شد!')}
 }
-
-/* دوبار روی لوگو بزن تا ورود نمایشی مدیر باز شود */
-document.querySelector(".logo").addEventListener("dblclick", tryAdminLogin);
-
-function readFileAsDataURL(file) {
-  return new Promise((resolve,reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
+function deleteManga(id){
+  if(!confirm('این مانهوا و فصل‌هایش حذف شود؟'))return;
+  mangas=mangas.filter(m=>m.id!==id);persist();refreshAdmin();renderManga('homeGrid');renderManga('libraryGrid');
 }
-
-document.getElementById("mangaForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-  if (!isAdmin) return alert("ابتدا وارد پنل مدیر شو.");
-
-  const title = document.getElementById("mangaTitle").value.trim();
-  const summary = document.getElementById("mangaSummary").value.trim();
-  const file = document.getElementById("mangaCover").files[0];
-  if (!file) return;
-
-  try {
-    const cover = await readFileAsDataURL(file);
-    mangas.push({
-      id: Date.now(),
-      title,
-      summary,
-      cover,
-      chapters: []
-    });
-    saveData();
-    this.reset();
-    renderLibrary();
-    renderAdmin();
-    alert("مانهوا اضافه شد!");
-  } catch {
-    alert("خواندن تصویر کاور ناموفق بود.");
-  }
-});
-
-document.getElementById("chapterForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-  if (!isAdmin) return alert("ابتدا وارد پنل مدیر شو.");
-
-  const mangaId = Number(document.getElementById("chapterManga").value);
-  const number = Number(document.getElementById("chapterNumber").value);
-  const title = document.getElementById("chapterName").value.trim() || ("فصل " + number);
-  const files = Array.from(document.getElementById("chapterImages").files);
-  const manga = mangas.find(m => m.id === mangaId);
-
-  if (!manga || !files.length) return alert("مانهوا و تصاویر فصل را انتخاب کن.");
-
-  const button = this.querySelector('button[type="submit"]');
-  button.disabled = true;
-  button.textContent = "در حال آماده‌سازی تصاویر...";
-
-  try {
-    const images = [];
-    for (let i = 0; i < files.length; i++) {
-      button.textContent = `در حال خواندن تصویر ${i+1} از ${files.length}`;
-      images.push(await readFileAsDataURL(files[i]));
-    }
-
-    manga.chapters.push({number,title,images});
-    manga.chapters.sort((a,b) => a.number-b.number);
-    saveData();
-    this.reset();
-    renderLibrary();
-    renderAdmin();
-    alert("فصل اضافه شد!");
-  } catch {
-    alert("این فصل برای ذخیره در مرورگر بیش از حد بزرگ است. برای فصل‌های طولانی، ذخیره‌سازی آنلاین لازم است.");
-  } finally {
-    button.disabled = false;
-    button.textContent = "افزودن فصل";
-  }
-});
-
-function renderLibrary() {
-  const grid = document.getElementById("mangaGrid");
-  const q = document.getElementById("search").value.trim().toLowerCase();
-  const list = mangas.filter(m =>
-    m.title.toLowerCase().includes(q) || m.summary.toLowerCase().includes(q)
-  );
-
-  if (!list.length) {
-    grid.innerHTML = '<div class="empty">❄<br>هنوز مانهوا‌ای منتشر نشده است.<br>بعد از ورود به پنل مدیر، اولین داستانت را اضافه کن.</div>';
-    updateMangaSelect();
-    return;
-  }
-
-  grid.innerHTML = list.map(m => `
-    <article class="card">
-      <div class="cover">
-        <img src="${m.cover}" alt="کاور مانهوا">
-      </div>
-      <div class="card-content">
-        <h3>${escapeHTML(m.title)}</h3>
-        <p>${escapeHTML(m.summary)}</p>
-        <button onclick="openManga(${m.id})">مطالعه مانهوا</button>
-      </div>
-    </article>
-  `).join("");
-
-  updateMangaSelect();
+function refreshAdmin(){
+  $('chapterManga').innerHTML=mangas.map(m=>`<option value="${m.id}">${escapeHTML(m.title)}</option>`).join('');
+  $('adminList').innerHTML=mangas.length?mangas.map(m=>`<div class="panel"><strong>${escapeHTML(m.title)}</strong><p class="muted">${m.chapters.length} فصل</p><button onclick="deleteManga('${m.id}')">حذف مانهوا</button></div>`).join(''):'<p class="muted">هنوز مانهواای اضافه نشده.</p>';
 }
+renderManga('homeGrid');renderManga('libraryGrid');
 
-function updateMangaSelect() {
-  const select = document.getElementById("chapterManga");
-  select.innerHTML = '<option value="">انتخاب مانهوا</option>' +
-    mangas.map(m => `<option value="${m.id}">${escapeHTML(m.title)}</option>`).join("");
-}
-
-function renderAdmin() {
-  const box = document.getElementById("adminList");
-  if (!mangas.length) {
-    box.innerHTML = '<p>هنوز مانهوا‌ای نساخته‌ای.</p>';
-    return;
-  }
-
-  box.innerHTML = mangas.map(m => `
-    <div class="chapter">
-      <span>${escapeHTML(m.title)}</span>
-      <button class="secondary" onclick="deleteManga(${m.id})">حذف</button>
-    </div>
-  `).join("");
-}
-
-function deleteManga(id) {
-  if (!isAdmin) return;
-  if (!confirm("این مانهوا و فصل‌هایش حذف شوند؟")) return;
-  mangas = mangas.filter(m => m.id !== id);
-  saveData();
-  renderLibrary();
-  renderAdmin();
-}
-
-function openManga(id) {
-  currentManga = mangas.find(m => m.id === id);
-  if (!currentManga) return;
-
-  hideSections();
-  document.getElementById("readerSection").classList.remove("hidden");
-  document.getElementById("readerTitle").textContent = currentManga.title;
-  document.getElementById("reader").innerHTML = "";
-
-  const box = document.getElementById("chapters");
-  if (!currentManga.chapters.length) {
-    box.innerHTML = "<p>هنوز فصلی برای این مانهوا اضافه نشده است.</p>";
-  } else {
-    box.innerHTML = currentManga.chapters.map((c,i) => `
-      <div class="chapter">
-        <span>${escapeHTML(c.title)}</span>
-        <button onclick="readChapter(${i})">خواندن فصل</button>
-      </div>
-    `).join("");
-  }
-
-  document.getElementById("readerSection").scrollIntoView({behavior:"smooth"});
-}
-
-function readChapter(index) {
-  const chapter = currentManga.chapters[index];
-  document.getElementById("reader").innerHTML =
-    chapter.images.map((src,i) =>
-      `<img src="${src}" alt="صفحه ${i+1}" loading="lazy">`
-    ).join("");
-  document.getElementById("reader").scrollIntoView({behavior:"smooth"});
-}
-
-function backToLibrary() {
-  hideSections();
-  document.getElementById("library").scrollIntoView({behavior:"smooth"});
-}
-
-function escapeHTML(text) {
-  return String(text).replace(/[&<>"']/g, c => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  }[c]));
-}
-
-/* بستن مقدمه */
-function closeIntro() {
-  document.getElementById("intro").classList.add("finished");
-}
-document.getElementById("enter").addEventListener("click",closeIntro);
-document.getElementById("skip").addEventListener("click",closeIntro);
-
-/* برف متحرک */
-(function snowAnimation() {
-  const canvas = document.getElementById("snow");
-  const ctx = canvas.getContext("2d");
-  let width,height,flakes=[];
-
-  function resize() {
-    const ratio = Math.min(window.devicePixelRatio || 1,2);
-    width = canvas.clientWidth;
-    height = canvas.clientHeight;
-    canvas.width = width * ratio;
-    canvas.height = height * ratio;
-    ctx.setTransform(ratio,0,0,ratio,0,0);
-
-    flakes = Array.from({length:Math.max(65,Math.floor(width/5))},() => ({
-      x:Math.random()*width,
-      y:Math.random()*height,
-      r:Math.random()*2+0.5,
-      speed:Math.random()*0.6+0.2,
-      drift:(Math.random()-0.5)*0.35,
-      alpha:Math.random()*0.7+0.2
-    }));
-  }
-
-  function draw() {
-    ctx.clearRect(0,0,width,height);
-    flakes.forEach(f => {
-      ctx.beginPath();
-      ctx.fillStyle = `rgba(220,245,255,${f.alpha})`;
-      ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
-      ctx.fill();
-      f.y += f.speed;
-      f.x += f.drift;
-      if (f.y > height+5) {
-        f.y = -5;
-        f.x = Math.random()*width;
-      }
-      if (f.x > width+5) f.x = -5;
-      if (f.x < -5) f.x = width+5;
-    });
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener("resize",resize);
-  resize();
-  draw();
-})();
-
-renderLibrary();
+// Snowfall
+const canvas=$('snow'),ctx=canvas.getContext('2d');let flakes=[];
+function resizeSnow(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);flakes=Array.from({length:Math.min(100,Math.floor(innerWidth/8))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*2+0.5,v:Math.random()*0.55+0.2,s:(Math.random()-.5)*.35}))}
+function snow(){ctx.clearRect(0,0,innerWidth,innerHeight);ctx.fillStyle='#e5f4ff';for(const f of flakes){ctx.globalAlpha=.35+Math.random()*.45;ctx.beginPath();ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fill();f.y+=f.v;f.x+=f.s;if(f.y>innerHeight){f.y=-5;f.x=Math.random()*innerWidth}if(f.x<0)f.x=innerWidth;if(f.x>innerWidth)f.x=0}ctx.globalAlpha=1;requestAnimationFrame(snow)}
+addEventListener('resize',resizeSnow);resizeSnow();snow();
 </script>
 </body>
 </html>
