@@ -1,0 +1,291 @@
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>مانهوا لند ❄️</title>
+<style>
+:root {
+  --bg:#071426;
+  --panel:#10243b;
+  --line:#294867;
+  --ice:#bcecff;
+  --white:#f4faff;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--white);
+  font-family:Tahoma,Arial,sans-serif;
+}
+button,input,textarea,select { font:inherit; }
+button {
+  padding:12px 17px;
+  border:1px solid var(--ice);
+  border-radius:12px;
+  background:var(--ice);
+  color:#071426;
+  font-weight:bold;
+  cursor:pointer;
+  margin:4px;
+}
+input,textarea,select {
+  display:block;
+  width:100%;
+  padding:12px;
+  margin:9px 0 15px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#071426;
+  color:white;
+}
+label { color:var(--ice); font-size:14px; }
+main { max-width:950px; margin:auto; padding:16px; }
+.panel {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:17px;
+  margin:18px 0;
+}
+.hidden { display:none!important; }
+.small { font-size:13px; color:#b5cadc; line-height:1.9; }
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:12px;
+}
+.card {
+  background:var(--panel);
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:13px;
+}
+.cover { width:100%; aspect-ratio:3/4; object-fit:cover; }
+#intro {
+  position:fixed;
+  inset:0;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  background:radial-gradient(ellipse at center,#19466b,#071426 75%);
+  overflow:hidden;
+}
+#intro.gone { display:none; }
+.intro-content { position:relative; z-index:2; width:100%; max-width:500px; }
+.portrait {
+  width:240px;
+  height:260px;
+  max-width:75vw;
+  margin:18px auto;
+  border:2px solid var(--ice);
+  border-radius:48%;
+  overflow:hidden;
+  box-shadow:0 0 35px #54baff66;
+  background:var(--panel);
+}
+.portrait img { width:100%; height:100%; object-fit:cover; }
+.bubble {
+  max-width:420px;
+  margin:18px auto;
+  background:#f4fbff;
+  color:#10243b;
+  border-radius:22px;
+  padding:17px;
+  font-size:20px;
+  font-weight:bold;
+}
+.snow {
+  position:absolute;
+  top:-10px;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:white;
+  box-shadow:0 0 7px #bcecff;
+  animation:fall linear infinite;
+  pointer-events:none;
+}
+@keyframes fall {
+  to { transform:translate(35px,110vh); }
+}
+.page { display:block; width:100%; margin-bottom:12px; }
+</style>
+</head>
+<body>
+
+<section id="intro">
+  <div id="snow"></div>
+  <div class="intro-content">
+    <h1 style="color:#c8efff">✧ MANHWA LAND ✧</h1>
+    <p class="small">قصر داستان‌هایی که در قلبت می‌مانند</p>
+
+    <div class="portrait">
+      <img src="./generated-image.png" alt="هانا"
+        onerror="this.style.display='none';document.getElementById('fallback').classList.remove('hidden')">
+      <p id="fallback" class="hidden" style="padding:45px 10px;color:#c8efff">
+        تصویر هانا پیدا نشد!<br>
+        نام فایل باید generated-image.png باشد.
+      </p>
+    </div>
+
+    <div class="bubble">به مانهوا لند خوش اومدید! ❄️</div>
+    <button onclick="document.getElementById('intro').classList.add('gone')">
+      ✧ به قصر وارد شوید ✧
+    </button>
+  </div>
+</section>
+
+<main>
+<header>
+  <div>
+    <h1 style="color:#bcecff">❄ مانهوا لند</h1>
+    <p class="small">دنیایی برای عاشقان مانهوا</p>
+  </div>
+  <button onclick="document.getElementById('auth').classList.toggle('hidden')">
+    ورود / ثبت‌نام
+  </button>
+</header>
+
+<section id="auth" class="panel hidden">
+  <h2>ورود به قصر</h2>
+  <label for="email">ایمیل</label>
+  <input id="email" type="email" autocomplete="email">
+  <label for="password">گذرواژه</label>
+  <input id="password" type="password" autocomplete="current-password">
+  <button onclick="signIn()">ورود</button>
+  <button onclick="signUp()">ثبت‌نام</button>
+  <button onclick="signOut()">خروج</button>
+  <p id="authMsg" class="small"></p>
+</section>
+
+<section id="profile" class="panel hidden">
+  <h2>پروفایل من</h2>
+  <label for="displayName">نام نمایشی</label>
+  <input id="displayName" placeholder="مانهوا دوست">
+  <button onclick="saveProfile()">ذخیره نام</button>
+  <p id="profileMsg" class="small"></p>
+</section>
+
+<section id="admin" class="panel hidden">
+  <h2>👑 پنل مدیریت</h2>
+  <p class="small">برای انتشار واقعی، اتصال امن پایگاه داده لازم است.</p>
+  <label for="title">نام مانهوا</label>
+  <input id="title">
+  <label for="synopsis">خلاصه داستان</label>
+  <textarea id="synopsis"></textarea>
+  <label for="cover">تصویر جلد</label>
+  <input id="cover" type="file" accept="image/*">
+  <button onclick="publishManhwa()">انتشار مانهوا</button>
+  <hr>
+  <h3>انتشار فصل</h3>
+  <label for="chapterTitle">نام فصل</label>
+  <input id="chapterTitle">
+  <label for="pages">تصاویر صفحات فصل</label>
+  <input id="pages" type="file" accept="image/*" multiple>
+  <p class="small">این فرم به‌تنهایی فصل را آنلاین منتشر نمی‌کند؛ اتصال پایگاه داده لازم است.</p>
+  <p id="adminMsg" class="small"></p>
+</section>
+
+<section class="panel">
+  <h2>📚 کتابخانهٔ مانهوا</h2>
+  <input id="search" placeholder="جست‌وجوی مانهوا..." oninput="searchBooks()">
+  <div id="library" class="grid"></div>
+  <p class="small" id="libraryMsg">هنوز مانهوا منتشر نشده است.</p>
+</section>
+
+<section class="panel">
+  <h2>💬 نظرات</h2>
+  <p class="small">برای ثبت نظرات مشترک میان کاربران، پایگاه داده باید تنظیم شود.</p>
+</section>
+
+<footer class="small" style="text-align:center;padding:25px">
+  ❄️ Manhwa Land · Dream Big, Read More ❄️
+</footer>
+</main>
+
+<script>
+for(let i=0;i<65;i++){
+  const s=document.createElement("i");
+  s.className="snow";
+  s.style.left=Math.random()*100+"%";
+  s.style.animationDuration=(6+Math.random()*12)+"s";
+  s.style.animationDelay=(-Math.random()*12)+"s";
+  document.getElementById("snow").appendChild(s);
+}
+
+let books=[];
+
+function searchBooks(){
+  const q=document.getElementById("search").value.trim().toLowerCase();
+  const area=document.getElementById("library");
+  area.innerHTML="";
+  const found=books.filter(b=>b.title.toLowerCase().includes(q));
+  found.forEach(b=>{
+    const card=document.createElement("article");
+    card.className="card";
+    if(b.cover){
+      const img=document.createElement("img");
+      img.className="cover";
+      img.src=b.cover;
+      img.alt="جلد مانهوا";
+      card.appendChild(img);
+    }
+    const h=document.createElement("h3");
+    h.textContent=b.title;
+    const p=document.createElement("p");
+    p.className="small";
+    p.textContent=b.synopsis;
+    card.append(h,p);
+    area.appendChild(card);
+  });
+  document.getElementById("libraryMsg").textContent=
+    found.length ? "" : "مانهوا‌ای پیدا نشد.";
+}
+
+function signUp(){
+  document.getElementById("authMsg").textContent=
+    "برای ثبت‌نام واقعی باید Supabase تنظیم شود.";
+}
+function signIn(){
+  document.getElementById("authMsg").textContent=
+    "برای ورود واقعی باید Supabase تنظیم شود.";
+}
+function signOut(){
+  document.getElementById("authMsg").textContent=
+    "ورود واقعی هنوز تنظیم نشده است.";
+}
+function saveProfile(){
+  document.getElementById("profileMsg").textContent=
+    "ذخیره پروفایل پس از اتصال پایگاه داده فعال می‌شود.";
+}
+function publishManhwa(){
+  document.getElementById("adminMsg").textContent=
+    "انتشار عمومی به پنل مدیر امن و پایگاه داده نیاز دارد.";
+}
+</script>
+</body>
+</html>
