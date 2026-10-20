@@ -6,159 +6,223 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>مانهوا لند</title>
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Tahoma,Arial,sans-serif;
-  background:#071426;
-  color:#f2faff;
-}
-#intro{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  overflow:hidden;
-  position:relative;
-  background:radial-gradient(ellipse,#193d60,#071426 70%);
-  padding:20px;
-}
-.snow{
-  position:absolute;
-  top:-15px;
-  width:4px;height:4px;
-  background:white;border-radius:50%;
-  box-shadow:0 0 8px #b8eaff;
-  animation:fall linear infinite;
-}
-@keyframes fall{
-  to{transform:translateY(110vh) translateX(30px)}
-}
-.content{position:relative;z-index:2}
-h1{
-  color:#c7efff;
-  text-shadow:0 0 20px #55baff;
-  font-size:clamp(27px,6vw,42px);
-}
-.portrait{
-  width:240px;height:240px;
-  max-width:65vw;max-height:65vw;
-  margin:20px auto;
-  border:3px solid #a9e6ff;
-  border-radius:50%;
-  box-shadow:0 0 35px #48b9f577;
-  overflow:hidden;
-  background:#102943;
-}
-.portrait img{
-  width:100%;height:100%;
-  object-fit:cover;
-}
-.bubble{
-  position:relative;
-  background:#f4fbff;
-  color:#10243b;
-  padding:18px 20px;
-  border-radius:24px;
-  font-size:clamp(17px,4vw,22px);
-  font-weight:bold;
-  margin:20px auto;
-  max-width:420px;
-  animation:appear 1s 1s both;
-}
-.bubble:after{
-  content:"";
-  position:absolute;
-  top:-12px;right:calc(50% - 12px);
-  border-width:0 12px 14px;
-  border-style:solid;
-  border-color:transparent transparent #f4fbff;
-}
-@keyframes appear{
-  from{opacity:0;transform:translateY(15px)}
-  to{opacity:1;transform:translateY(0)}
-}
-button{
-  padding:14px 24px;
-  border:1px solid #a9e6ff;
-  border-radius:15px;
-  background:linear-gradient(135deg,#c7f1ff,#61b9e8);
-  color:#071426;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-}
-#home{display:none;padding:25px;max-width:900px;margin:auto}
-#home h2{color:#bcecff}
-.card{
-  margin-top:20px;padding:20px;
-  background:#10243b;
-  border:1px solid #294867;
-  border-radius:18px;
-}
+body{margin:0;background:#071426;color:#f4faff;font-family:Tahoma,Arial}
+button{padding:12px 18px;border:1px solid #a9e6ff;border-radius:13px;background:#a9e6ff;color:#071426;font-weight:bold;cursor:pointer}
+input,textarea,select{display:block;width:100%;box-sizing:border-box;padding:12px;margin:8px 0 14px;border:1px solid #294867;border-radius:10px;background:#071426;color:white}
+main{max-width:900px;margin:auto;padding:18px}
+.panel{padding:18px;margin:18px 0;background:#10243b;border:1px solid #294867;border-radius:17px}
+.hidden{display:none!important}
+.small{color:#b5cadc;font-size:13px;line-height:1.8}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.card{padding:12px;background:#10243b;border:1px solid #294867;border-radius:12px;cursor:pointer}
+.cover{width:100%;aspect-ratio:3/4;object-fit:cover}
+.page{display:block;width:100%;margin:0 auto 12px}
+#intro{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:radial-gradient(ellipse,#19466b,#071426 75%);overflow:hidden}
+#intro.gone{display:none}
+.intro-content{position:relative;z-index:2;max-width:500px}
+.portrait{width:230px;height:230px;max-width:65vw;max-height:65vw;margin:20px auto;border:2px solid #a9e6ff;border-radius:50%;overflow:hidden;box-shadow:0 0 35px #54baff66;background:#10243b}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.bubble{position:relative;max-width:420px;margin:20px auto;background:#f4fbff;color:#10243b;border-radius:22px;padding:18px;font-size:20px;font-weight:bold;animation:appear 1s 1s both}
+.bubble:before{content:"";position:absolute;top:-12px;right:calc(50% - 12px);border-width:0 12px 14px;border-style:solid;border-color:transparent transparent #f4fbff}
+.snow{position:absolute;top:-10px;width:4px;height:4px;border-radius:50%;background:white;box-shadow:0 0 7px #bcecff;animation:fall linear infinite}
+@keyframes fall{to{transform:translate(35px,110vh)}}
+@keyframes appear{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-
 <section id="intro">
-  <div id="snow"></div>
-  <div class="content">
-    <h1>✧ MANHWA LAND ✧</h1>
-    <p>قصر داستان‌هایی که در قلبت می‌مانند</p>
-
-    <div class="portrait">
-      <img src="hana-intro.png" alt="هانا"
-      onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;padding:65px 15px;color:#c7efff;line-height:2&quot;>تصویر هانا<br>اینجا قرار می‌گیرد ❄️</div>'">
-    </div>
-
-    <div class="bubble">
-      به مانهوا لند خوش اومدید! ❄️
-    </div>
-
-    <button onclick="enterCastle()">
-      ✧ به قصر وارد شوید ✧
-    </button>
-  </div>
+<div id="snow"></div>
+<div class="intro-content">
+<h1 style="color:#c8efff;text-shadow:0 0 20px #54baff">✧ MANHWA LAND ✧</h1>
+<p class="small">قصر داستان‌هایی که در قلبت می‌مانند</p>
+<div class="portrait">
+<img src="hana-intro.png" alt="هانا" onerror="this.style.display='none';this.parentElement.innerHTML='<p style=&quot;padding:55px 12px;color:#c8efff;line-height:2&quot;>تصویر هانا اینجا قرار می‌گیرد ❄️<br>فایل hana-intro.png را به مخزن اضافه کن.</p>'">
+</div>
+<div class="bubble">به مانهوا لند خوش اومدید! ❄️</div>
+<button onclick="document.getElementById('intro').classList.add('gone')">✧ به قصر وارد شوید ✧</button>
+</div>
 </section>
 
-<main id="home">
-  <h1>❄ مانهوا لند ❄</h1>
-  <p>به دنیای جادویی مانهوا خوش اومدی!</p>
+<main>
+<header style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+<div><h1 style="color:#bcecff">❄ مانهوا لند</h1><p class="small">دنیایی برای عاشقان مانهوا</p></div>
+<button onclick="document.getElementById('auth').classList.toggle('hidden')">ورود / ثبت‌نام</button>
+</header>
 
-  <div class="card">
-    <h2>📚 کتابخانه مانهوا</h2>
-    <p>به‌زودی داستان‌های موردعلاقه‌ات اینجا قرار می‌گیرند.</p>
-  </div>
+<section id="auth" class="panel hidden">
+<h2>ورود به قصر</h2>
+<label>ایمیل</label><input id="email" type="email">
+<label>گذرواژه</label><input id="password" type="password">
+<button onclick="signIn()">ورود</button>
+<button onclick="signUp()">ثبت‌نام</button>
+<p id="authMsg" class="small"></p>
+</section>
 
-  <div class="card">
-    <h2>👑 حساب کاربری</h2>
-    <p>بخش ورود و ثبت‌نام در مرحله بعد به سایت وصل می‌شود.</p>
-  </div>
+<section id="admin" class="panel hidden">
+<h2>👑 پنل انتشار مدیر</h2>
+<label>نام مانهوا</label><input id="title">
+<label>خلاصه داستان</label><textarea id="synopsis"></textarea>
+<label>تصویر جلد</label><input id="cover" type="file" accept="image/*">
+<button onclick="publishManhwa()">انتشار مانهوا</button>
+<hr style="border-color:#294867;margin:24px 0">
+<h3>انتشار فصل</h3>
+<label>انتخاب مانهوا</label><select id="manhwa"></select>
+<label>نام فصل</label><input id="chapterTitle">
+<label>شماره فصل</label><input id="chapterNo" type="number" min="1" value="1">
+<label>تصاویر صفحات فصل (چندین تصویر)</label><input id="pages" type="file" accept="image/*" multiple>
+<p class="small">برای ترتیب درست، نام فایل‌ها را 001.jpg، 002.jpg و ... بگذار.</p>
+<button onclick="publishChapter()">انتشار فصل</button>
+<p id="adminMsg" class="small"></p>
+</section>
+
+<section class="panel">
+<h2>📚 کتابخانه مانهوا</h2>
+<input id="search" placeholder="جست‌وجوی مانهوا..." oninput="renderLibrary()">
+<div id="library" class="grid"></div>
+<p id="libraryMsg" class="small">برای فعال‌شدن کتابخانه باید اطلاعات اتصال Supabase را وارد کنی.</p>
+</section>
+
+<section id="reader" class="panel hidden">
+<button onclick="document.getElementById('reader').classList.add('hidden')">بازگشت</button>
+<h2 id="readTitle"></h2><p id="readSynopsis" class="small"></p>
+<div id="chapterList"></div><div id="pagesView"></div>
+</section>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-for(let i=0;i<65;i++){
-  const s=document.createElement('span');
-  s.className='snow';
-  s.style.left=Math.random()*100+'%';
-  s.style.animationDuration=(6+Math.random()*10)+'s';
-  s.style.animationDelay=(-Math.random()*12)+'s';
-  s.style.opacity=0.3+Math.random()*0.7;
-  document.getElementById('snow').appendChild(s);
-}
+// این دو مقدار را از تنظیمات پروژه Supabase بردار و جایگزین کن.
+const SUPABASE_URL="PASTE_PROJECT_URL_HERE";
+const SUPABASE_KEY="PASTE_PUBLISHABLE_KEY_HERE";
+const configured=SUPABASE_URL.startsWith("https://")&&!SUPABASE_URL.includes("PASTE_")&&SUPABASE_KEY&&!SUPABASE_KEY.includes("PASTE_");
+const db=configured?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY):null;
+let user=null,isAdmin=false,manhwas=[];
 
-function enterCastle(){
-  document.getElementById('intro').style.display='none';
-  document.getElementById('home').style.display='block';
-  window.scrollTo(0,0);
+for(let i=0;i<65;i++){
+ let s=document.createElement('i');s.className='snow';
+ s.style.left=Math.random()*100+'%';
+ s.style.animationDuration=(6+Math.random()*12)+'s';
+ s.style.animationDelay=(-Math.random()*12)+'s';
+ document.getElementById('snow').appendChild(s);
+}
+async function signUp(){
+ if(!db)return document.getElementById('authMsg').textContent='اول باید اطلاعات Supabase را در کد قرار بدهی.';
+ let email=document.getElementById('email').value.trim(),password=document.getElementById('password').value;
+ let r=await db.auth.signUp({email,password});
+ if(r.error)return document.getElementById('authMsg').textContent=r.error.message;
+ if(r.data.user){
+  await db.from('profiles').insert({id:r.data.user.id,username:'reader_'+r.data.user.id.slice(0,8),is_admin:false});
+ }
+ document.getElementById('authMsg').textContent='ثبت‌نام انجام شد؛ اگر تأیید ایمیل فعال است، ایمیلت را بررسی کن.';
+}
+async function signIn(){
+ if(!db)return document.getElementById('authMsg').textContent='اول باید اطلاعات Supabase را در کد قرار بدهی.';
+ let r=await db.auth.signInWithPassword({email:document.getElementById('email').value.trim(),password:document.getElementById('password').value});
+ if(r.error)return document.getElementById('authMsg').textContent=r.error.message;
+ user=r.data.user;
+ let p=await db.from('profiles').select('is_admin').eq('id',user.id).maybeSingle();
+ isAdmin=!!p.data&&p.data.is_admin===true;
+ document.getElementById('admin').classList.toggle('hidden',!isAdmin);
+ document.getElementById('auth').classList.add('hidden');
+ await loadLibrary();
+}
+async function loadLibrary(){
+ if(!db)return;
+ let r=await db.from('manhwas').select('*').order('created_at',{ascending:false});
+ if(r.error){document.getElementById('libraryMsg').textContent=r.error.message;return}
+ manhwas=r.data||[];renderLibrary();
+ document.getElementById('manhwa').innerHTML='';
+ manhwas.forEach(m=>{let o=document.createElement('option');o.value=m.id;o.textContent=m.title;document.getElementById('manhwa').appendChild(o)});
+ document.getElementById('libraryMsg').textContent='';
+}
+async function fileURL(path){
+ if(!path)return '';
+ if(/^https?:\/\//.test(path))return path;
+ let r=await db.storage.from('manhwa-pages').createSignedUrl(path,3600);
+ return r.data?.signedUrl||'';
+}
+async function renderLibrary(){
+ let area=document.getElementById('library');area.innerHTML='';
+ let q=document.getElementById('search').value.toLowerCase().trim();
+ for(let m of manhwas.filter(x=>(x.title||'').toLowerCase().includes(q))){
+  let card=document.createElement('article');card.className='card';
+  let src=await fileURL(m.cover_url);
+  card.innerHTML='<img class="cover" alt="جلد"><h3></h3><p class="small"></p>';
+  card.querySelector('img').src=src;card.querySelector('h3').textContent=m.title;
+  card.querySelector('p').textContent=m.synopsis||'برای خواندن انتخاب کن';
+  card.onclick=()=>openManhwa(m);area.appendChild(card);
+ }
+}
+async function upload(file,path){
+ let r=await db.storage.from('manhwa-pages').upload(path,file,{upsert:false});
+ if(r.error)throw r.error;return path;
+}
+async function publishManhwa(){
+ if(!db||!user||!isAdmin)return document.getElementById('adminMsg').textContent='فقط حساب مدیر اجازه انتشار دارد.';
+ let title=document.getElementById('title').value.trim(),synopsis=document.getElementById('synopsis').value.trim(),f=document.getElementById('cover').files[0];
+ if(!title)return document.getElementById('adminMsg').textContent='نام مانهوا را وارد کن.';
+ try{
+  let cover_url=null;
+  if(f)cover_url=await upload(f,'covers/'+crypto.randomUUID()+'-'+f.name.replace(/[^a-zA-Z0-9._-]/g,'_'));
+  let r=await db.from('manhwas').insert({title,synopsis,cover_url,created_by:user.id});
+  if(r.error)throw r.error;
+  document.getElementById('adminMsg').textContent='مانهوا منتشر شد!';
+  await loadLibrary();
+ }catch(e){document.getElementById('adminMsg').textContent='خطا: '+e.message}
+}
+async function publishChapter(){
+ if(!db||!user||!isAdmin)return document.getElementById('adminMsg').textContent='فقط مدیر اجازه انتشار دارد.';
+ let manhwa_id=document.getElementById('manhwa').value,title=document.getElementById('chapterTitle').value.trim(),chapter_number=Number(document.getElementById('chapterNo').value);
+ let files=[...document.getElementById('pages').files].sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true}));
+ if(!manhwa_id||!files.length||chapter_number<1)return document.getElementById('adminMsg').textContent='مانهوا، شماره فصل و تصاویر را انتخاب کن.';
+ try{
+  let page_urls=[];
+  for(let i=0;i<files.length;i++){
+   let f=files[i],name=f.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+   page_urls.push(await upload(f,'chapters/'+manhwa_id+'/'+String(i+1).padStart(4,'0')+'-'+crypto.randomUUID()+'-'+name));
+  }
+  let r=await db.from('chapters').insert({manhwa_id,title:title||'فصل '+chapter_number,chapter_number,page_urls});
+  if(r.error)throw r.error;
+  document.getElementById('adminMsg').textContent='فصل با '+files.length+' صفحه منتشر شد!';
+ }catch(e){document.getElementById('adminMsg').textContent='خطا: '+e.message}
+}
+async function openManhwa(m){
+ document.getElementById('reader').classList.remove('hidden');
+ document.getElementById('readTitle').textContent=m.title;
+ document.getElementById('readSynopsis').textContent=m.synopsis||'';
+ document.getElementById('pagesView').innerHTML='';
+ document.getElementById('chapterList').innerHTML='';
+ let r=await db.from('chapters').select('*').eq('manhwa_id',m.id).order('chapter_number');
+ if(r.error)return document.getElementById('chapterList').textContent='خطا در دریافت فصل‌ها.';
+ if(!r.data.length)return document.getElementById('chapterList').textContent='هنوز فصلی منتشر نشده.';
+ r.data.forEach(ch=>{
+  let b=document.createElement('button');b.textContent=ch.title||'فصل '+ch.chapter_number;
+  b.onclick=async()=>{
+   let view=document.getElementById('pagesView');view.innerHTML='';
+   for(let p of (Array.isArray(ch.page_urls)?ch.page_urls:[])){
+    let src=await fileURL(p);if(src){let im=document.createElement('img');im.className='page';im.loading='lazy';im.src=src;im.alt='صفحه مانهوا';view.appendChild(im)}
+   }
+   view.scrollIntoView({behavior:'smooth'});
+  };
+  document.getElementById('chapterList').appendChild(b);
+ });
+ document.getElementById('reader').scrollIntoView({behavior:'smooth'});
+}
+if(db){
+ db.auth.getSession().then(async r=>{
+  user=r.data.session?.user||null;
+  if(user){let p=await db.from('profiles').select('is_admin').eq('id',user.id).maybeSingle();isAdmin=!!p.data&&p.data.is_admin===true;document.getElementById('admin').classList.toggle('hidden',!isAdmin)}
+  await loadLibrary();
+ });
+ db.auth.onAuthStateChange((_e,s)=>{user=s?.user||null});
 }
 </script>
 </body>
