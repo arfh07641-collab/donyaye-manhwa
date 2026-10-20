@@ -9,104 +9,255 @@
 
 
 
-Configuring a publishing source for your GitHub Pages site
-You can configure your GitHub Pages site to publish when changes are pushed to a specific branch, or you can write a GitHub Actions workflow to publish your site.
 
-Who can use this feature?
-People with admin or maintainer permissions for a repository can configure a publishing source for a GitHub Pages site.
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مانهوا لند</title>
+<style>
+body {
+  margin: 0;
+  background: #071525;
+  color: #effaff;
+  font-family: Tahoma, sans-serif;
+}
+header {
+  padding: 22px;
+  text-align: center;
+  background: #102943;
+  border-bottom: 1px solid #55aee0;
+}
+h1, h2 { color: #bcecff; }
+main { width: 92%; max-width: 1000px; margin: auto; }
+button, input, textarea {
+  font: inherit;
+  padding: 11px;
+  border-radius: 9px;
+}
+button {
+  background: #bcecff;
+  border: 0;
+  cursor: pointer;
+  color: #071525;
+  margin: 5px;
+}
+input, textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #091b2d;
+  color: white;
+  border: 1px solid #37617f;
+  margin: 6px 0 12px;
+}
+.panel {
+  background: #102943;
+  border: 1px solid #37617f;
+  border-radius: 14px;
+  padding: 18px;
+  margin: 22px 0;
+}
+.library {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(145px,1fr));
+  gap: 15px;
+}
+.card {
+  background: #102943;
+  padding: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.page {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hidden { display: none; }
+</style>
+</head>
+<body>
 
-GitHub Pages is available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. See GitHub's plans.
+<header>
+  <h1>❄️ مانهوا لند ❄️</h1>
+  <p>دنیایی برای خواندن مانهوا</p>
+  <button onclick="showLibrary()">کتابخانه</button>
+  <button onclick="showAdmin()">پنل مدیر</button>
+</header>
 
-About publishing sources
+<main>
+  <section id="libraryView">
+    <h2>📚 کتابخانهٔ مانهواها</h2>
+    <input id="search" placeholder="جست‌وجوی مانهوا..." oninput="renderLibrary()">
+    <div id="library" class="library"></div>
+  </section>
 
-You can publish your site when changes are pushed to a specific branch, or you can write a GitHub Actions workflow to publish your site.
+  <section id="adminView" class="hidden">
+    <div class="panel">
+      <h2>➕ اضافه کردن مانهوا</h2>
+      <label>نام مانهوا</label>
+      <input id="title" placeholder="نام مانهوا">
 
-If you do not need any control over the build process for your site, we recommend that you publish your site when changes are pushed to a specific branch. You can specify which branch and folder to use as your publishing source. The source branch can be any branch in your repository, and the source folder can either be the root of the repository (/) on the source branch or a /docs folder on the source branch. Whenever changes are pushed to the source branch, the changes in the source folder will be published to your GitHub Pages site.
+      <label>آدرس تصویر کاور</label>
+      <input id="cover" placeholder="https://...">
 
-If you want to use a build process other than Jekyll or you do not want a dedicated branch to hold your compiled static files, we recommend that you write a GitHub Actions workflow to publish your site. GitHub provides workflow templates for common publishing scenarios to help you write your workflow.
+      <label>خلاصهٔ داستان</label>
+      <textarea id="summary" placeholder="خلاصهٔ داستان"></textarea>
 
-Warning
+      <button onclick="addManhwa()">ثبت مانهوا</button>
+    </div>
 
-GitHub Pages sites are publicly available on the internet, even if the repository for the site is private (if your plan or organization allows it). If you have sensitive data in your site's repository, you may want to remove the data before publishing. For more information, see About repositories.
-Publishing from a branch
+    <div class="panel">
+      <h2>📖 اضافه کردن چپتر</h2>
+      <label>شمارهٔ مانهوا (از فهرست زیر)</label>
+      <input id="manhwaId" type="number" min="1" placeholder="مثلاً 1">
 
-Make sure the branch you want to use as your publishing source already exists in your repository.
+      <label>شمارهٔ چپتر</label>
+      <input id="chapterNumber" type="number" min="1" placeholder="مثلاً 1">
 
-On GitHub, navigate to your site's repository.
+      <label>آدرس عکس‌های صفحات، هر آدرس در یک خط</label>
+      <textarea id="pages" rows="6" placeholder="https://example.com/page1.jpg&#10;https://example.com/page2.jpg"></textarea>
 
-Under your repository name, click Settings. If you cannot see the "Settings" tab, select the  dropdown menu, then click Settings.
+      <p>حداکثر مجاز: ۱۲۰ صفحه برای هر چپتر</p>
+      <button onclick="addChapter()">ثبت چپتر</button>
+    </div>
+  </section>
 
-Screenshot of a repository header showing the tabs. The "Settings" tab is highlighted by a dark orange outline.
+  <section id="detailView" class="hidden">
+    <button onclick="showLibrary()">← برگشت به کتابخانه</button>
+    <div id="detail"></div>
+  </section>
 
-In the "Code, planning, and automation" section of the sidebar, click  Pages.
+  <section id="readerView" class="hidden">
+    <button onclick="backToDetail()">← برگشت به چپترها</button>
+    <div id="reader"></div>
+  </section>
+</main>
 
-Under "Build and deployment", under "Source", select Deploy from a branch.
+<script>
+let manhwas = JSON.parse(localStorage.getItem("manhwaDemo") || "[]");
+let selectedId = null;
 
-Under "Build and deployment", use the branch dropdown menu and select a publishing source. Screenshot of Pages settings in a GitHub repository. A menu to select a branch for a publishing source, labeled "None," is outlined in dark orange.
+function save() {
+  localStorage.setItem("manhwaDemo", JSON.stringify(manhwas));
+}
 
-Optionally, use the folder dropdown menu to select a folder for your publishing source. Screenshot of Pages settings in a GitHub repository. A menu to select a folder for a publishing source, labeled "/(root)," is outlined in dark orange.
+function hideViews() {
+  ["libraryView","adminView","detailView","readerView"]
+    .forEach(id => document.getElementById(id).classList.add("hidden"));
+}
 
-Click Save.
+function showLibrary() {
+  hideViews();
+  document.getElementById("libraryView").classList.remove("hidden");
+  renderLibrary();
+}
 
-Troubleshooting publishing from a branch
+function showAdmin() {
+  hideViews();
+  document.getElementById("adminView").classList.remove("hidden");
+}
 
-Note
+function addManhwa() {
+  const title = document.getElementById("title").value.trim();
+  const cover = document.getElementById("cover").value.trim();
+  const summary = document.getElementById("summary").value.trim();
 
-If your repository contains symbolic links, you will need to publish your site using a GitHub Actions workflow. For more information about GitHub Actions, see GitHub Actions documentation.
-Note
+  if (!title) return alert("نام مانهوا را بنویس!");
 
-If you are publishing from a branch and your site has not published automatically, make sure someone with admin permissions and a verified email address has pushed to the publishing source.
-Commits pushed by a GitHub Actions workflow that uses the GITHUB_TOKEN do not trigger a GitHub Pages build.
-If you choose the docs folder on any branch as your publishing source, then later remove the /docs folder from that branch in your repository, your site won't build and you'll get a page build error message for a missing /docs folder. For more information, see Troubleshooting Jekyll build errors for GitHub Pages sites.
+  manhwas.push({
+    id: Date.now(),
+    title, cover, summary, chapters: []
+  });
 
-Your GitHub Pages site will always be deployed with a GitHub Actions workflow run, even if you've configured your GitHub Pages site to be built using a different CI tool. Most external CI workflows "deploy" to GitHub Pages by committing the build output to the gh-pages branch of the repository, and typically include a .nojekyll file. When this happens, the GitHub Actions workflow will detect the state that the branch does not need a build step, and will execute only the steps necessary to deploy the site to GitHub Pages servers.
+  save();
+  document.getElementById("title").value = "";
+  document.getElementById("cover").value = "";
+  document.getElementById("summary").value = "";
+  alert("مانهوا در این مرورگر ثبت شد.");
+  showLibrary();
+}
 
-To find potential errors with either the build or deployment, you can check the workflow run for your GitHub Pages site by reviewing your repository's workflow runs. For more information, see Viewing workflow run history. For more information about how to re-run the workflow in case of an error, see Re-running workflows and jobs.
+function addChapter() {
+  const idNumber = Number(document.getElementById("manhwaId").value);
+  const number = Number(document.getElementById("chapterNumber").value);
+  const pages = document.getElementById("pages").value
+    .split("\n").map(x => x.trim()).filter(Boolean);
 
-Publishing with a custom GitHub Actions workflow
+  const m = manhwas[idNumber - 1];
 
-To configure your site to publish with GitHub Actions:
+  if (!m) return alert("شمارهٔ مانهوا درست نیست.");
+  if (!number || number < 1) return alert("شمارهٔ چپتر را وارد کن.");
+  if (!pages.length) return alert("آدرس صفحه‌ها را وارد کن.");
+  if (pages.length > 120) return alert("حداکثر ۱۲۰ صفحه مجاز است.");
+  if (m.chapters.some(c => c.number === number))
+    return alert("این چپتر قبلاً ثبت شده است.");
 
-On GitHub, navigate to your site's repository.
+  m.chapters.push({number, pages});
+  m.chapters.sort((a,b) => a.number - b.number);
+  save();
+  alert("چپتر ثبت شد.");
+  showLibrary();
+}
 
-Under your repository name, click Settings. If you cannot see the "Settings" tab, select the  dropdown menu, then click Settings.
+function renderLibrary() {
+  const q = document.getElementById("search").value.toLowerCase();
+  const list = manhwas.filter(m => m.title.toLowerCase().includes(q));
+  document.getElementById("library").innerHTML = list.length
+    ? list.map(m => `
+      <div class="card">
+        ${m.cover ? `<img src="${safe(m.cover)}" alt="">` : "❄️"}
+        <h3>${safe(m.title)}</h3>
+        <p>${safe(m.summary || "")}</p>
+        <button onclick="openDetail(${m.id})">دیدن مانهوا</button>
+      </div>`).join("")
+    : "<p>هنوز مانهوا‌ای اضافه نشده است.</p>";
+}
 
-Screenshot of a repository header showing the tabs. The "Settings" tab is highlighted by a dark orange outline.
+function safe(s) {
+  return String(s).replace(/[&<>"']/g, c =>
+    ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
 
-In the "Code, planning, and automation" section of the sidebar, click  Pages.
+function openDetail(id) {
+  selectedId = id;
+  const m = manhwas.find(x => x.id === id);
+  if (!m) return showLibrary();
+  hideViews();
+  document.getElementById("detailView").classList.remove("hidden");
+  document.getElementById("detail").innerHTML = `
+    <h2>${safe(m.title)}</h2>
+    <p>${safe(m.summary || "")}</p>
+    <h3>چپترها</h3>
+    ${m.chapters.length ? m.chapters.map(c =>
+      `<p>چپتر ${c.number} — ${c.pages.length} صفحه
+      <button onclick="openReader(${c.number})">مطالعه آنلاین</button></p>`
+    ).join("") : "<p>هنوز چپتری ثبت نشده.</p>"}`;
+}
 
-Under "Build and deployment", under "Source", select GitHub Actions.
+function openReader(number) {
+  const m = manhwas.find(x => x.id === selectedId);
+  const c = m?.chapters.find(x => x.number === number);
+  if (!c) return;
+  hideViews();
+  document.getElementById("readerView").classList.remove("hidden");
+  document.getElementById("reader").innerHTML =
+    `<h2>${safe(m.title)} — چپتر ${c.number}</h2>` +
+    c.pages.map((p,i) =>
+      `<img class="page" loading="lazy" src="${safe(p)}" alt="صفحه ${i+1}">`
+    ).join("");
+}
 
-GitHub will suggest several workflow templates. If you already have a workflow to publish your site, you can skip this step. Otherwise, choose one of the options to create a GitHub Actions workflow. For more information about creating your custom workflow, see Creating a custom GitHub Actions workflow to publish your site.
+function backToDetail() { openDetail(selectedId); }
 
-GitHub Pages does not associate a specific workflow to the GitHub Pages settings. However, the GitHub Pages settings will link to the workflow run that most recently deployed your site.
-
-Creating a custom GitHub Actions workflow to publish your site
-
-For more information about GitHub Actions, see GitHub Actions documentation.
-
-When you configure your site to publish with GitHub Actions, GitHub will suggest workflow templates for common publishing scenarios. The general flow of a workflow is to:
-
-Trigger whenever there is a push to the default branch of the repository or whenever the workflow is run manually from the Actions tab.
-Use the actions/checkout action to check out the repository contents.
-If required by your site, build any static site files.
-Use the actions/upload-pages-artifact action to upload the static files as an artifact.
-If the workflow was triggered by a push to the default branch, use the actions/deploy-pages action to deploy the artifact. This step is skipped if the workflow was triggered by a pull request.
-The workflow templates use a deployment environment called github-pages. If your repository does not already include an environment called github-pages, the environment will be created automatically. We recommend that you add a deployment protection rule so that only the default branch can deploy to this environment. For more information, see Managing environments for deployment.
-
-Note
-
-A CNAME file in your repository file does not automatically add or remove a custom domain. Instead, you must configure the custom domain through your repository settings or through the API. For more information, see Managing a custom domain for your GitHub Pages site and REST API endpoints for GitHub Pages.
-Troubleshooting publishing with a custom GitHub Actions workflow
-
-For information about how to troubleshoot your GitHub Actions workflow, see Monitor workflows.
-
-Back to top
-Help and support
-Was this Doc helpful?
-
-Help us make GitHub Docs great!
-
-All Docs are open source. See something that's wrong or unclear? Submit a pull request.
-
-Still need help?
+showLibrary();
+</script>
+</body>
+</html>
