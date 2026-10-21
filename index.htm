@@ -18,9 +18,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>مانهوا لند | Manhwa Land</title>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <style>
 :root {
   --bg: #071321;
@@ -29,11 +27,7 @@
   --white: #f3f9ff;
   --muted: #b7c8d9;
 }
-
-* {
-  box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 body {
   margin: 0;
   background: var(--bg);
@@ -41,11 +35,7 @@ body {
   font-family: Tahoma, Arial, sans-serif;
   line-height: 1.9;
 }
-
-button, input, textarea, select {
-  font: inherit;
-}
-
+button, input, textarea, select { font: inherit; }
 button {
   cursor: pointer;
   border: 0;
@@ -56,7 +46,6 @@ button {
   color: #071321;
   font-weight: bold;
 }
-
 input, textarea, select {
   display: block;
   width: 100%;
@@ -67,23 +56,13 @@ input, textarea, select {
   background: #071827;
   color: white;
 }
-
-textarea {
-  min-height: 95px;
-}
-
+textarea { min-height: 95px; }
 header {
   text-align: center;
   padding: 24px;
   background: linear-gradient(145deg, #163653, #071321);
 }
-
-.logo {
-  font-size: 29px;
-  color: var(--blue);
-  font-weight: bold;
-}
-
+.logo { font-size: 29px; color: var(--blue); font-weight: bold; }
 nav {
   display: flex;
   justify-content: center;
@@ -91,19 +70,12 @@ nav {
   gap: 5px;
   padding: 12px;
 }
-
 nav button {
   background: #17324c;
   color: white;
   border: 1px solid #315773;
 }
-
-main {
-  max-width: 1000px;
-  margin: auto;
-  padding: 14px;
-}
-
+main { max-width: 1000px; margin: auto; padding: 14px; }
 .panel {
   background: var(--panel);
   padding: 18px;
@@ -111,54 +83,28 @@ main {
   border-radius: 18px;
   border: 1px solid #25425d;
 }
-
-h2 {
-  color: var(--blue);
-}
-
-.hidden {
-  display: none !important;
-}
-
-.muted {
-  color: var(--muted);
-  font-size: 13px;
-}
-
+h2 { color: var(--blue); }
+.hidden { display: none !important; }
+.muted { color: var(--muted); font-size: 13px; }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
   gap: 14px;
 }
-
 .card {
   background: #0a1b2c;
   border: 1px solid #29455e;
   border-radius: 14px;
   overflow: hidden;
 }
-
 .card img {
   width: 100%;
   height: 205px;
   object-fit: cover;
 }
-
-.card-content {
-  padding: 12px;
-}
-
-.reader-page {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.comment {
-  padding: 10px 0;
-  border-bottom: 1px solid #31506a;
-}
-
+.card-content { padding: 12px; }
+.reader-page { width: 100%; height: auto; display: block; }
+.comment { padding: 10px 0; border-bottom: 1px solid #31506a; }
 #intro {
   position: fixed;
   inset: 0;
@@ -171,23 +117,14 @@ h2 {
   padding: 18px;
   overflow: auto;
 }
-
-.intro-box {
-  width: min(650px, 100%);
-}
-
-.intro-title {
-  color: var(--blue);
-  font-size: clamp(27px, 6vw, 42px);
-}
-
+.intro-box { width: min(650px, 100%); }
+.intro-title { color: var(--blue); font-size: clamp(27px, 6vw, 42px); }
 .intro-image {
   width: 100%;
   max-height: 55vh;
   object-fit: contain;
   border-radius: 18px;
 }
-
 #snow {
   position: fixed;
   inset: 0;
@@ -196,20 +133,10 @@ h2 {
   pointer-events: none;
   z-index: 30;
 }
-
-#status {
-  overflow-wrap: anywhere;
-  white-space: pre-wrap;
-}
-
-footer {
-  text-align: center;
-  color: var(--muted);
-  padding: 20px;
-}
+#status { overflow-wrap: anywhere; white-space: pre-wrap; }
+footer { text-align: center; color: var(--muted); padding: 20px; }
 </style>
 </head>
-
 <body>
 
 <canvas id="snow"></canvas>
@@ -217,17 +144,10 @@ footer {
 <section id="intro">
   <div class="intro-box">
     <h1 class="intro-title">❄ MANHWA LAND ❄</h1>
-
-    <img
-      class="intro-image"
-      src="hana-intro.png"
-      alt="هانا"
-      onerror="this.style.display='none'"
-    >
-
+    <img class="intro-image" src="hana-intro.png" alt="هانا"
+         onerror="this.style.display='none'">
     <h2>به مانهوا لند خوش اومدید! 🩵</h2>
     <p>با هانا وارد دنیای داستان‌ها شو ✨</p>
-
     <button onclick="enterSite()">ورود به قصر ❄</button>
   </div>
 </section>
@@ -257,16 +177,12 @@ footer {
 
   <section id="account" class="panel hidden">
     <h2>حساب کاربری</h2>
-
     <label>نام نمایشی</label>
     <input id="displayName" maxlength="40" placeholder="مانهوا دوست">
-
     <label>ایمیل</label>
     <input id="email" type="email" autocomplete="email">
-
     <label>رمز عبور</label>
-    <input id="password" type="password" autocomplete="current-password">
-
+    <input id="password" type="password" minlength="6">
     <button onclick="accountAction('signup')">ساخت حساب</button>
     <button onclick="accountAction('login')">ورود</button>
     <button onclick="accountAction('logout')">خروج</button>
@@ -302,44 +218,467 @@ footer {
 
   <section id="admin" class="panel hidden">
     <h2>👑 پنل مدیریت</h2>
-    <p id="adminStatus" class="muted">در حال بررسی دسترسی مدیر...</p>
-
+    <p id="adminStatus" class="muted"></p>
     <div id="adminPanel" class="hidden">
       <h2>ساخت مانهوا</h2>
-
       <form id="storyForm">
         <label>نام مانهوا</label>
         <input id="storyTitle" required>
-
         <label>خلاصه</label>
         <textarea id="storySummary" required></textarea>
-
         <label>تصویر جلد</label>
         <input id="storyCover" type="file" accept="image/*" required>
-
-        <button>انتشار مانهوا</button>
+        <button type="submit">انتشار مانهوا</button>
       </form>
 
       <hr>
 
       <h2>افزودن فصل</h2>
-
       <form id="chapterForm">
         <label>مانهوا</label>
         <select id="chapterStory" required></select>
-
         <label>شماره فصل</label>
         <input id="chapterNumber" type="number" min="1" required>
-
         <label>تصاویر فصل (حداکثر ۱۸۰ تصویر)</label>
         <input id="chapterFiles" type="file" accept="image/*" multiple required>
-
-        <button>آپلود و انتشار فصل</button>
+        <button type="submit">آپلود و انتشار فصل</button>
       </form>
-
-      <button onclick="logoutAdmin()">خروج از مدیریت</button>
     </div>
   </section>
 </main>
 
 <footer>مانهوا لند 🩵</footer>
+
+<script>
+const SUPABASE_URL = 'https://hqyfzqbpodffbumsapdv.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_CwpwboZko_55AEIi6RGe3A_Zo2JWy16';
+const ADMIN_EMAIL = 'arfh07641@gmail.com';
+const BUCKET = 'manhwa-pages';
+
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let currentUser = null;
+let isAdmin = false;
+let stories = [];
+let selectedStory = null;
+
+const $ = id => document.getElementById(id);
+
+function setStatus(message) {
+  $('status').textContent = message || '';
+}
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;',
+    '"': '&quot;', "'": '&#39;'
+  })[ch]);
+}
+
+function show(id) {
+  ['home', 'account', 'library', 'details', 'reader', 'comments', 'admin']
+    .forEach(name => $(name).classList.toggle('hidden', name !== id));
+  if (id === 'library') renderLibrary();
+  if (id === 'comments') loadComments();
+  if (id === 'admin') checkAdmin();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function enterSite() {
+  $('intro').classList.add('hidden');
+}
+
+function displayName(user) {
+  return user?.user_metadata?.display_name || 'مانهوا دوست';
+}
+
+async function refreshSession() {
+  const { data, error } = await db.auth.getSession();
+  if (error) throw error;
+
+  currentUser = data.session?.user || null;
+  isAdmin = !!currentUser &&
+    currentUser.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+
+  $('userInfo').textContent = currentUser
+    ? 'سلام ' + displayName(currentUser) + ' 🩵'
+    : 'هنوز وارد حساب نشدی';
+
+  $('displayName').value = currentUser ? displayName(currentUser) : '';
+  $('adminStatus').textContent = isAdmin
+    ? 'حساب مدیر شناسایی شد.'
+    : 'برای مدیریت باید با حساب مدیر وارد شوی.';
+
+  $('adminPanel').classList.toggle('hidden', !isAdmin);
+}
+
+async function accountAction(action) {
+  const email = $('email').value.trim();
+  const password = $('password').value;
+  const name = $('displayName').value.trim() || 'مانهوا دوست';
+
+  try {
+    if (action === 'signup') {
+      if (!email || password.length < 6) {
+        throw new Error('ایمیل و رمز حداقل ۶ نویسه لازم است.');
+      }
+      const { data, error } = await db.auth.signUp({
+        email,
+        password,
+        options: { data: { display_name: name } }
+      });
+      if (error) throw error;
+      setStatus(data.session
+        ? 'حساب ساخته شد.'
+        : 'حساب ثبت شد؛ در صورت درخواست، ایمیلت را تأیید کن.');
+      await refreshSession();
+    }
+
+    if (action === 'login') {
+      const { error } = await db.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      await refreshSession();
+      setStatus('با موفقیت وارد شدی.');
+    }
+
+    if (action === 'logout') {
+      const { error } = await db.auth.signOut();
+      if (error) throw error;
+      await refreshSession();
+      setStatus('از حساب خارج شدی.');
+    }
+  } catch (error) {
+    setStatus('خطا: ' + error.message);
+  }
+}
+
+async function uploadImage(file, path) {
+  if (!file || !file.type.startsWith('image/')) {
+    throw new Error('فایل تصویری معتبر انتخاب کن.');
+  }
+
+  const { error } = await db.storage.from(BUCKET).upload(path, file, {
+    upsert: false,
+    contentType: file.type
+  });
+  if (error) throw error;
+
+  return db.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+}
+
+async function loadStories() {
+  try {
+    const { data, error } = await db.from('manwhas')
+      .select('*').order('created_at', { ascending: false });
+    if (error) throw error;
+    stories = data || [];
+    renderLibrary();
+    updateStorySelects();
+  } catch (error) {
+    $('emptyLibrary').textContent = 'خطا در کتابخانه: ' + error.message;
+  }
+}
+
+function storyTitle(story) {
+  return story.title || story.name || 'بدون عنوان';
+}
+
+function storyCover(story) {
+  return story.cover_url || story.cover || '';
+}
+
+function renderLibrary() {
+  const query = ($('search')?.value || '').trim().toLowerCase();
+  const filtered = stories.filter(story =>
+    storyTitle(story).toLowerCase().includes(query)
+  );
+
+  $('libraryGrid').innerHTML = filtered.map(story => `
+    <article class="card">
+      ${storyCover(story)
+        ? `<img src="${escapeHTML(storyCover(story))}" alt="جلد مانهوا">`
+        : ''}
+      <div class="card-content">
+        <strong>${escapeHTML(storyTitle(story))}</strong>
+        <p class="muted">${escapeHTML(story.summary || '')}</p>
+        <button onclick="openStory('${escapeHTML(story.id)}')">دیدن فصل‌ها</button>
+      </div>
+    </article>
+  `).join('');
+
+  $('emptyLibrary').classList.toggle('hidden', filtered.length > 0);
+  if (!filtered.length) {
+    $('emptyLibrary').textContent = query
+      ? 'مانهوایی پیدا نشد.'
+      : 'هنوز مانهوا‌ای منتشر نشده است.';
+  }
+}
+
+function updateStorySelects() {
+  const options = stories.map(story =>
+    `<option value="${escapeHTML(story.id)}">${escapeHTML(storyTitle(story))}</option>`
+  ).join('');
+  $('chapterStory').innerHTML = options || '<option value="">ابتدا مانهوا بساز</option>';
+  $('commentStory').innerHTML = options || '<option value="">هنوز مانهوا‌ای نیست</option>';
+}
+
+async function openStory(id) {
+  selectedStory = stories.find(story => String(story.id) === String(id));
+  if (!selectedStory) return;
+
+  $('storyDetails').innerHTML = `
+    <h2>${escapeHTML(storyTitle(selectedStory))}</h2>
+    ${storyCover(selectedStory)
+      ? `<img src="${escapeHTML(storyCover(selectedStory))}" alt="جلد"
+             style="width:min(240px,100%);border-radius:12px">`
+      : ''}
+    <p>${escapeHTML(selectedStory.summary || '')}</p>
+  `;
+
+  show('details');
+  $('chapterList').textContent = 'در حال بارگذاری فصل‌ها...';
+
+  try {
+    const { data, error } = await db.from('chapters')
+      .select('*').eq('manhwa_id', selectedStory.id)
+      .order('chapter_number', { ascending: true });
+    if (error) throw error;
+
+    $('chapterList').innerHTML = (data || []).map(chapter => `
+      <div class="comment">
+        فصل ${escapeHTML(chapter.chapter_number)}
+        <button onclick="openChapter('${escapeHTML(chapter.id)}')">مطالعه آنلاین</button>
+      </div>
+    `).join('') || '<p class="muted">هنوز فصلی منتشر نشده است.</p>';
+  } catch (error) {
+    $('chapterList').textContent = 'خطا: ' + error.message;
+  }
+}
+
+async function openChapter(id) {
+  try {
+    const { data: chapter, error: chapterError } = await db
+      .from('chapters').select('*').eq('id', id).single();
+    if (chapterError) throw chapterError;
+
+    const { data: pages, error } = await db.from('chapter_pages')
+      .select('*').eq('chapter_id', chapter.id)
+      .order('page_number', { ascending: true });
+    if (error) throw error;
+
+    $('readerTitle').textContent =
+      storyTitle(selectedStory) + ' — فصل ' + chapter.chapter_number;
+
+    $('readerPages').innerHTML = (pages || []).map(page => `
+      <img class="reader-page" src="${escapeHTML(page.image_url)}"
+           alt="صفحه ${escapeHTML(page.page_number)}" loading="lazy">
+    `).join('') || '<p>تصویری برای این فصل وجود ندارد.</p>';
+
+    show('reader');
+  } catch (error) {
+    setStatus('خطا در باز کردن فصل: ' + error.message);
+  }
+}
+
+function backToDetails() {
+  if (selectedStory) openStory(selectedStory.id);
+  else show('library');
+}
+
+async function checkAdmin() {
+  try {
+    await refreshSession();
+    if (!isAdmin) {
+      $('adminStatus').textContent =
+        'با حساب ' + ADMIN_EMAIL + ' وارد شو.';
+    }
+  } catch (error) {
+    setStatus('خطا در بررسی مدیر: ' + error.message);
+  }
+}
+
+function requireAdmin() {
+  if (!currentUser) throw new Error('ابتدا وارد حساب مدیر شو.');
+  if (!isAdmin) throw new Error('دسترسی مدیر نداری.');
+}
+
+$('storyForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  try {
+    requireAdmin();
+    const title = $('storyTitle').value.trim();
+    const summary = $('storySummary').value.trim();
+    const file = $('storyCover').files[0];
+    if (!file) throw new Error('تصویر جلد انتخاب کن.');
+
+    setStatus('در حال آپلود جلد...');
+    const coverUrl = await uploadImage(
+      file, 'covers/' + crypto.randomUUID() + '-' + file.name
+    );
+
+    const { error } = await db.from('manwhas').insert({
+      title,
+      summary,
+      cover_url: coverUrl,
+      created_by: currentUser.id
+    });
+    if (error) throw error;
+
+    $('storyForm').reset();
+    setStatus('مانهوا منتشر شد! 🩵');
+    await loadStories();
+  } catch (error) {
+    setStatus('انتشار ناموفق بود: ' + error.message);
+  }
+});
+
+$('chapterForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  try {
+    requireAdmin();
+    const storyId = $('chapterStory').value;
+    const number = Number($('chapterNumber').value);
+    const files = Array.from($('chapterFiles').files);
+
+    if (!storyId) throw new Error('مانهوا انتخاب کن.');
+    if (!Number.isInteger(number) || number < 1) throw new Error('شماره فصل معتبر نیست.');
+    if (!files.length || files.length > 180) throw new Error('تعداد تصاویر باید ۱ تا ۱۸۰ باشد.');
+    if (files.some(file => !file.type.startsWith('image/'))) {
+      throw new Error('همه فایل‌ها باید تصویر باشند.');
+    }
+
+    const { data: chapter, error: chapterError } = await db
+      .from('chapters').insert({
+        manhwa_id: storyId,
+        chapter_number: number,
+        created_by: currentUser.id
+      }).select().single();
+    if (chapterError) throw chapterError;
+
+    const rows = [];
+    for (let i = 0; i < files.length; i++) {
+      setStatus(`در حال آپلود تصویر ${i + 1} از ${files.length}...`);
+      const file = files[i];
+      const path = `chapters/${chapter.id}/${String(i + 1).padStart(3, '0')}-${crypto.randomUUID()}`;
+      const imageUrl = await uploadImage(file, path);
+      rows.push({
+        chapter_id: chapter.id,
+        page_number: i + 1,
+        image_url: imageUrl
+      });
+    }
+
+    const { error } = await db.from('chapter_pages').insert(rows);
+    if (error) throw error;
+
+    $('chapterForm').reset();
+    setStatus('فصل و تصاویرش منتشر شدند! 🩵');
+  } catch (error) {
+    setStatus('آپلود ناموفق بود: ' + error.message);
+  }
+});
+
+async function addComment() {
+  try {
+    if (!currentUser) throw new Error('برای ثبت نظر وارد حساب شو.');
+    const storyId = $('commentStory').value;
+    const content = $('commentText').value.trim();
+    if (!storyId) throw new Error('مانهوا انتخاب کن.');
+    if (!content) throw new Error('متن نظر خالی است.');
+
+    const { error } = await db.from('comments').insert({
+      manhwa_id: storyId,
+      user_id: currentUser.id,
+      display_name: displayName(currentUser),
+      content
+    });
+    if (error) throw error;
+
+    $('commentText').value = '';
+    setStatus('نظرت ثبت شد.');
+    await loadComments();
+  } catch (error) {
+    setStatus('ثبت نظر ناموفق بود: ' + error.message);
+  }
+}
+
+async function loadComments() {
+  const storyId = $('commentStory').value;
+  if (!storyId) {
+    $('commentList').innerHTML = '<p class="muted">هنوز مانهوا‌ای وجود ندارد.</p>';
+    return;
+  }
+
+  try {
+    const { data, error } = await db.from('comments')
+      .select('*').eq('manhwa_id', storyId)
+      .order('created_at', { ascending: false });
+    if (error) throw error;
+
+    $('commentList').innerHTML = (data || []).map(comment => `
+      <div class="comment">
+        <strong>${escapeHTML(comment.display_name || 'مانهوا دوست')}</strong>
+        <p>${escapeHTML(comment.content)}</p>
+      </div>
+    `).join('') || '<p class="muted">هنوز نظری ثبت نشده است.</p>';
+  } catch (error) {
+    $('commentList').textContent = 'خطا در نظرات: ' + error.message;
+  }
+}
+
+$('commentStory').addEventListener('change', loadComments);
+
+db.auth.onAuthStateChange(() => {
+  setTimeout(() => refreshSession(), 0);
+});
+
+async function init() {
+  try {
+    await refreshSession();
+    await loadStories();
+    setStatus('سایت آماده است.');
+  } catch (error) {
+    setStatus('خطای اتصال: ' + error.message);
+  }
+}
+init();
+
+/* برف متحرک */
+const canvas = $('snow');
+const ctx = canvas.getContext('2d');
+let flakes = [];
+
+function resizeSnow() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  flakes = Array.from({ length: 75 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2.5 + 0.5,
+    speed: Math.random() * 1.3 + 0.4
+  }));
+}
+
+function drawSnow() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = 'rgba(225,245,255,.8)';
+  for (const flake of flakes) {
+    ctx.beginPath();
+    ctx.arc(flake.x, flake.y, flake.r, 0, Math.PI * 2);
+    ctx.fill();
+    flake.y += flake.speed;
+    flake.x += Math.sin(flake.y / 35) * 0.35;
+    if (flake.y > canvas.height) {
+      flake.y = -5;
+      flake.x = Math.random() * canvas.width;
+    }
+  }
+  requestAnimationFrame(drawSnow);
+}
+
+window.addEventListener('resize', resizeSnow);
+resizeSnow();
+drawSnow();
+</script>
+</body>
+</html>
