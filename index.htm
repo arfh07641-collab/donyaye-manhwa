@@ -10,254 +10,164 @@
 
 
 
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>مانهوا لند</title>
-<style>
-body {
-  margin: 0;
-  background: #071525;
-  color: #effaff;
-  font-family: Tahoma, sans-serif;
-}
-header {
-  padding: 22px;
-  text-align: center;
-  background: #102943;
-  border-bottom: 1px solid #55aee0;
-}
-h1, h2 { color: #bcecff; }
-main { width: 92%; max-width: 1000px; margin: auto; }
-button, input, textarea {
-  font: inherit;
-  padding: 11px;
-  border-radius: 9px;
-}
-button {
-  background: #bcecff;
-  border: 0;
-  cursor: pointer;
-  color: #071525;
-  margin: 5px;
-}
-input, textarea {
-  width: 100%;
-  box-sizing: border-box;
-  background: #091b2d;
-  color: white;
-  border: 1px solid #37617f;
-  margin: 6px 0 12px;
-}
-.panel {
-  background: #102943;
-  border: 1px solid #37617f;
-  border-radius: 14px;
-  padding: 18px;
-  margin: 22px 0;
-}
-.library {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(145px,1fr));
-  gap: 15px;
-}
-.card {
-  background: #102943;
-  padding: 12px;
-  border-radius: 12px;
-  overflow: hidden;
-}
-.card img {
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-.page {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-.hidden { display: none; }
-</style>
-</head>
-<body>
 
-<header>
-  <h1>❄️ مانهوا لند ❄️</h1>
-  <p>دنیایی برای خواندن مانهوا</p>
-  <button onclick="showLibrary()">کتابخانه</button>
-  <button onclick="showAdmin()">پنل مدیر</button>
-</header>
+create extension if not exists pgcrypto;
 
-<main>
-  <section id="libraryView">
-    <h2>📚 کتابخانهٔ مانهواها</h2>
-    <input id="search" placeholder="جست‌وجوی مانهوا..." oninput="renderLibrary()">
-    <div id="library" class="library"></div>
-  </section>
+create table if not exists public.profiles (
+  id uuid primary key references auth.users(id) on delete cascade,
+  display_name text not null default 'مانهوا دوست',
+  role text not null default 'user'
+    check (role in ('user','admin'))
+);
 
-  <section id="adminView" class="hidden">
-    <div class="panel">
-      <h2>➕ اضافه کردن مانهوا</h2>
-      <label>نام مانهوا</label>
-      <input id="title" placeholder="نام مانهوا">
+create table if not exists public.manhwas (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  summary text not null default '',
+  cover_url text,
+  created_by uuid not null references auth.users(id),
+  created_at timestamptz default now()
+);
 
-      <label>آدرس تصویر کاور</label>
-      <input id="cover" placeholder="https://...">
+create table if not exists public.chapters (
+  id uuid primary key default gen_random_uuid(),
+  manhwa_id uuid not null references public.manhwas(id) on delete cascade,
+  chapter_number integer not null check (chapter_number > 0),
+  title text not null,
+  created_by uuid not null references auth.users(id),
+  unique (manhwa_id, chapter_number)
+);
 
-      <label>خلاصهٔ داستان</label>
-      <textarea id="summary" placeholder="خلاصهٔ داستان"></textarea>
+create table if not exists public.pages (
+  id uuid primary key default gen_random_uuid(),
+  chapter_id uuid not null references public.chapters(id) on delete cascade,
+  page_number integer not null check (page_number > 0),
+  image_url text not null,
+  unique (chapter_id, page_number)
+);
 
-      <button onclick="addManhwa()">ثبت مانهوا</button>
-    </div>
+create table if not exists public.comments (
+  id uuid primary key default gen_random_uuid(),
+  chapter_id uuid not null references public.chapters(id) on delete cascade,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  display_name text not null default 'مانهوا دوست',
+  body text not null check (char_length(body) between 1 and 2000),
+  created_at timestamptz default now()
+);
 
-    <div class="panel">
-      <h2>📖 اضافه کردن چپتر</h2>
-      <label>شمارهٔ مانهوا (از فهرست زیر)</label>
-      <input id="manhwaId" type="number" min="1" placeholder="مثلاً 1">
+create or replace function public.is_admin()
+returns boolean
+language sql stable security definer
+set search_path = ''
+as $$
+  select exists (
+    select 1 from public.profiles
+    where id = (select auth.uid()) and role = 'admin'
+  );
+$$;
 
-      <label>شمارهٔ چپتر</label>
-      <input id="chapterNumber" type="number" min="1" placeholder="مثلاً 1">
+grant execute on function public.is_admin() to anon, authenticated;
 
-      <label>آدرس عکس‌های صفحات، هر آدرس در یک خط</label>
-      <textarea id="pages" rows="6" placeholder="https://example.com/page1.jpg&#10;https://example.com/page2.jpg"></textarea>
+alter table public.profiles enable row level security;
+alter table public.manhwas enable row level security;
+alter table public.chapters enable row level security;
+alter table public.pages enable row level security;
+alter table public.comments enable row level security;
 
-      <p>حداکثر مجاز: ۱۲۰ صفحه برای هر چپتر</p>
-      <button onclick="addChapter()">ثبت چپتر</button>
-    </div>
-  </section>
+create policy "read profiles"
+on public.profiles for select using (true);
 
-  <section id="detailView" class="hidden">
-    <button onclick="showLibrary()">← برگشت به کتابخانه</button>
-    <div id="detail"></div>
-  </section>
+create policy "update own profile"
+on public.profiles for update to authenticated
+using (id = (select auth.uid()))
+with check (
+  id = (select auth.uid()) and
+  role = (select role from public.profiles
+          where id = (select auth.uid()))
+);
 
-  <section id="readerView" class="hidden">
-    <button onclick="backToDetail()">← برگشت به چپترها</button>
-    <div id="reader"></div>
-  </section>
-</main>
+create policy "read manhwas"
+on public.manhwas for select using (true);
 
-<script>
-let manhwas = JSON.parse(localStorage.getItem("manhwaDemo") || "[]");
-let selectedId = null;
+create policy "admin create manhwas"
+on public.manhwas for insert to authenticated
+with check (public.is_admin() and created_by = (select auth.uid()));
 
-function save() {
-  localStorage.setItem("manhwaDemo", JSON.stringify(manhwas));
-}
+create policy "admin update manhwas"
+on public.manhwas for update to authenticated
+using (public.is_admin()) with check (public.is_admin());
 
-function hideViews() {
-  ["libraryView","adminView","detailView","readerView"]
-    .forEach(id => document.getElementById(id).classList.add("hidden"));
-}
+create policy "admin delete manhwas"
+on public.manhwas for delete to authenticated
+using (public.is_admin());
 
-function showLibrary() {
-  hideViews();
-  document.getElementById("libraryView").classList.remove("hidden");
-  renderLibrary();
-}
+create policy "read chapters"
+on public.chapters for select using (true);
 
-function showAdmin() {
-  hideViews();
-  document.getElementById("adminView").classList.remove("hidden");
-}
+create policy "admin create chapters"
+on public.chapters for insert to authenticated
+with check (public.is_admin() and created_by = (select auth.uid()));
 
-function addManhwa() {
-  const title = document.getElementById("title").value.trim();
-  const cover = document.getElementById("cover").value.trim();
-  const summary = document.getElementById("summary").value.trim();
+create policy "admin update chapters"
+on public.chapters for update to authenticated
+using (public.is_admin()) with check (public.is_admin());
 
-  if (!title) return alert("نام مانهوا را بنویس!");
+create policy "admin delete chapters"
+on public.chapters for delete to authenticated
+using (public.is_admin());
 
-  manhwas.push({
-    id: Date.now(),
-    title, cover, summary, chapters: []
-  });
+create policy "read pages"
+on public.pages for select using (true);
 
-  save();
-  document.getElementById("title").value = "";
-  document.getElementById("cover").value = "";
-  document.getElementById("summary").value = "";
-  alert("مانهوا در این مرورگر ثبت شد.");
-  showLibrary();
-}
+create policy "admin create pages"
+on public.pages for insert to authenticated
+with check (public.is_admin());
 
-function addChapter() {
-  const idNumber = Number(document.getElementById("manhwaId").value);
-  const number = Number(document.getElementById("chapterNumber").value);
-  const pages = document.getElementById("pages").value
-    .split("\n").map(x => x.trim()).filter(Boolean);
+create policy "admin update pages"
+on public.pages for update to authenticated
+using (public.is_admin()) with check (public.is_admin());
 
-  const m = manhwas[idNumber - 1];
+create policy "admin delete pages"
+on public.pages for delete to authenticated
+using (public.is_admin());
 
-  if (!m) return alert("شمارهٔ مانهوا درست نیست.");
-  if (!number || number < 1) return alert("شمارهٔ چپتر را وارد کن.");
-  if (!pages.length) return alert("آدرس صفحه‌ها را وارد کن.");
-  if (pages.length > 120) return alert("حداکثر ۱۲۰ صفحه مجاز است.");
-  if (m.chapters.some(c => c.number === number))
-    return alert("این چپتر قبلاً ثبت شده است.");
+create policy "read comments"
+on public.comments for select using (true);
 
-  m.chapters.push({number, pages});
-  m.chapters.sort((a,b) => a.number - b.number);
-  save();
-  alert("چپتر ثبت شد.");
-  showLibrary();
-}
+create policy "signed in comment"
+on public.comments for insert to authenticated
+with check (user_id = (select auth.uid()));
 
-function renderLibrary() {
-  const q = document.getElementById("search").value.toLowerCase();
-  const list = manhwas.filter(m => m.title.toLowerCase().includes(q));
-  document.getElementById("library").innerHTML = list.length
-    ? list.map(m => `
-      <div class="card">
-        ${m.cover ? `<img src="${safe(m.cover)}" alt="">` : "❄️"}
-        <h3>${safe(m.title)}</h3>
-        <p>${safe(m.summary || "")}</p>
-        <button onclick="openDetail(${m.id})">دیدن مانهوا</button>
-      </div>`).join("")
-    : "<p>هنوز مانهوا‌ای اضافه نشده است.</p>";
-}
+create policy "delete own comment or admin"
+on public.comments for delete to authenticated
+using (user_id = (select auth.uid()) or public.is_admin());
 
-function safe(s) {
-  return String(s).replace(/[&<>"']/g, c =>
-    ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
+-- ساخت باکت تصاویر
+insert into storage.buckets (id, name, public)
+values ('MANHWA-PAGES', 'MANHWA-PAGES', true)
+on conflict (id) do update set public = true;
 
-function openDetail(id) {
-  selectedId = id;
-  const m = manhwas.find(x => x.id === id);
-  if (!m) return showLibrary();
-  hideViews();
-  document.getElementById("detailView").classList.remove("hidden");
-  document.getElementById("detail").innerHTML = `
-    <h2>${safe(m.title)}</h2>
-    <p>${safe(m.summary || "")}</p>
-    <h3>چپترها</h3>
-    ${m.chapters.length ? m.chapters.map(c =>
-      `<p>چپتر ${c.number} — ${c.pages.length} صفحه
-      <button onclick="openReader(${c.number})">مطالعه آنلاین</button></p>`
-    ).join("") : "<p>هنوز چپتری ثبت نشده.</p>"}`;
-}
+create policy "read manhwa images"
+on storage.objects for select
+using (bucket_id = 'MANHWA-PAGES');
 
-function openReader(number) {
-  const m = manhwas.find(x => x.id === selectedId);
-  const c = m?.chapters.find(x => x.number === number);
-  if (!c) return;
-  hideViews();
-  document.getElementById("readerView").classList.remove("hidden");
-  document.getElementById("reader").innerHTML =
-    `<h2>${safe(m.title)} — چپتر ${c.number}</h2>` +
-    c.pages.map((p,i) =>
-      `<img class="page" loading="lazy" src="${safe(p)}" alt="صفحه ${i+1}">`
-    ).join("");
-}
+create policy "admin upload images"
+on storage.objects for insert to authenticated
+with check (
+  bucket_id = 'MANHWA-PAGES' and public.is_admin()
+);
 
-function backToDetail() { openDetail(selectedId); }
+create policy "admin update images"
+on storage.objects for update to authenticated
+using (
+  bucket_id = 'MANHWA-PAGES' and public.is_admin()
+)
+with check (
+  bucket_id = 'MANHWA-PAGES' and public.is_admin()
+);
 
-showLibrary();
-</script>
-</body>
-</html>
+create policy "admin delete images"
+on storage.objects for delete to authenticated
+using (
+  bucket_id = 'MANHWA-PAGES' and public.is_admin()
+);
