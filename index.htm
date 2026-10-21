@@ -13,352 +13,240 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>مانهوا لند | Manhwa Land</title>
-
 <style>
-:root {
-  --bg: #071321;
-  --panel: #10243a;
-  --blue: #9de4ff;
-  --white: #f3f9ff;
-  --muted: #b7c8d9;
-  --border: #29465e;
+:root{
+  --bg:#071321;
+  --panel:#10243a;
+  --blue:#9de4ff;
+  --white:#f3f9ff;
+  --muted:#b7c8d9;
 }
-
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: Tahoma, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--white);
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--white);
+  font-family:Tahoma,Arial,sans-serif;
+  min-height:100vh;
 }
-
-header {
-  background: #0b1b2d;
-  padding: 16px;
-  border-bottom: 1px solid var(--border);
+button,input,textarea{font:inherit}
+button{
+  border:1px solid #9de4ff66;
+  background:#173650;
+  color:white;
+  border-radius:12px;
+  padding:12px 18px;
+  cursor:pointer;
 }
-
-.nav {
-  max-width: 1100px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+button:hover{background:#245578}
+header{
+  padding:18px;
+  text-align:center;
+  background:#0b1b2d;
+  border-bottom:1px solid #9de4ff33;
 }
-
-.logo {
-  color: var(--blue);
-  font-size: 23px;
-  font-weight: bold;
+header h1{color:var(--blue);margin:5px}
+nav{
+  display:flex;justify-content:center;
+  gap:8px;flex-wrap:wrap;padding:14px;
 }
-
-nav, .actions {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+main{max-width:950px;margin:auto;padding:18px}
+.panel{
+  background:var(--panel);
+  border:1px solid #9de4ff30;
+  border-radius:20px;
+  padding:22px;margin:16px 0;
 }
-
-button {
-  cursor: pointer;
-  background: #162f49;
-  color: white;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 11px 14px;
-  font: inherit;
+.hero{
+  min-height:350px;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;
+  background:radial-gradient(ellipse at top,#214b70,#071321 75%);
+  overflow:hidden;position:relative;
 }
-
-.primary {
-  background: var(--blue);
-  color: #071321;
-  font-weight: bold;
+.hero h2{font-size:clamp(25px,6vw,42px);color:var(--blue)}
+.hero p{line-height:2}
+input,textarea{
+  display:block;width:100%;margin:10px 0;
+  padding:12px;border-radius:10px;
+  border:1px solid #6a9ab7;background:#091827;
+  color:white;
 }
-
-main {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px 14px 50px;
+textarea{min-height:100px}
+.hidden{display:none!important}
+.muted{color:var(--muted);line-height:1.9}
+.card{
+  background:#0a1b2c;border-radius:14px;
+  padding:15px;margin:12px 0;
+  border:1px solid #9de4ff22;
 }
-
-.hero {
-  text-align: center;
-  padding: 55px 16px;
-  border: 1px solid var(--border);
-  border-radius: 22px;
-  background: radial-gradient(ellipse at top, #1c4261, #071321 75%);
-  position: relative;
-  overflow: hidden;
+.snow{
+  position:fixed;top:-20px;z-index:10;
+  color:white;pointer-events:none;
+  animation:fall linear forwards;
+  text-shadow:0 0 8px #c8efff;
 }
-
-.hero h1 {
-  color: var(--blue);
-  font-size: clamp(28px, 6vw, 45px);
+@keyframes fall{
+  to{transform:translate3d(var(--drift),110vh,0) rotate(360deg)}
 }
-
-.hero p, .muted {
-  color: var(--muted);
-  line-height: 2;
-}
-
-.section { margin-top: 32px; }
-
-h2 { color: var(--blue); }
-
-.panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 18px;
-  margin: 14px 0;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-  gap: 14px;
-}
-
-.card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-}
-
-.card img {
-  display: block;
-  width: 100%;
-  height: 210px;
-  object-fit: cover;
-  background: #162f49;
-}
-
-.card-content { padding: 12px; }
-
-input, textarea, select {
-  display: block;
-  width: 100%;
-  margin: 8px 0 14px;
-  padding: 12px;
-  border-radius: 9px;
-  border: 1px solid var(--border);
-  background: #071321;
-  color: white;
-  font: inherit;
-}
-
-textarea { min-height: 100px; }
-
-label {
-  display: block;
-  color: var(--muted);
-}
-
-.hidden { display: none !important; }
-
-.notice {
-  color: var(--blue);
-  line-height: 1.8;
-  white-space: pre-wrap;
-}
-
-.snow {
-  position: absolute;
-  top: -20px;
-  color: white;
-  pointer-events: none;
-  animation: fall linear infinite;
-}
-
-@keyframes fall {
-  to { transform: translateY(600px); }
-}
-
-.page-image {
-  display: block;
-  width: 100%;
-  margin: 12px auto;
-}
-
-.comment {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-footer {
-  text-align: center;
-  padding: 25px;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-}
-
-@media(max-width:500px) {
-  header { padding: 10px 7px; }
-  nav button { padding: 8px; font-size: 12px; }
-  .hero { padding: 35px 12px; }
-}
+footer{text-align:center;padding:25px;color:var(--muted)}
 </style>
 </head>
-
 <body>
+
 <header>
-  <div class="nav">
-    <div class="logo">❄️ مانهوا لند</div>
-    <nav>
-      <button onclick="showSection('home')">خانه</button>
-      <button onclick="showSection('library')">کتابخانه</button>
-      <button onclick="showSection('profile')">پروفایل</button>
-      <button id="adminNav" class="hidden"
-        onclick="showSection('admin')">مدیریت</button>
-      <button id="loginNav" class="primary"
-        onclick="showSection('auth')">ورود / ثبت‌نام</button>
-      <button id="logoutBtn" class="hidden"
-        onclick="logout()">خروج</button>
-    </nav>
-  </div>
+  <h1>❄ مانهوا لند ❄</h1>
+  <p class="muted">دنیایی میان برف، قصر و داستان‌ها</p>
 </header>
 
+<nav>
+  <button onclick="showPage('home')">خانه</button>
+  <button onclick="showPage('library')">کتابخانه</button>
+  <button onclick="showPage('login')">ورود / ثبت‌نام</button>
+  <button onclick="showPage('profile')">پروفایل</button>
+  <button onclick="showPage('admin')">مدیریت</button>
+</nav>
+
 <main>
-<section id="home">
-  <div class="hero" id="hero">
-    <div id="snow"></div>
-    <h1>به مانهوا لند خوش اومدید!</h1>
-    <p>
-      دنیایی از داستان‌ها، عشق، جادو و ماجراجویی
-      <br>
-      داستان موردعلاقه‌ات رو پیدا کن.
-    </p>
-    <button class="primary"
-      onclick="showSection('library')">
-      ورود به کتابخانه
-    </button>
-  </div>
-
-  <div class="section">
-    <h2>✨ تازه‌های مانهوا</h2>
-    <div id="latest" class="grid"></div>
-  </div>
-</section>
-
-<section id="library" class="hidden">
-  <h2>📚 کتابخانه مانهوا</h2>
-  <p class="muted">مانهواهای منتشرشده اینجا نمایش داده می‌شوند.</p>
-  <input id="searchBox"
-    placeholder="جست‌وجوی مانهوا..."
-    oninput="renderLibrary()">
-  <div id="libraryGrid" class="grid"></div>
-</section>
-
-<section id="profile" class="hidden">
-  <h2>👤 پروفایل من</h2>
-  <div class="panel">
-    <p id="profileStatus">برای مشاهده پروفایل وارد حساب شو.</p>
-    <div id="profileInfo" class="hidden">
-      <label>نام نمایشی</label>
-      <input id="displayName" placeholder="مانهوا دوست">
-      <button class="primary" onclick="saveProfile()">
-        ذخیره نام
-      </button>
-      <p id="profileEmail" class="muted"></p>
+  <section id="home" class="page">
+    <div class="panel hero">
+      <div style="font-size:65px">❄️ 🏰 ❄️</div>
+      <h2>به مانهوا لند خوش اومدید!</h2>
+      <p>جایی برای ورود به دنیای داستان‌های خیال‌انگیز</p>
+      <button onclick="showPage('library')">ورود به قصر ✨</button>
     </div>
-  </div>
-</section>
-
-<section id="auth" class="hidden">
-  <h2>🔐 ورود و ثبت‌نام</h2>
-  <div class="panel">
-    <label>ایمیل</label>
-    <input id="authEmail" type="email"
-      placeholder="example@email.com">
-    <label>رمز عبور</label>
-    <input id="authPassword" type="password"
-      placeholder="حداقل ۸ نویسه">
-    <div class="actions">
-      <button class="primary" onclick="signIn()">ورود</button>
-      <button onclick="signUp()">ثبت‌نام</button>
+    <div class="panel">
+      <h2>به دنیای ما خوش اومدی!</h2>
+      <p class="muted">مانهوای مورد علاقه‌ات رو پیدا کن و وارد ماجراجویی شو.</p>
     </div>
-    <p id="authMessage" class="notice"></p>
-  </div>
-</section>
+  </section>
 
-<section id="admin" class="hidden">
-  <h2>👑 پنل مدیریت</h2>
-  <div class="panel">
-    <h3>انتشار مانهوا</h3>
-    <label>نام مانهوا</label>
-    <input id="newTitle" placeholder="نام مانهوا">
-    <label>خلاصه داستان</label>
-    <textarea id="newSummary"></textarea>
-    <label>آدرس اینترنتی کاور</label>
-    <input id="newCover" type="url"
-      placeholder="https://example.com/cover.jpg">
-    <button class="primary" onclick="createManhwa()">
-      انتشار مانهوا
-    </button>
-    <p id="adminMessage" class="notice"></p>
-  </div>
+  <section id="library" class="page hidden">
+    <div class="panel">
+      <h2>📚 کتابخانه‌ی مانهواها</h2>
+      <p class="muted">هنوز مانهوا‌ای منتشر نشده است. به‌زودی داستان‌های جدید اضافه می‌شوند!</p>
+      <div id="libraryList"></div>
+    </div>
+  </section>
 
-  <div class="panel">
-    <h3>ساخت فصل</h3>
-    <label>مانهوا</label>
-    <select id="chapterManhwa"></select>
-    <label>عنوان فصل</label>
-    <input id="chapterTitle" placeholder="فصل اول">
-    <label>شماره فصل</label>
-    <input id="chapterNumber" type="number" min="1" value="1">
-    <button class="primary" onclick="createChapter()">
-      ساخت فصل
-    </button>
-    <p id="chapterMessage" class="notice"></p>
-  </div>
+  <section id="login" class="page hidden">
+    <div class="panel">
+      <h2>ورود یا ثبت‌نام</h2>
+      <p class="muted">برای حساب واقعی، باید احراز هویت Supabase متصل شود.</p>
+      <input id="email" type="email" placeholder="ایمیل">
+      <input id="password" type="password" placeholder="رمز عبور">
+      <input id="displayName" placeholder="نام نمایشی">
+      <button onclick="demoLogin()">ورود نمایشی</button>
+      <p id="loginMessage" class="muted"></p>
+    </div>
+  </section>
 
-  <div class="panel">
-    <h3>افزودن صفحات فصل</h3>
-    <label>انتخاب فصل</label>
-    <select id="pageChapter"></select>
-    <label>آدرس هر تصویر در یک خط</label>
-    <textarea id="pageUrls"
-      placeholder="https://example.com/page1.jpg"></textarea>
-    <button class="primary" onclick="addPages()">
-      افزودن صفحات
-    </button>
-    <p id="pageMessage" class="notice"></p>
-  </div>
+  <section id="profile" class="page hidden">
+    <div class="panel">
+      <h2>👤 پروفایل من</h2>
+      <p id="profileName">مانهوا دوست</p>
+      <p class="muted">نسخه‌ی نمایشی پروفایل</p>
+      <button onclick="logout()">خروج</button>
+    </div>
+  </section>
 
-  <div class="panel">
-    <h3>مدیریت مانهواها</h3>
-    <div id="adminList"></div>
-  </div>
-</section>
+  <section id="admin" class="page hidden">
+    <div class="panel">
+      <h2>🔐 پنل مدیریت</h2>
+      <p class="muted">این فرم به‌تنهایی امنیت مدیریتی ندارد. قبل از انتشار عمومی، ورود مدیر و مجوزهای دیتابیس باید در سرور تنظیم شوند.</p>
+      <input id="adminEmail" type="email" placeholder="ایمیل مدیر">
+      <input id="adminPassword" type="password" placeholder="رمز مدیر">
+      <button onclick="adminLogin()">ورود مدیر</button>
+      <p id="adminMessage" class="muted"></p>
+    </div>
 
-<section id="reader" class="hidden">
-  <button onclick="showSection('library')">بازگشت</button>
-  <h2 id="readerTitle"></h2>
-  <p id="readerSummary" class="muted"></p>
-  <div class="panel">
-    <h3>فصل‌ها</h3>
-    <div id="chapterList"></div>
-  </div>
-  <div id="pages"></div>
-  <div class="panel">
-    <h3>💬 نظرات</h3>
-    <div id="comments"></div>
-    <textarea id="commentText" placeholder="نظر تو..."></textarea>
-    <button class="primary" onclick="addComment()">ارسال نظر</button>
-    <p id="commentMessage" class="notice"></p>
-  </div>
-</section>
+    <div id="publishForm" class="panel hidden">
+      <h2>انتشار مانهوا</h2>
+      <input id="title" placeholder="نام مانهوا">
+      <textarea id="summary" placeholder="خلاصه‌ی داستان"></textarea>
+      <input id="cover" type="file" accept="image/*">
+      <button onclick="publishManhwa()">ثبت مانهوا</button>
+      <p class="muted">این نسخه فقط اطلاعات را در همین مرورگر نگه می‌دارد.</p>
+      <div id="adminList"></div>
+    </div>
+  </section>
 </main>
 
-<footer>❄️ Manhwa Land | دنیای داستان‌های تو</footer>
+<footer>Manhwa Land ❄ دنیای داستان‌های تو</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
+  $(id).classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function demoLogin(){
+  const email=$('email').value.trim();
+  if(!email){
+    $('loginMessage').textContent='لطفاً ایمیل را وارد کن.';
+    return;
+  }
+  const name=$('displayName').value.trim()||'مانهوا دوست';
+  $('profileName').textContent=name;
+  $('loginMessage').textContent=
+    'ورود نمایشی انجام شد؛ حساب واقعی هنوز متصل نیست.';
+  showPage('profile');
+}
+
+function logout(){
+  $('profileName').textContent='مانهوا دوست';
+  showPage('home');
+}
+
+function adminLogin(){
+  $('adminMessage').textContent=
+    'ورود مدیر واقعی هنوز تنظیم نشده است. برای امنیت، رمز را داخل فایل عمومی قرار نده.';
+}
+
+function publishManhwa(){
+  const title=$('title').value.trim();
+  const summary=$('summary').value.trim();
+  if(!title){
+    alert('نام مانهوا را وارد کن.');
+    return;
+  }
+  const item=document.createElement('article');
+  item.className='card';
+  const heading=document.createElement('h3');
+  heading.textContent=title;
+  const description=document.createElement('p');
+  description.textContent=summary;
+  item.append(heading,description);
+  $('adminList').append(item);
+  $('libraryList').append(item.cloneNode(true));
+  $('title').value='';
+  $('summary').value='';
+}
+
+function makeSnow(){
+  const flake=document.createElement('span');
+  flake.className='snow';
+  flake.textContent=Math.random()>.5?'❄':'✧';
+  flake.style.left=Math.random()*100+'vw';
+  flake.style.fontSize=(10+Math.random()*15)+'px';
+  flake.style.opacity=.4+Math.random()*.6;
+  flake.style.setProperty('--drift',(Math.random()*140-70)+'px');
+  flake.style.animationDuration=(5+Math.random()*8)+'s';
+  document.body.appendChild(flake);
+  setTimeout(()=>flake.remove(),14000);
+}
+setInterval(makeSnow,180);
+</script>
 </body>
 </html>
