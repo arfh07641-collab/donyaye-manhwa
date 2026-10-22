@@ -16,6 +16,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -23,576 +24,360 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>مانهوا لند | Manhwa Land</title>
 <style>
-:root{
-  --bg:#071321;--panel:#10243a;--blue:#9de4ff;
-  --white:#f3f9ff;--muted:#b7c8d9;--line:#29445e;
-}
+:root{--bg:#061321;--panel:#10243a;--blue:#8fe3ff;--text:#f2f8ff;--muted:#b6cadd;--line:#244761}
 *{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--white);
-  font-family:Tahoma,Arial,sans-serif;min-height:100vh;
-}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
 button,input,textarea,select{font:inherit}
-button{
-  cursor:pointer;border:0;border-radius:12px;padding:12px 17px;
-  background:var(--blue);color:#071321;font-weight:bold;
-}
-button:hover{filter:brightness(1.08)}
-button:disabled{opacity:.5;cursor:not-allowed}
-.secondary{background:#203b55;color:var(--white);border:1px solid var(--line)}
-input,textarea,select{
-  width:100%;padding:12px;margin:7px 0 14px;
-  border:1px solid var(--line);border-radius:10px;
-  background:#081a2b;color:var(--white);
-}
-textarea{min-height:100px;resize:vertical}
-label{display:block;color:var(--muted);font-size:14px}
-header{
-  position:sticky;top:0;z-index:5;background:#071321ed;
-  border-bottom:1px solid var(--line);padding:14px 5%;
-  display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
-}
-.logo{font-size:22px;font-weight:bold;color:var(--blue)}
-nav{display:flex;gap:8px;flex-wrap:wrap}
-nav button{padding:9px 12px}
-main{width:min(1100px,92%);margin:25px auto 60px}
+button{border:0;border-radius:10px;padding:11px 15px;background:var(--blue);color:#061321;font-weight:bold;cursor:pointer}
+button.secondary{background:#1b3852;color:white;border:1px solid var(--line)}
+input,textarea,select{width:100%;padding:12px;margin:7px 0 14px;border-radius:9px;border:1px solid var(--line);background:#081a2c;color:white}
+textarea{min-height:100px}
+header{position:sticky;top:0;z-index:5;background:#061321ed;border-bottom:1px solid var(--line);padding:15px 4%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:23px;font-weight:bold;color:var(--blue)}
+nav{display:flex;gap:7px;flex-wrap:wrap}
+nav button{font-size:13px;padding:9px}
+main{width:min(1100px,94%);margin:24px auto}
 section{display:none}
 section.active{display:block}
-.panel{
-  background:var(--panel);border:1px solid var(--line);
-  padding:22px;border-radius:18px;margin-bottom:18px;
-}
-.hero{
-  min-height:320px;display:flex;align-items:center;justify-content:space-between;
-  gap:20px;flex-wrap:wrap;
-  background:linear-gradient(120deg,#10243a,#173c59);
-  border:1px solid var(--line);border-radius:22px;padding:28px;
-}
-.hero h1{font-size:clamp(28px,5vw,48px);margin:0 0 14px}
-.hero p{color:var(--muted);line-height:2}
-.hero img{width:min(270px,100%);height:260px;object-fit:cover;border-radius:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
-.book{background:var(--panel);border:1px solid var(--line);border-radius:15px;overflow:hidden}
-.book img{width:100%;height:230px;object-fit:cover;background:#19334b}
-.book-info{padding:13px}
-.book-info p{color:var(--muted);font-size:13px;line-height:1.8}
-.muted{color:var(--muted);line-height:1.9}
-.notice{padding:12px;border-radius:10px;background:#102c42;margin:12px 0;line-height:1.8}
+.panel{background:var(--panel);padding:20px;border:1px solid var(--line);border-radius:16px;margin-bottom:18px}
+.hero{display:flex;align-items:center;gap:25px;flex-wrap:wrap;background:linear-gradient(120deg,#102a44,#16476a);padding:22px;border-radius:18px;border:1px solid var(--line)}
+.hero .words{flex:1;min-width:230px}
+.hero h1{font-size:clamp(27px,5vw,44px);color:var(--blue)}
+.hero p,.muted{color:var(--muted);line-height:2}
+.hero img{width:min(420px,100%);height:260px;object-fit:cover;border-radius:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.book{background:#081a2c;border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.book img{width:100%;height:225px;object-fit:cover;background:#18334b}
+.book-info{padding:12px}
+.book-info p{font-size:13px;line-height:1.8;color:var(--muted)}
+.notice{background:#0a3048;padding:12px;border-radius:10px;line-height:1.8;margin:12px 0}
 .hidden{display:none!important}
-footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid var(--line)}
 #snow{position:fixed;inset:0;pointer-events:none;z-index:20}
-#welcome{
-  position:fixed;inset:0;z-index:30;display:flex;align-items:center;
-  justify-content:center;text-align:center;padding:20px;
-  background:radial-gradient(ellipse at center,#173b58,#071321 75%);
-}
-.welcome-card{max-width:550px}
-.welcome-card img{width:160px;height:160px;object-fit:cover;border-radius:50%;border:3px solid var(--blue)}
-.welcome-card h1{color:var(--blue);font-size:35px}
-.welcome-card p{line-height:2}
-.status{font-size:13px;color:var(--muted)}
-hr{border:0;border-top:1px solid var(--line);margin:20px 0}
-@media(max-width:600px){
- header{padding:12px 4%}nav button{font-size:12px;padding:8px}
- .hero{padding:20px}.hero img{height:200px}
-}
+#welcome{position:fixed;inset:0;z-index:30;background:radial-gradient(ellipse,#143d5d,#061321 75%);display:flex;align-items:center;justify-content:center;text-align:center;padding:20px}
+.welcome-card{max-width:620px}
+.welcome-card img{width:180px;height:180px;border-radius:50%;object-fit:cover;border:3px solid var(--blue)}
+.welcome-card h1{color:var(--blue);font-size:clamp(27px,5vw,42px)}
+.welcome-card p{line-height:2;color:var(--muted)}
+#readerPages img{display:block;width:100%;max-width:850px;height:auto;margin:15px auto;border-radius:8px}
+.comment{padding:12px 0;border-bottom:1px solid var(--line);line-height:1.8}
+footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid var(--line)}
+@media(max-width:600px){.hero img{height:200px}header{justify-content:center}nav{justify-content:center}}
 </style>
 </head>
 <body>
 <canvas id="snow"></canvas>
 
 <div id="welcome">
-  <div class="welcome-card">
-    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80" alt="منظره برفی">
-    <h1>به مانهوا لند خوش اومدید</h1>
-    <p>جایی برای ورود به دنیای داستان‌ها، قصرهای جادویی و ماجراجویی‌های تازه.</p>
-    <button onclick="enterSite()">❄ ورود به قصر ❄</button>
-  </div>
+ <div class="welcome-card">
+  <img src="hana.jpg" alt="هانا" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80'">
+  <h1>به مانهوا لند خوش اومدی! ❄</h1>
+  <p>وارد دنیای داستان‌ها، قصرهای جادویی و ماجراجویی‌های تازه شو.</p>
+  <button onclick="enterSite()">❄ ورود به قصر ❄</button>
+ </div>
 </div>
 
 <header>
-  <div class="logo">❄ مانهوا لند</div>
-  <nav>
-    <button class="secondary" onclick="showPage('home')">خانه</button>
-    <button class="secondary" onclick="showPage('library')">کتابخانه</button>
-    <button class="secondary" onclick="showPage('profile')">پروفایل</button>
-    <button class="secondary" onclick="showPage('login')">ورود / ثبت‌نام</button>
-    <button class="secondary" onclick="showPage('admin')">مدیریت</button>
-  </nav>
+ <div class="logo">❄ مانهوا لند</div>
+ <nav>
+  <button class="secondary" onclick="showPage('home')">خانه</button>
+  <button class="secondary" onclick="showPage('library')">کتابخانه</button>
+  <button class="secondary" onclick="showPage('profile')">پروفایل</button>
+  <button class="secondary" onclick="showPage('login')">ورود / ثبت‌نام</button>
+  <button class="secondary" onclick="showPage('admin')">مدیریت</button>
+ </nav>
 </header>
 
 <main>
-  <section id="home" class="active">
-    <div class="hero">
-      <div>
-        <h1>دنیای مانهوا منتظر توست</h1>
-        <p>داستان مورد علاقه‌ات را پیدا کن و وارد دنیایی تازه شو.</p>
-        <button onclick="showPage('library')">دیدن کتابخانه</button>
-      </div>
-      <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" alt="دنیای برفی">
-    </div>
-    <div class="panel" style="margin-top:20px">
-      <h2>✨ تازه‌های مانهوا</h2>
-      <div id="homeBooks" class="grid"></div>
-    </div>
-  </section>
+<section id="home" class="active">
+ <div class="hero">
+  <div class="words">
+   <h1>دنیای مانهوا منتظر توست</h1>
+   <p>مانهواهای مورد علاقه‌ات را پیدا کن و آنلاین بخوان.</p>
+   <button onclick="showPage('library')">رفتن به کتابخانه</button>
+  </div>
+  <img src="hana.jpg" alt="هانا" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80'">
+ </div>
+ <div class="panel" style="margin-top:20px">
+  <h2>✨ مانهواهای منتشرشده</h2>
+  <div id="homeBooks" class="grid"></div>
+ </div>
+</section>
 
-  <section id="library">
-    <div class="panel">
-      <h1>📚 کتابخانه مانهوا</h1>
-      <p class="muted">مانهواهای منتشرشده اینجا نمایش داده می‌شوند.</p>
-      <input id="searchBook" placeholder="جست‌وجوی نام مانهوا..." oninput="filterBooks()">
-      <div id="libraryBooks" class="grid"></div>
-      <p id="libraryMessage" class="muted"></p>
-    </div>
-  </section>
+<section id="library">
+ <div class="panel">
+  <h1>📚 کتابخانه مانهوا</h1>
+  <input id="search" placeholder="جست‌وجوی مانهوا..." oninput="renderBooks()">
+  <div id="libraryBooks" class="grid"></div>
+  <p id="libraryMsg" class="muted"></p>
+ </div>
+</section>
 
-  <section id="profile">
-    <div class="panel">
-      <h1>👤 پروفایل من</h1>
-      <p id="profileStatus" class="muted">برای مشاهده پروفایل وارد حساب خودت شو.</p>
-      <label>نام نمایشی</label>
-      <input id="displayName" placeholder="مانهوا دوست">
-      <button onclick="saveProfile()">ذخیره نام</button>
-      <button class="secondary" onclick="logout()">خروج از حساب</button>
-      <div id="profileMessage" class="notice hidden"></div>
-    </div>
-  </section>
+<section id="login">
+ <div class="panel">
+  <h1>ورود / ثبت‌نام</h1>
+  <label>ایمیل</label><input id="email" type="email" autocomplete="email">
+  <label>رمز عبور</label><input id="password" type="password" autocomplete="current-password">
+  <button onclick="login()">ورود</button>
+  <button class="secondary" onclick="register()">ثبت‌نام</button>
+  <div id="authMsg" class="notice hidden"></div>
+ </div>
+</section>
 
-  <section id="login">
-    <div class="panel">
-      <h1>🔐 ورود به حساب</h1>
-      <p class="muted">با ایمیل و رمز عبور وارد شو یا حساب تازه بساز.</p>
-      <label>ایمیل</label>
-      <input id="email" type="email" autocomplete="email" placeholder="name@example.com">
-      <label>رمز عبور</label>
-      <input id="password" type="password" autocomplete="current-password" placeholder="حداقل ۶ نویسه">
-      <button onclick="login()">ورود</button>
-      <button class="secondary" onclick="register()">ثبت‌نام</button>
-      <div id="authMessage" class="notice hidden"></div>
-    </div>
-  </section>
+<section id="profile">
+ <div class="panel">
+  <h1>👤 پروفایل من</h1>
+  <p id="profileStatus" class="muted">وارد حساب خودت شو.</p>
+  <label>نام نمایشی</label><input id="displayName" placeholder="مانهوا دوست">
+  <button onclick="saveProfile()">ذخیره نام</button>
+  <button class="secondary" onclick="logout()">خروج از حساب</button>
+  <div id="profileMsg" class="notice hidden"></div>
+ </div>
+</section>
 
-  <section id="admin">
-    <div class="panel">
-      <h1>👑 مدیریت مانهوا</h1>
-      <p id="adminStatus" class="muted">برای مدیریت باید با حساب مدیر وارد شوی.</p>
-      <div id="adminForm" class="hidden">
-        <h2>افزودن مانهوا</h2>
-        <label>نام مانهوا</label>
-        <input id="bookTitle" placeholder="نام مانهوا">
-        <label>خلاصه داستان</label>
-        <textarea id="bookSummary" placeholder="خلاصه داستان..."></textarea>
-        <label>ژانر</label>
-        <input id="bookGenre" placeholder="فانتزی، عاشقانه، درام...">
-        <label>تصویر جلد</label>
-        <input id="bookCover" type="file" accept="image/*">
-        <label><input id="bookPublished" type="checkbox" style="width:auto;margin-left:8px"> انتشار در کتابخانه</label>
-        <button onclick="addBook()">ذخیره مانهوا</button>
-        <div id="adminMessage" class="notice hidden"></div>
-        <hr>
-        <h2>مانهواهای ثبت‌شده</h2>
-        <div id="adminBooks" class="grid"></div>
-      </div>
-    </div>
-  </section>
+<section id="admin">
+ <div class="panel">
+  <h1>👑 مدیریت مانهوا لند</h1>
+  <p id="adminStatus" class="muted">برای مدیریت با حساب مدیر وارد شو.</p>
+  <div id="adminForm" class="hidden">
+   <h2>افزودن مانهوا</h2>
+   <label>عنوان</label><input id="bookTitle">
+   <label>خلاصه داستان</label><textarea id="bookSummary"></textarea>
+   <label>ژانر</label><input id="bookGenre" placeholder="فانتزی، عاشقانه...">
+   <label>تصویر جلد</label><input id="bookCover" type="file" accept="image/*">
+   <label><input id="published" type="checkbox" checked style="width:auto"> انتشار برای کاربران</label>
+   <button onclick="addBook()">ذخیره مانهوا</button>
+   <div id="adminMsg" class="notice hidden"></div>
+   <hr>
+   <h2>مدیریت مانهواها</h2>
+   <div id="adminBooks" class="grid"></div>
+  </div>
+ </div>
+</section>
 
-  <section id="reader">
-    <div class="panel">
-      <button class="secondary" onclick="showPage('library')">← برگشت به کتابخانه</button>
-      <h1 id="readerTitle">عنوان مانهوا</h1>
-      <p id="readerSummary" class="muted"></p>
-      <p class="notice">بخش خواندن فصل‌ها بعد از اتصال جدول‌های فصل و صفحه فعال می‌شود.</p>
-    </div>
-  </section>
+<section id="reader">
+ <div class="panel">
+  <button class="secondary" onclick="showPage('library')">← بازگشت</button>
+  <h1 id="readerTitle"></h1>
+  <p id="readerSummary" class="muted"></p>
+  <label>انتخاب فصل</label><select id="chapterSelect" onchange="loadChapter(this.value)"></select>
+  <div id="readerPages"></div>
+  <hr>
+  <h2>💬 نظرات این فصل</h2>
+  <div id="comments"></div>
+  <div id="commentForm" class="hidden">
+   <textarea id="commentText" placeholder="نظرت را بنویس..."></textarea>
+   <button onclick="sendComment()">ثبت نظر</button>
+  </div>
+  <p id="commentMsg" class="muted"></p>
+ </div>
+</section>
 </main>
-
 <footer>© 2026 مانهوا لند | Manhwa Land</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL = "https://hqyfzqbpodffbumsapdv.supabase.co";
-const SUPABASE_KEY = "sb_publishable_CwpwboZko_55AEIi6RGe3A_Zo2JWy16";
-const STORAGE_BUCKET = "MANHWA-PAGES";
+const SUPABASE_URL="https://hqyfzqbpodffbumsapdv.supabase.co";
+const SUPABASE_KEY="sb_publishable_CwpwboZko_55AEIi6RGe3A_Zo2JWy16";
+const BUCKET="MANHWA-PAGES";
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let user=null,profile=null,books=[],activeBook=null,activeChapter=null;
 
-let db = null;
-let currentUser = null;
-let currentProfile = null;
-let books = [];
-
-if (window.supabase && SUPABASE_URL && SUPABASE_KEY) {
-  db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-}
-
-function enterSite(){
-  document.getElementById("welcome").classList.add("hidden");
-  showPage("home");
-}
-
+function enterSite(){document.getElementById("welcome").classList.add("hidden");showPage("home")}
 function showPage(id){
-  document.querySelectorAll("main section").forEach(s=>s.classList.remove("active"));
-  const page = document.getElementById(id);
-  if(page) page.classList.add("active");
-  if(id==="library") renderBooks();
-  if(id==="profile") updateProfileView();
-  if(id==="admin") updateAdminView();
-  window.scrollTo({top:0,behavior:"smooth"});
+ document.querySelectorAll("main section").forEach(x=>x.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ if(id==="admin")updateAdmin();
+ if(id==="profile")updateProfile();
+ if(id==="library")renderBooks();
+ window.scrollTo({top:0,behavior:"smooth"});
 }
-
-function message(id,text){
-  const el=document.getElementById(id);
-  if(!el)return;
-  el.textContent=text;
-  el.classList.remove("hidden");
+function msg(id,text){const e=document.getElementById(id);e.textContent=text;e.classList.remove("hidden")}
+function clearMsg(id){const e=document.getElementById(id);e.textContent="";e.classList.add("hidden")}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function cover(b){
+ if(b.cover_url)return b.cover_url;
+ if(b.cover_path)return db.storage.from(BUCKET).getPublicUrl(b.cover_path).data.publicUrl;
+ return "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80";
 }
-
-function clearMessage(id){
-  const el=document.getElementById(id);
-  if(el){el.textContent="";el.classList.add("hidden");}
-}
-
-function escapeHTML(value){
-  return String(value??"").replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[c]));
-}
-
 async function register(){
-  clearMessage("authMessage");
-  if(!db){message("authMessage","اتصال Supabase برقرار نیست.");return;}
-  const email=document.getElementById("email").value.trim();
-  const password=document.getElementById("password").value;
-  if(!email||password.length<6){
-    message("authMessage","ایمیل را وارد کن و رمز عبور باید حداقل ۶ نویسه باشد.");return;
-  }
-  const {data,error}=await db.auth.signUp({email,password});
-  if(error){message("authMessage","خطا در ثبت‌نام: "+error.message);return;}
-  if(data.user && data.session){
-    currentUser=data.user;
-    await ensureProfile();
-    await loadProfile();
-    message("authMessage","ثبت‌نام انجام شد.");
-  }else{
-    message("authMessage","ثبت‌نام انجام شد. اگر تأیید ایمیل فعال است، ایمیلت را بررسی کن و بعد وارد شو.");
-  }
+ clearMsg("authMsg");
+ const email=document.getElementById("email").value.trim(),password=document.getElementById("password").value;
+ if(!email||password.length<6)return msg("authMsg","ایمیل را وارد کن؛ رمز باید حداقل ۶ نویسه باشد.");
+ const {data,error}=await db.auth.signUp({email,password});
+ if(error)return msg("authMsg",error.message);
+ if(data.session){user=data.user;await ensureProfile();await refresh();}
+ msg("authMsg","ثبت‌نام انجام شد. اگر تأیید ایمیل فعال است، ایمیلت را تأیید کن و سپس وارد شو.");
 }
-
 async function login(){
-  clearMessage("authMessage");
-  if(!db){message("authMessage","اتصال Supabase برقرار نیست.");return;}
-  const email=document.getElementById("email").value.trim();
-  const password=document.getElementById("password").value;
-  if(!email||!password){message("authMessage","ایمیل و رمز عبور را وارد کن.");return;}
-  const {data,error}=await db.auth.signInWithPassword({email,password});
-  if(error){message("authMessage","ورود ناموفق بود: "+error.message);return;}
-  currentUser=data.user;
-  await ensureProfile();
-  await loadProfile();
-  message("authMessage","با موفقیت وارد شدی.");
-  updateAdminView();
-  updateProfileView();
+ clearMsg("authMsg");
+ const email=document.getElementById("email").value.trim(),password=document.getElementById("password").value;
+ const {data,error}=await db.auth.signInWithPassword({email,password});
+ if(error)return msg("authMsg","ورود ناموفق: "+error.message);
+ user=data.user;await ensureProfile();await refresh();
+ msg("authMsg","ورود موفق بود.");
+ if(email.toLowerCase()==="arfh07641@gmail.com")showPage("admin");
 }
-
-async function logout(){
-  if(db) await db.auth.signOut();
-  currentUser=null;
-  currentProfile=null;
-  updateProfileView();
-  updateAdminView();
-  alert("از حساب خارج شدی.");
-}
-
+async function logout(){await db.auth.signOut();user=null;profile=null;await refresh();showPage("home")}
 async function ensureProfile(){
-  if(!db||!currentUser)return;
-  const {data}=await db.from("profiles").select("*").eq("id",currentUser.id).maybeSingle();
-  if(data){currentProfile=data;return;}
-  const {data:created,error}=await db.from("profiles").insert({
-    id:currentUser.id,
-    display_name:"مانهوا دوست",
-    role:"user"
-  }).select().maybeSingle();
-  if(!error)currentProfile=created;
+ if(!user)return;
+ const {data}=await db.from("profiles").select("*").eq("id",user.id).maybeSingle();
+ if(data){profile=data;return}
+ const {data:created,error}=await db.from("profiles").insert({id:user.id,display_name:"مانهوا دوست",role:"user"}).select().maybeSingle();
+ if(!error)profile=created;
 }
-
 async function loadProfile(){
-  if(!db||!currentUser)return;
-  const {data,error}=await db.from("profiles").select("*").eq("id",currentUser.id).maybeSingle();
-  if(!error&&data)currentProfile=data;
+ if(!user)return;
+ const {data}=await db.from("profiles").select("*").eq("id",user.id).maybeSingle();
+ if(data)profile=data;
 }
-
-function updateProfileView(){
-  const status=document.getElementById("profileStatus");
-  const nameInput=document.getElementById("displayName");
-  if(currentUser){
-    status.textContent="وارد شده‌ای: "+currentUser.email;
-    nameInput.value=currentProfile?.display_name||"مانهوا دوست";
-  }else{
-    status.textContent="برای مشاهده پروفایل وارد حساب خودت شو.";
-    nameInput.value="";
-  }
-}
-
-async function saveProfile(){
-  clearMessage("profileMessage");
-  if(!db||!currentUser){message("profileMessage","اول وارد حساب خودت شو.");return;}
-  const name=document.getElementById("displayName").value.trim()||"مانهوا دوست";
-  const {error}=await db.from("profiles").upsert({
-    id:currentUser.id,display_name:name,
-    role:currentProfile?.role||"user"
-  });
-  if(error){message("profileMessage","ذخیره نشد: "+error.message);return;}
-  await loadProfile();
-  message("profileMessage","نام پروفایل ذخیره شد.");
-}
-
 async function isAdmin(){
-  if(!db||!currentUser)return false;
-  await loadProfile();
-  return currentProfile?.role==="admin";
+ if(!user)return false;
+ await loadProfile();
+ return profile?.role==="admin";
 }
-
-async function updateAdminView(){
-  const status=document.getElementById("adminStatus");
-  const form=document.getElementById("adminForm");
-  if(!currentUser){
-    status.textContent="برای مدیریت ابتدا با حساب مدیر وارد شو.";
-    form.classList.add("hidden");
-    return;
-  }
-  const admin=await isAdmin();
-  if(!admin){
-    status.textContent="این حساب دسترسی مدیر ندارد.";
-    form.classList.add("hidden");
-    return;
-  }
-  status.textContent="وارد بخش مدیریت شده‌ای.";
-  form.classList.remove("hidden");
-  renderAdminBooks();
+function updateProfile(){
+ document.getElementById("profileStatus").textContent=user?"وارد شده‌ای: "+user.email:"برای مشاهده پروفایل وارد شو.";
+ document.getElementById("displayName").value=profile?.display_name||"";
 }
-
+async function saveProfile(){
+ if(!user)return msg("profileMsg","اول وارد حساب شو.");
+ const name=document.getElementById("displayName").value.trim()||"مانهوا دوست";
+ const {error}=await db.from("profiles").upsert({id:user.id,display_name:name});
+ if(error)return msg("profileMsg",error.message);
+ await loadProfile();msg("profileMsg","نام ذخیره شد.");updateProfile();
+}
+async function updateAdmin(){
+ const allowed=await isAdmin();
+ document.getElementById("adminStatus").textContent=allowed?"به مدیریت خوش آمدی.":"این حساب دسترسی مدیر ندارد.";
+ document.getElementById("adminForm").classList.toggle("hidden",!allowed);
+ if(allowed)loadAdminBooks();
+}
 async function addBook(){
-  clearMessage("adminMessage");
-  if(!db||!currentUser||!(await isAdmin())){
-    message("adminMessage","فقط حساب مدیر اجازه انتشار دارد.");return;
-  }
-  const title=document.getElementById("bookTitle").value.trim();
-  const summary=document.getElementById("bookSummary").value.trim();
-  const genre=document.getElementById("bookGenre").value.trim();
-  const file=document.getElementById("bookCover").files[0];
-  const published=document.getElementById("bookPublished").checked;
-  if(!title){message("adminMessage","نام مانهوا را وارد کن.");return;}
-
-  let coverPath=null;
-  let coverUrl=null;
-
-  if(file){
-    const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
-    coverPath=currentUser.id+"/"+Date.now()+"_"+safeName;
-    const {error:uploadError}=await db.storage.from(STORAGE_BUCKET)
-      .upload(coverPath,file,{upsert:false,contentType:file.type});
-    if(uploadError){
-      message("adminMessage","آپلود جلد ناموفق بود: "+uploadError.message+
-      " — مجوز آپلود Storage و نام bucket را بررسی کن.");
-      return;
-    }
-    const {data:urlData}=db.storage.from(STORAGE_BUCKET).getPublicUrl(coverPath);
-    coverUrl=urlData?.publicUrl||null;
-  }
-
-  const {error}=await db.from("manhwas").insert({
-    title,summary,genre,
-    cover_path:coverPath,
-    cover_url:coverUrl,
-    published,
-    created_by:currentUser.id
-  });
-  if(error){
-    message("adminMessage","ذخیره مانهوا ناموفق بود: "+error.message);
-    return;
-  }
-  document.getElementById("bookTitle").value="";
-  document.getElementById("bookSummary").value="";
-  document.getElementById("bookGenre").value="";
-  document.getElementById("bookCover").value="";
-  document.getElementById("bookPublished").checked=false;
-  message("adminMessage","مانهوا ذخیره شد.");
-  await loadBooks();
-  renderBooks();
-  renderAdminBooks();
+ clearMsg("adminMsg");
+ if(!(await isAdmin()))return msg("adminMsg","دسترسی مدیر تأیید نشد.");
+ const title=document.getElementById("bookTitle").value.trim();
+ if(!title)return msg("adminMsg","عنوان مانهوا را وارد کن.");
+ const file=document.getElementById("bookCover").files[0];
+ let path=null,url=null;
+ if(file){
+  path=user.id+"/"+Date.now()+"_"+file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+  const {error}=await db.storage.from(BUCKET).upload(path,file,{contentType:file.type});
+  if(error)return msg("adminMsg","خطای آپلود جلد: "+error.message);
+  url=db.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+ }
+ const {error}=await db.from("manhwas").insert({
+  title,summary:document.getElementById("bookSummary").value.trim(),
+  genre:document.getElementById("bookGenre").value.trim(),
+  cover_path:path,cover_url:url,published:document.getElementById("published").checked,
+  created_by:user.id
+ });
+ if(error)return msg("adminMsg","خطای ذخیره: "+error.message);
+ ["bookTitle","bookSummary","bookGenre","bookCover"].forEach(id=>document.getElementById(id).value="");
+ msg("adminMsg","مانهوا ذخیره شد.");
+ await loadBooks();renderBooks();loadAdminBooks();
 }
-
 async function loadBooks(){
-  if(!db){books=[];return;}
-  const {data,error}=await db.from("manhwas")
-    .select("id,title,summary,genre,cover_path,cover_url,published,created_at")
-    .eq("published",true).order("created_at",{ascending:false});
-  if(error){
-    console.error("Load books error:",error.message);
-    return;
-  }
-  books=data||[];
+ const {data,error}=await db.from("manhwas").select("*").eq("published",true).order("created_at",{ascending:false});
+ if(!error)books=data||[];
 }
-
-function coverFor(book){
-  if(book.cover_url)return book.cover_url;
-  if(book.cover_path&&db){
-    return db.storage.from(STORAGE_BUCKET).getPublicUrl(book.cover_path).data.publicUrl;
-  }
-  return "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80";
-}
-
-function bookCard(book){
-  return `<article class="book">
-    <img src="${escapeHTML(coverFor(book))}" alt="${escapeHTML(book.title)}" loading="lazy">
-    <div class="book-info">
-      <strong>${escapeHTML(book.title)}</strong>
-      <p>${escapeHTML(book.genre||"بدون ژانر")}</p>
-      <p>${escapeHTML((book.summary||"خلاصه‌ای ثبت نشده است.").slice(0,130))}</p>
-      <button onclick="openBook('${String(book.id).replace(/'/g,"")}')">مشاهده</button>
-    </div>
-  </article>`;
-}
-
+function card(b){return `<article class="book"><img src="${esc(cover(b))}" alt="${esc(b.title)}"><div class="book-info"><b>${esc(b.title)}</b><p>${esc(b.genre||"بدون ژانر")}</p><p>${esc((b.summary||"").slice(0,110))}</p><button onclick="openBook('${esc(b.id)}')">خواندن آنلاین</button></div></article>`}
 function renderBooks(){
-  const library=document.getElementById("libraryBooks");
-  const home=document.getElementById("homeBooks");
-  if(!books.length){
-    library.innerHTML="";
-    home.innerHTML="";
-    document.getElementById("libraryMessage").textContent=
-      "هنوز مانهوا منتشر نشده است.";
-    return;
-  }
-  document.getElementById("libraryMessage").textContent="";
-  library.innerHTML=books.map(bookCard).join("");
-  home.innerHTML=books.slice(0,4).map(bookCard).join("");
-  filterBooks();
+ const q=(document.getElementById("search").value||"").toLowerCase();
+ const list=books.filter(b=>(b.title||"").toLowerCase().includes(q));
+ document.getElementById("libraryBooks").innerHTML=list.map(card).join("");
+ document.getElementById("homeBooks").innerHTML=books.slice(0,4).map(card).join("");
+ document.getElementById("libraryMsg").textContent=list.length?"":"هنوز مانهوا منتشر نشده است.";
 }
-
-function filterBooks(){
-  const query=(document.getElementById("searchBook").value||"").trim().toLowerCase();
-  const filtered=books.filter(b=>
-    (b.title||"").toLowerCase().includes(query)||
-    (b.genre||"").toLowerCase().includes(query)
-  );
-  document.getElementById("libraryBooks").innerHTML=filtered.map(bookCard).join("");
-  document.getElementById("libraryMessage").textContent=
-    filtered.length?"":"نتیجه‌ای پیدا نشد.";
+async function loadAdminBooks(){
+ const area=document.getElementById("adminBooks");
+ const {data,error}=await db.from("manhwas").select("*").order("created_at",{ascending:false});
+ if(error){area.textContent=error.message;return}
+ area.innerHTML=(data||[]).map(b=>`<article class="book"><img src="${esc(cover(b))}" alt=""><div class="book-info"><b>${esc(b.title)}</b><p>${b.published?"منتشرشده":"پیش‌نویس"}</p><button class="secondary" onclick="publishBook('${esc(b.id)}',${!b.published})">${b.published?"لغو انتشار":"انتشار"}</button><button onclick="deleteBook('${esc(b.id)}')">حذف</button></div></article>`).join("");
 }
-
-function openBook(id){
-  const book=books.find(b=>String(b.id)===String(id));
-  if(!book)return;
-  document.getElementById("readerTitle").textContent=book.title;
-  document.getElementById("readerSummary").textContent=book.summary||"";
-  showPage("reader");
+async function publishBook(id,published){
+ if(!(await isAdmin()))return;
+ const {error}=await db.from("manhwas").update({published}).eq("id",id);
+ if(error)return alert(error.message);
+ await loadBooks();renderBooks();loadAdminBooks();
 }
-
-async function renderAdminBooks(){
-  const area=document.getElementById("adminBooks");
-  if(!db||!currentUser||!(await isAdmin())){area.innerHTML="";return;}
-  const {data,error}=await db.from("manhwas")
-    .select("id,title,summary,genre,cover_path,cover_url,published,created_at")
-    .order("created_at",{ascending:false});
-  if(error){
-    area.innerHTML="<p class='muted'>خطا در دریافت فهرست: "+
-      escapeHTML(error.message)+"</p>";
-    return;
-  }
-  area.innerHTML=(data||[]).map(b=>`
-    <article class="book">
-      <img src="${escapeHTML(coverFor(b))}" alt="${escapeHTML(b.title)}">
-      <div class="book-info">
-        <strong>${escapeHTML(b.title)}</strong>
-        <p>${b.published?"منتشرشده":"پیش‌نویس"}</p>
-        <button class="secondary" onclick="togglePublish('${String(b.id)}',${!b.published})">
-          ${b.published?"برداشتن از انتشار":"انتشار"}
-        </button>
-        <button onclick="deleteBook('${String(b.id)}','${String(b.cover_path||"").replace(/'/g,"")}')">حذف</button>
-      </div>
-    </article>`).join("");
+async function deleteBook(id){
+ if(!(await isAdmin())||!confirm("این مانهوا حذف شود؟"))return;
+ const {error}=await db.from("manhwas").delete().eq("id",id);
+ if(error)return alert(error.message);
+ await loadBooks();renderBooks();loadAdminBooks();
 }
-
-async function togglePublish(id,published){
-  if(!db||!(await isAdmin()))return;
-  const {error}=await db.from("manhwas").update({published}).eq("id",id);
-  if(error){alert("خطا: "+error.message);return;}
-  await loadBooks();
-  renderBooks();
-  renderAdminBooks();
+async function openBook(id){
+ activeBook=books.find(b=>String(b.id)===String(id));
+ if(!activeBook)return;
+ document.getElementById("readerTitle").textContent=activeBook.title;
+ document.getElementById("readerSummary").textContent=activeBook.summary||"";
+ document.getElementById("readerPages").innerHTML="";
+ document.getElementById("chapterSelect").innerHTML="";
+ document.getElementById("comments").innerHTML="";
+ document.getElementById("commentForm").classList.add("hidden");
+ showPage("reader");await loadChapters();
 }
-
-async function deleteBook(id,coverPath){
-  if(!db||!(await isAdmin()))return;
-  if(!confirm("از حذف این مانهوا مطمئنی؟"))return;
-  const {error}=await db.from("manhwas").delete().eq("id",id);
-  if(error){alert("حذف ناموفق بود: "+error.message);return;}
-  if(coverPath){
-    await db.storage.from(STORAGE_BUCKET).remove([coverPath]);
-  }
-  await loadBooks();
-  renderBooks();
-  renderAdminBooks();
+async function loadChapters(){
+ const sel=document.getElementById("chapterSelect");
+ const {data,error}=await db.from("chapters").select("*").eq("manhwa_id",activeBook.id).eq("published",true).order("chapter_number");
+ if(error){document.getElementById("readerPages").textContent="فصل‌ها هنوز متصل نشده‌اند یا مجوز جدول chapters تنظیم نیست.";return}
+ sel.innerHTML=(data||[]).map(c=>`<option value="${esc(c.id)}">${esc(c.title||("فصل "+c.chapter_number))}</option>`).join("");
+ if(data?.length)await loadChapter(data[0].id);
+ else document.getElementById("readerPages").textContent="هنوز فصلی منتشر نشده است.";
 }
-
-async function startApp(){
-  if(!db){
-    document.getElementById("libraryMessage").textContent="کتابخانه به Supabase وصل نیست.";
-    return;
-  }
-  const {data}=await db.auth.getSession();
-  currentUser=data.session?.user||null;
-  if(currentUser){
-    await ensureProfile();
-    await loadProfile();
-  }
-  await loadBooks();
-  renderBooks();
-  updateProfileView();
-  updateAdminView();
-  db.auth.onAuthStateChange((_event,session)=>{
-    currentUser=session?.user||null;
-    setTimeout(async()=>{
-      if(currentUser){await ensureProfile();await loadProfile();}
-      else currentProfile=null;
-      await loadBooks();
-      renderBooks();
-      updateProfileView();
-      updateAdminView();
-    },0);
-  });
+async function loadChapter(id){
+ activeChapter=id;
+ const area=document.getElementById("readerPages");
+ const {data,error}=await db.from("chapter_pages").select("*").eq("chapter_id",id).order("page_number");
+ if(error){area.textContent="صفحه‌های این فصل هنوز متصل نشده‌اند.";return}
+ area.innerHTML=(data||[]).map(p=>`<img src="${esc(p.image_url||db.storage.from(BUCKET).getPublicUrl(p.image_path).data.publicUrl)}" alt="صفحه ${p.page_number}" loading="lazy">`).join("");
+ await loadComments();
+ document.getElementById("commentForm").classList.toggle("hidden",!user);
+ document.getElementById("commentMsg").textContent=user?"":"برای ثبت نظر ابتدا وارد حساب شو.";
 }
+async function loadComments(){
+ const area=document.getElementById("comments");
+ const {data,error}=await db.from("comments").select("id,body,created_at,user_id").eq("chapter_id",activeChapter).order("created_at");
+ if(error){area.textContent="نظرات هنوز متصل نشده‌اند یا مجوز جدول comments تنظیم نیست.";return}
+ area.innerHTML=(data||[]).map(c=>`<div class="comment">${esc(c.body)}</div>`).join("")||"هنوز نظری ثبت نشده است.";
+}
+async function sendComment(){
+ if(!user)return msg("commentMsg","ابتدا وارد حساب شو.");
+ const body=document.getElementById("commentText").value.trim();
+ if(!body)return msg("commentMsg","متن نظر را بنویس.");
+ const {error}=await db.from("comments").insert({chapter_id:activeChapter,user_id:user.id,body});
+ if(error)return msg("commentMsg","ثبت نظر ناموفق بود: "+error.message);
+ document.getElementById("commentText").value="";
+ document.getElementById("commentMsg").textContent="نظر ثبت شد.";
+ await loadComments();
+}
+async function refresh(){
+ if(user){await ensureProfile();await loadProfile()}
+ await loadBooks();renderBooks();updateProfile();updateAdmin();
+}
+db.auth.getSession().then(async({data})=>{
+ user=data.session?.user||null;
+ await refresh();
+});
+db.auth.onAuthStateChange((_event,session)=>{
+ setTimeout(async()=>{user=session?.user||null;await refresh()},0);
+});
 
 /* برف متحرک */
-(function(){
-  const canvas=document.getElementById("snow");
-  const ctx=canvas.getContext("2d");
-  let w=0,h=0,flakes=[];
-  function resize(){
-    w=canvas.width=window.innerWidth;
-    h=canvas.height=window.innerHeight;
-    flakes=Array.from({length:Math.min(100,Math.floor(w/9))},()=>({
-      x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+0.5,
-      speed:Math.random()*1.2+0.3,drift:Math.random()*0.6-0.3
-    }));
-  }
-  function draw(){
-    ctx.clearRect(0,0,w,h);
-    ctx.fillStyle="rgba(220,245,255,.8)";
-    for(const f of flakes){
-      ctx.beginPath();ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fill();
-      f.y+=f.speed;f.x+=f.drift;
-      if(f.y>h){f.y=-5;f.x=Math.random()*w;}
-      if(f.x>w)f.x=0;
-      if(f.x<0)f.x=w;
-    }
-    requestAnimationFrame(draw);
-  }
-  window.addEventListener("resize",resize);
-  resize();draw();
+(()=>{
+ const canvas=document.getElementById("snow"),ctx=canvas.getContext("2d");
+ let w,h,flakes=[];
+ function resize(){
+  w=canvas.width=innerWidth;h=canvas.height=innerHeight;
+  flakes=Array.from({length:90},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+0.5,s:Math.random()+0.4}));
+ }
+ function draw(){
+  ctx.clearRect(0,0,w,h);ctx.fillStyle="rgba(220,245,255,.75)";
+  flakes.forEach(f=>{ctx.beginPath();ctx.arc(f.x,f.y,f.r,0,7);ctx.fill();f.y+=f.s;if(f.y>h){f.y=-5;f.x=Math.random()*w}});
+  requestAnimationFrame(draw);
+ }
+ addEventListener("resize",resize);resize();draw();
 })();
-
-startApp();
 </script>
 </body>
 </html>
