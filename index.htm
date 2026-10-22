@@ -18,921 +18,464 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#071321">
 <title>مانهوا لند | Manhwa Land</title>
 <style>
 :root{
-  --bg:#06111f;
-  --surface:#0b1c2e;
-  --panel:#10263c;
-  --panel2:#142f49;
-  --blue:#8fe4ff;
-  --blue2:#39bde9;
-  --text:#f3f9ff;
-  --muted:#b2c7d9;
-  --line:#244660;
-  --danger:#ff929f;
-  --success:#9ef0c0;
+  --bg:#071321;--panel:#10243a;--blue:#9de4ff;
+  --white:#f3f9ff;--muted:#b7c8d9;--border:#25445f;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
 body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Tahoma,Arial,sans-serif;min-height:100vh
+  margin:0;background:var(--bg);color:var(--white);
+  font-family:Tahoma,Arial,sans-serif;line-height:1.9;
 }
-button,input,textarea,select{font:inherit}
-button{
-  border:0;border-radius:11px;padding:12px 16px;
-  background:var(--blue);color:#061321;font-weight:bold;
-  cursor:pointer;transition:.2s
-}
-button:hover{filter:brightness(1.1);transform:translateY(-1px)}
-button:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.btn-secondary{background:#1b3852;color:var(--text);border:1px solid var(--line)}
-.btn-danger{background:#572638;color:#fff}
-.btn-small{padding:8px 11px;font-size:12px}
-input,textarea,select{
-  width:100%;background:#071727;color:var(--text);
-  border:1px solid var(--line);border-radius:10px;
-  padding:12px;margin:7px 0 15px;outline:none
-}
-input:focus,textarea:focus,select:focus{border-color:var(--blue)}
-input[type="checkbox"]{width:auto;margin:0 0 0 8px}
-input[type="file"]{font-size:13px}
-textarea{min-height:100px;resize:vertical;line-height:1.8}
-label{display:block;color:var(--muted);font-size:14px;margin-top:8px}
-a{color:var(--blue)}
 header{
-  position:sticky;top:0;z-index:10;background:#061321f5;
-  border-bottom:1px solid var(--line);padding:13px 4%;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:15px;flex-wrap:wrap;backdrop-filter:blur(12px)
+  position:sticky;top:0;z-index:5;background:#081827f5;
+  border-bottom:1px solid var(--border);padding:12px;
 }
-.brand{display:flex;align-items:center;gap:10px}
-.brand-icon{font-size:34px;color:var(--blue)}
-.brand-name{font-weight:bold;font-size:22px;color:var(--blue)}
-.brand-sub{font-size:11px;color:var(--muted);margin-top:4px}
-nav{display:flex;gap:7px;flex-wrap:wrap}
-nav button{padding:9px 12px;font-size:13px}
-main{width:min(1160px,94%);margin:24px auto 55px;min-height:55vh}
-section.page{display:none}
-section.page.active{display:block}
+.brand{text-align:center;color:var(--blue);font-size:25px;font-weight:bold}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+button,.button{
+  background:var(--blue);color:#071321;border:0;border-radius:12px;
+  padding:10px 15px;font-weight:bold;cursor:pointer;font-size:14px;
+}
+button.secondary{background:#19344d;color:var(--white);border:1px solid var(--border)}
+main{max-width:1000px;margin:auto;padding:18px}
+section{display:none}
+section.active{display:block}
 .panel{
-  background:linear-gradient(145deg,var(--panel),#0a1a2b);
-  border:1px solid var(--line);border-radius:17px;
-  padding:20px;margin-bottom:18px;min-width:0
+  background:var(--panel);border:1px solid var(--border);
+  padding:18px;border-radius:18px;margin:15px 0;
 }
-.hero{
-  min-height:340px;display:flex;align-items:center;justify-content:space-between;
-  gap:24px;flex-wrap:wrap;padding:27px;
-  border:1px solid #285779;border-radius:22px;
-  background:radial-gradient(ellipse at 15% 20%,#245577,#0b1b2e 70%)
+h1,h2,h3{color:var(--blue)}
+input,textarea,select{
+  width:100%;padding:12px;margin:6px 0 14px;
+  border-radius:10px;border:1px solid var(--border);
+  background:#081827;color:var(--white);font:inherit;
 }
-.hero-copy{flex:1;min-width:230px}
-.hero h1{font-size:clamp(29px,5vw,48px);line-height:1.5;color:var(--blue);margin:0 0 12px}
-.hero p{line-height:2.1;color:var(--muted)}
-.hero-image{width:min(420px,100%);height:270px;object-fit:cover;border-radius:16px;border:1px solid #45708f}
-h1,h2,h3{line-height:1.6}
-h2{font-size:22px}
-.muted{color:var(--muted);line-height:1.9}
-.small{font-size:12px}
-.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.row>*{max-width:100%}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:15px}
-.book-card{
-  overflow:hidden;background:#071727;border:1px solid var(--line);
-  border-radius:14px;min-width:0
+textarea{min-height:90px}
+label{display:block;color:var(--muted)}
+.hero{text-align:center;padding:20px 0}
+.hero img{
+  width:min(100%,380px);height:320px;object-fit:cover;
+  border-radius:20px;border:1px solid var(--border);
+  background:#10243a;
 }
-.book-card img{width:100%;height:235px;object-fit:cover;display:block;background:#18334a}
-.book-info{padding:13px}
-.book-info strong{display:block;line-height:1.8}
-.book-info p{font-size:12px;line-height:1.9;color:var(--muted)}
-.book-info button{width:100%;margin-top:5px}
-.empty{
-  border:1px dashed #365b75;border-radius:13px;
-  padding:20px;text-align:center;color:var(--muted);line-height:2
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:14px}
+.book{
+  background:#0a1b2c;border:1px solid var(--border);
+  border-radius:14px;padding:10px;overflow:hidden;
 }
-.notice{background:#0c3048;border:1px solid #214c68;padding:12px;border-radius:11px;line-height:1.9;margin:12px 0}
-.notice.error{border-color:#81404c;color:#ffd3d8;background:#351a27}
-.notice.success{border-color:#2b6b55;color:var(--success)}
-.hidden{display:none!important}
-.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.divider{border:0;border-top:1px solid var(--line);margin:22px 0}
-.admin-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
-.stat{background:#071727;border:1px solid var(--line);padding:14px;border-radius:12px}
-.stat strong{font-size:22px;color:var(--blue);display:block;margin-top:8px}
-.chapter-row{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  flex-wrap:wrap;padding:12px;border:1px solid var(--line);
-  border-radius:11px;margin:8px 0;background:#071727
-}
-.reader-page{display:block;width:100%;height:auto;max-width:950px;margin:14px auto;border-radius:8px}
-.comment{padding:13px 0;border-bottom:1px solid var(--line);line-height:1.9;overflow-wrap:anywhere}
-.comment-meta{font-size:12px;color:var(--muted);margin-bottom:6px}
-#snow{position:fixed;inset:0;z-index:20;pointer-events:none}
-#welcome{
-  position:fixed;inset:0;z-index:30;display:flex;align-items:center;
-  justify-content:center;text-align:center;padding:20px;
-  background:radial-gradient(ellipse at 50% 30%,#173f60,#061321 75%);
-}
-.welcome-card{width:min(580px,100%)}
-.welcome-card img{
-  width:175px;height:175px;border-radius:50%;object-fit:cover;
-  border:3px solid var(--blue);box-shadow:0 0 35px #39bde955
-}
-.welcome-card h1{color:var(--blue);font-size:clamp(28px,6vw,43px)}
-.welcome-card p{line-height:2.2;color:var(--muted)}
-footer{
-  text-align:center;padding:30px 15px;color:var(--muted);
-  border-top:1px solid var(--line);
-  background:linear-gradient(#061321,#0b2034)
-}
-footer strong{color:var(--blue)}
-@media(min-width:850px){
-  .admin-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-}
-@media(max-width:650px){
-  header{justify-content:center}
-  nav{justify-content:center}
-  nav button{font-size:12px;padding:9px}
-  .hero{padding:19px}
-  .hero-image{height:210px}
-  .panel{padding:15px}
-  .book-card img{height:210px}
-}
+.book img{width:100%;height:190px;object-fit:cover;border-radius:10px}
+.book h3{font-size:16px;margin:5px 0}
+.muted{color:var(--muted);font-size:13px}
+.status{white-space:pre-wrap;color:var(--blue)}
+.page-image{width:100%;display:block;margin:12px auto;border-radius:8px}
+footer{text-align:center;color:var(--muted);padding:25px}
+hr{border:0;border-top:1px solid var(--border);margin:20px 0}
 </style>
 </head>
 <body>
-<canvas id="snow"></canvas>
-
-<!-- صفحه شروع -->
-<div id="welcome">
-  <div class="welcome-card">
-    <img src="hana.jpg" alt="هانا"
-      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80'">
-    <h1>به مانهوا لند خوش اومدی!</h1>
-    <p>دروازهٔ دنیای مانهوا، قصرهای یخی و داستان‌های جادویی منتظر توست.</p>
-    <button onclick="enterSite()">❄ ورود به قصر ❄</button>
-  </div>
-</div>
 
 <header>
-  <div class="brand">
-    <span class="brand-icon">❄</span>
-    <div>
-      <div class="brand-name">مانهوا لند</div>
-      <div class="brand-sub">MANHWA LAND</div>
-    </div>
-  </div>
+  <div class="brand">❄ مانهوا لند ❄</div>
   <nav>
-    <button class="btn-secondary" onclick="showPage('home')">خانه</button>
-    <button class="btn-secondary" onclick="showPage('library')">کتابخانه</button>
-    <button class="btn-secondary" onclick="showPage('profile')">پروفایل</button>
-    <button class="btn-secondary" onclick="showPage('login')">ورود / ثبت‌نام</button>
-    <button class="btn-secondary" onclick="showPage('admin')">مدیریت</button>
+    <button onclick="showPage('home')">خانه</button>
+    <button onclick="showPage('library')">کتابخانه</button>
+    <button onclick="showPage('adminLogin')">ورود مدیر</button>
   </nav>
 </header>
 
 <main>
-  <!-- خانه -->
-  <section id="home" class="page active">
+  <section id="home" class="active">
     <div class="hero">
-      <div class="hero-copy">
-        <h1>دنیای مانهوا منتظر توست</h1>
-        <p>داستان‌های مورد علاقه‌ات را پیدا کن، فصل‌ها را آنلاین بخوان و با دیگر خواننده‌ها درباره‌شان حرف بزن.</p>
-        <div class="row">
-          <button onclick="showPage('library')">رفتن به کتابخانه</button>
-          <button class="btn-secondary" onclick="showPage('login')">ساخت حساب</button>
-        </div>
-      </div>
-      <img class="hero-image" src="hana.jpg" alt="هانا"
-        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80'">
+      <h1>به دنیای مانهوا خوش آمدید</h1>
+      <img src="./hana.jpg" alt="هانا"
+        onerror="this.onerror=null;this.src='https://placehold.co/600x800/10243a/9de4ff?text=Hana';">
+      <h2>به مانهوا لند خوش اومدید!</h2>
+      <p class="muted">دنیایی از داستان‌ها، عشق، رازها و ماجراجویی‌ها</p>
+      <button onclick="showPage('library')">ورود به کتابخانه</button>
     </div>
-    <div class="panel" style="margin-top:20px">
-      <div class="section-head"><h2>✨ تازه‌های مانهوا</h2><button class="btn-secondary" onclick="showPage('library')">همه مانهواها</button></div>
-      <div id="homeBooks" class="grid"></div>
-      <p id="homeEmpty" class="muted"></p>
+    <div class="panel">
+      <h2>✨ تازه‌های مانهوا</h2>
+      <div id="homeBooks" class="grid">در حال بارگذاری...</div>
     </div>
   </section>
 
-  <!-- کتابخانه -->
-  <section id="library" class="page">
+  <section id="library">
     <div class="panel">
       <h1>📚 کتابخانه مانهوا</h1>
-      <p class="muted">مانهواهای منتشرشده را پیدا کن و آنلاین بخوان.</p>
-      <input id="searchInput" placeholder="جست‌وجو بر اساس نام یا ژانر..." oninput="renderBooks()">
-      <div id="libraryBooks" class="grid"></div>
-      <div id="libraryEmpty" class="empty hidden">هنوز مانهوا منتشر نشده است.</div>
+      <p class="muted">مانهوا را انتخاب کن تا فصل‌های آن را ببینی.</p>
+      <div id="libraryBooks" class="grid">در حال بارگذاری...</div>
+      <p id="libraryStatus" class="status"></p>
     </div>
   </section>
 
-  <!-- ورود -->
-  <section id="login" class="page">
-    <div class="panel" style="max-width:550px;margin:auto">
-      <h1>🔐 ورود یا ثبت‌نام</h1>
-      <p class="muted">برای ثبت نظر و ساخت پروفایل، وارد حساب خودت شو.</p>
-      <label for="email">ایمیل</label>
-      <input id="email" type="email" autocomplete="email" placeholder="ایمیل حساب">
-      <label for="password">رمز عبور</label>
-      <input id="password" type="password" autocomplete="current-password" placeholder="رمز عبور">
-      <div class="row">
-        <button onclick="login()">ورود</button>
-        <button class="btn-secondary" onclick="register()">ثبت‌نام</button>
-      </div>
-      <div id="authMessage" class="notice hidden"></div>
-      <p class="muted small">اگر تأیید ایمیل در Supabase فعال باشد، ممکن است قبل از ورود لازم باشد ایمیلت را تأیید کنی.</p>
-    </div>
-  </section>
-
-  <!-- پروفایل -->
-  <section id="profile" class="page">
-    <div class="panel" style="max-width:650px;margin:auto">
-      <h1>👤 پروفایل من</h1>
-      <p id="profileStatus" class="muted">برای مشاهده پروفایل وارد حساب شو.</p>
-      <label for="displayName">نام نمایشی</label>
-      <input id="displayName" maxlength="50" placeholder="مانهوا دوست">
-      <button onclick="saveProfile()">ذخیره پروفایل</button>
-      <button class="btn-secondary" onclick="logout()">خروج از حساب</button>
-      <div id="profileMessage" class="notice hidden"></div>
-    </div>
-  </section>
-
-  <!-- مدیریت -->
-  <section id="admin" class="page">
+  <section id="adminLogin">
     <div class="panel">
-      <h1>👑 پنل مدیریت مانهوا لند</h1>
-      <p id="adminStatus" class="muted">در حال بررسی دسترسی مدیر...</p>
-      <div id="adminGate" class="notice">
-        برای مدیریت با حساب مدیر وارد شو. رمز عبور را داخل کد سایت قرار نده.
-      </div>
-    </div>
-
-    <div id="adminDashboard" class="hidden">
-      <div class="panel">
-        <h2>📊 داشبورد</h2>
-        <div class="stat-grid">
-          <div class="stat">تعداد مانهواها<strong id="statBooks">۰</strong></div>
-          <div class="stat">حساب مدیر<strong>فعال</strong></div>
-          <div class="stat">ذخیره‌سازی<strong>Supabase</strong></div>
-        </div>
-      </div>
-
-      <div class="admin-layout">
-        <div class="panel">
-          <h2>➕ افزودن مانهوا</h2>
-          <label for="newTitle">عنوان مانهوا</label>
-          <input id="newTitle" maxlength="160" placeholder="عنوان داستان">
-          <label for="newSummary">خلاصه داستان</label>
-          <textarea id="newSummary" maxlength="5000" placeholder="خلاصه داستان را بنویس..."></textarea>
-          <label for="newGenre">ژانر</label>
-          <input id="newGenre" maxlength="120" placeholder="فانتزی، عاشقانه، درام...">
-          <label for="newCover">تصویر جلد</label>
-          <input id="newCover" type="file" accept="image/*">
-          <label><input id="newPublished" type="checkbox" checked> پس از ذخیره منتشر شود</label>
-          <button onclick="addManhwa()">ذخیره مانهوا</button>
-          <div id="addBookMessage" class="notice hidden"></div>
-        </div>
-
-        <div class="panel">
-          <h2>📖 افزودن فصل</h2>
-          <p class="muted small">ابتدا مانهوا را انتخاب کن، سپس عنوان و شماره فصل را وارد کن. جدول chapters باید در Supabase ساخته شده باشد.</p>
-          <label for="chapterBook">مانهوا</label>
-          <select id="chapterBook"></select>
-          <label for="chapterTitle">عنوان فصل</label>
-          <input id="chapterTitle" placeholder="مثلاً فصل اول">
-          <label for="chapterNumber">شماره فصل</label>
-          <input id="chapterNumber" type="number" min="1" step="1" value="1">
-          <label><input id="chapterPublished" type="checkbox" checked> انتشار فصل</label>
-          <button onclick="addChapter()">ذخیره فصل</button>
-          <div id="addChapterMessage" class="notice hidden"></div>
-          <hr class="divider">
-          <h2>🖼 افزودن صفحات فصل</h2>
-          <label for="pageChapter">فصل</label>
-          <select id="pageChapter"></select>
-          <label for="pageFiles">انتخاب تصاویر صفحات (چند تصویر با هم)</label>
-          <input id="pageFiles" type="file" accept="image/*" multiple>
-          <p class="muted small">نام فایل‌ها بهتر است ترتیب صفحات را مشخص کند؛ مثلاً 001.jpg، 002.jpg.</p>
-          <button onclick="uploadPages()">آپلود صفحات</button>
-          <div id="uploadMessage" class="notice hidden"></div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="section-head">
-          <h2>🗂 مدیریت مانهواها</h2>
-          <button class="btn-secondary" onclick="refreshAll()">به‌روزرسانی</button>
-        </div>
-        <div id="adminBooks" class="grid"></div>
-      </div>
+      <h1>👑 ورود مدیر</h1>
+      <p>رمز مدیریت را وارد کن.</p>
+      <label for="adminPassword">رمز مدیریت</label>
+      <input id="adminPassword" type="password" placeholder="رمز مدیریت">
+      <button onclick="adminLogin()">ورود به مدیریت</button>
+      <p id="loginMessage" class="status"></p>
     </div>
   </section>
 
-  <!-- خواندن -->
-  <section id="reader" class="page">
+  <section id="admin">
     <div class="panel">
-      <button class="btn-secondary" onclick="showPage('library')">← بازگشت به کتابخانه</button>
-      <h1 id="readerTitle">عنوان مانهوا</h1>
-      <p id="readerSummary" class="muted"></p>
-      <label for="readerChapterSelect">انتخاب فصل</label>
-      <select id="readerChapterSelect" onchange="loadChapter(this.value)"></select>
+      <h1>👑 پنل مدیریت</h1>
+      <p class="muted">از این بخش می‌توانی مانهوا و فصل اضافه کنی.</p>
+      <button class="secondary" onclick="adminLogout()">خروج از مدیریت</button>
+    </div>
+
+    <div class="panel">
+      <h2>➕ افزودن مانهوا</h2>
+      <label for="manhwaTitle">نام مانهوا</label>
+      <input id="manhwaTitle" placeholder="نام مانهوا">
+
+      <label for="manhwaSummary">خلاصه داستان</label>
+      <textarea id="manhwaSummary" placeholder="خلاصه داستان را بنویس"></textarea>
+
+      <label for="manhwaGenre">ژانر</label>
+      <input id="manhwaGenre" placeholder="مثلاً عاشقانه، فانتزی">
+
+      <label for="manhwaCover">تصویر جلد</label>
+      <input id="manhwaCover" type="file" accept="image/*">
+
+      <button onclick="addManhwa()">ذخیره مانهوا</button>
+      <p id="manhwaStatus" class="status"></p>
+    </div>
+
+    <div class="panel">
+      <h2>📖 افزودن فصل</h2>
+      <label for="chapterManhwa">انتخاب مانهوا</label>
+      <select id="chapterManhwa"></select>
+
+      <label for="chapterTitle">عنوان فصل</label>
+      <input id="chapterTitle" placeholder="مثلاً فصل اول">
+
+      <label for="chapterNumber">شماره فصل</label>
+      <input id="chapterNumber" type="number" min="1" value="1">
+
+      <label for="chapterPages">تصاویر صفحات فصل</label>
+      <input id="chapterPages" type="file" accept="image/*" multiple>
+
+      <p class="muted">می‌توانی چندین تصویر را با هم انتخاب کنی.</p>
+      <button onclick="addChapter()">ذخیره فصل و صفحات</button>
+      <p id="chapterStatus" class="status"></p>
+    </div>
+  </section>
+
+  <section id="reader">
+    <div class="panel">
+      <button class="secondary" onclick="showPage('library')">← بازگشت به کتابخانه</button>
+      <h1 id="readerTitle">مانهوا</h1>
+      <div id="chapterList"></div>
       <div id="readerPages"></div>
-      <p id="readerMessage" class="muted"></p>
-      <hr class="divider">
-      <h2>💬 نظرات این فصل</h2>
-      <div id="commentsList"></div>
-      <div id="commentComposer" class="hidden">
-        <label for="commentBody">نظر تو</label>
-        <textarea id="commentBody" maxlength="2000" placeholder="نظر خودت را درباره این فصل بنویس..."></textarea>
-        <button onclick="postComment()">ثبت نظر</button>
-      </div>
-      <p id="commentMessage" class="muted"></p>
+      <hr>
+      <h2>💬 نظرات</h2>
+      <p class="muted">برای فعال کردن ثبت و ذخیره نظرات، باید جدول نظرات و دسترسی‌های آن در Supabase تنظیم شود.</p>
     </div>
   </section>
 </main>
 
-<footer>
-  <div style="font-size:28px;color:var(--blue)">♛ ❄</div>
-  <strong>مانهوا لند | Manhwa Land</strong>
-  <p>دنیای داستان‌ها، همیشه یک فصل تازه دارد.</p>
-  <span class="small">© 2026 Manhwa Land</span>
-</footer>
+<footer>© 2026 Manhwa Land · مانهوا لند</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* اتصال Supabase */
 const SUPABASE_URL = "https://hqyfzqbpodffbumsapdv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_CwpwboZko_55AEIi6RGe3A_Zo2JWy16";
-const STORAGE_BUCKET = "MANHWA-PAGES";
+const BUCKET = "MANHWA-PAGES";
+
+// توجه: این رمز در کد مرورگر قابل مشاهده است و امنیت واقعی ایجاد نمی‌کند.
+const ADMIN_PASSWORD = "۱۳۹۲۱۳۹۲۱۲";
+
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-let currentUser = null;
-let currentProfile = null;
-let publishedBooks = [];
-let allBooks = [];
-let activeBook = null;
-let activeChapterId = null;
-
-function enterSite(){
-  document.getElementById("welcome").classList.add("hidden");
-  showPage("home");
-}
+let currentManhwas = [];
+let adminUnlocked = false;
 
 function showPage(id){
-  document.querySelectorAll("section.page").forEach(p=>p.classList.remove("active"));
-  const target=document.getElementById(id);
-  if(target) target.classList.add("active");
-  if(id==="profile") updateProfileUI();
-  if(id==="admin") updateAdminUI();
-  if(id==="library") renderBooks();
+  if(id === "admin" && !adminUnlocked){
+    id = "adminLogin";
+  }
+  document.querySelectorAll("main section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
   window.scrollTo({top:0,behavior:"smooth"});
+  if(id === "library" || id === "home") loadManhwas();
+  if(id === "admin") fillManhwaSelect();
 }
 
-function showMessage(id,text,type=""){
-  const el=document.getElementById(id);
-  if(!el)return;
-  el.textContent=text;
-  el.className="notice"+(type?" "+type:"");
-}
-function clearMessage(id){
-  const el=document.getElementById(id);
-  if(el){el.textContent="";el.className="notice hidden";}
-}
-function safeText(v){
-  return String(v??"").replace(/[&<>"']/g,ch=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[ch]));
-}
-function publicCover(book){
-  if(book.cover_url)return book.cover_url;
-  if(book.cover_path){
-    return db.storage.from(STORAGE_BUCKET).getPublicUrl(book.cover_path).data.publicUrl;
+function adminLogin(){
+  const password = document.getElementById("adminPassword").value;
+  if(password === ADMIN_PASSWORD){
+    adminUnlocked = true;
+    document.getElementById("loginMessage").textContent = "رمز درست است.";
+    showPage("admin");
+  }else{
+    document.getElementById("loginMessage").textContent = "رمز اشتباه است.";
   }
-  return "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80";
 }
 
-/* ورود و ثبت‌نام */
-async function register(){
-  clearMessage("authMessage");
-  const email=document.getElementById("email").value.trim();
-  const password=document.getElementById("password").value;
-  if(!email||password.length<6){
-    showMessage("authMessage","ایمیل معتبر و رمز عبور حداقل ۶ نویسه‌ای وارد کن.","error");
-    return;
-  }
-  const {data,error}=await db.auth.signUp({email,password});
-  if(error){
-    showMessage("authMessage","ثبت‌نام انجام نشد: "+error.message,"error");
-    return;
-  }
-  if(data.session){
-    currentUser=data.user;
-    await ensureProfile();
-    await reloadData();
-  }
-  showMessage("authMessage","درخواست ثبت‌نام انجام شد. اگر تأیید ایمیل فعال است، ایمیلت را تأیید کن و سپس وارد شو.","success");
-}
-
-async function login(){
-  clearMessage("authMessage");
-  const email=document.getElementById("email").value.trim();
-  const password=document.getElementById("password").value;
-  if(!email||!password){
-    showMessage("authMessage","ایمیل و رمز عبور را وارد کن.","error");
-    return;
-  }
-  const {data,error}=await db.auth.signInWithPassword({email,password});
-  if(error){
-    showMessage("authMessage","ورود ناموفق بود: "+error.message,"error");
-    return;
-  }
-  currentUser=data.user;
-  await ensureProfile();
-  await reloadData();
-  showMessage("authMessage","ورود موفق بود.","success");
-  if(await isAdmin()) showPage("admin");
-  else showPage("profile");
-}
-
-async function logout(){
-  const {error}=await db.auth.signOut();
-  if(error){alert("خطا هنگام خروج: "+error.message);return;}
-  currentUser=null;
-  currentProfile=null;
-  await reloadData();
+function adminLogout(){
+  adminUnlocked = false;
+  document.getElementById("adminPassword").value = "";
   showPage("home");
 }
 
-/* پروفایل و نقش مدیر */
-async function ensureProfile(){
-  if(!currentUser)return;
-  const {data,error}=await db.from("profiles").select("*").eq("id",currentUser.id).maybeSingle();
-  if(error){console.error(error);return;}
-  if(data){currentProfile=data;return;}
-  const {data:created,error:createError}=await db.from("profiles").insert({
-    id:currentUser.id,
-    display_name:"مانهوا دوست",
-    role:"user"
-  }).select().maybeSingle();
-  if(!createError)currentProfile=created;
-  else console.error(createError);
+function setStatus(id,message){
+  document.getElementById(id).textContent = message;
 }
 
-async function loadProfile(){
-  if(!currentUser){currentProfile=null;return;}
-  const {data,error}=await db.from("profiles").select("*").eq("id",currentUser.id).maybeSingle();
-  if(!error)currentProfile=data;
-}
+async function loadManhwas(){
+  const library = document.getElementById("libraryBooks");
+  const home = document.getElementById("homeBooks");
+  library.textContent = "در حال بارگذاری...";
+  home.textContent = "در حال بارگذاری...";
 
-async function isAdmin(){
-  if(!currentUser)return false;
-  await loadProfile();
-  return currentProfile?.role==="admin";
-}
+  const {data,error} = await db
+    .from("manhwas")
+    .select("*")
+    .eq("published",true)
+    .order("created_at",{ascending:false});
 
-function updateProfileUI(){
-  document.getElementById("profileStatus").textContent=
-    currentUser?"وارد شده‌ای: "+currentUser.email:"برای مشاهده پروفایل وارد حساب شو.";
-  document.getElementById("displayName").value=currentProfile?.display_name||"";
-}
-
-async function saveProfile(){
-  clearMessage("profileMessage");
-  if(!currentUser){
-    showMessage("profileMessage","ابتدا وارد حساب خودت شو.","error");
+  if(error){
+    library.textContent = "خطا در دریافت کتابخانه. تنظیمات جدول manhwas و دسترسی‌های Supabase را بررسی کن.";
+    home.textContent = "کتابخانه هنوز بارگذاری نشده است.";
+    console.error(error);
     return;
   }
-  const displayName=document.getElementById("displayName").value.trim()||"مانهوا دوست";
-  const {error}=await db.from("profiles").upsert({
-    id:currentUser.id,
-    display_name:displayName
+
+  currentManhwas = data || [];
+  renderBooks(library,currentManhwas);
+  renderBooks(home,currentManhwas.slice(0,4));
+  fillManhwaSelect();
+}
+
+function renderBooks(container,books){
+  container.innerHTML = "";
+  if(!books.length){
+    container.textContent = "هنوز مانهوا منتشر نشده است.";
+    return;
+  }
+
+  books.forEach(book=>{
+    const card = document.createElement("div");
+    card.className = "book";
+
+    const img = document.createElement("img");
+    img.alt = book.title || "جلد مانهوا";
+    img.src = book.cover_url || "";
+    img.onerror = ()=>{img.src="https://placehold.co/400x600/10243a/9de4ff?text=Manhwa";};
+
+    const title = document.createElement("h3");
+    title.textContent = book.title || "بدون عنوان";
+
+    const summary = document.createElement("p");
+    summary.className = "muted";
+    summary.textContent = book.summary || "";
+
+    const btn = document.createElement("button");
+    btn.textContent = "دیدن فصل‌ها";
+    btn.onclick = ()=>openManhwa(book);
+
+    card.append(img,title,summary,btn);
+    container.appendChild(card);
   });
-  if(error){
-    showMessage("profileMessage","ذخیره نشد: "+error.message,"error");
-    return;
-  }
-  await loadProfile();
-  showMessage("profileMessage","پروفایل ذخیره شد.","success");
 }
 
-/* دریافت اطلاعات */
-async function loadPublishedBooks(){
-  const {data,error}=await db.from("manhwas")
-    .select("*").eq("published",true).order("created_at",{ascending:false});
-  if(error){
-    console.error("خطای کتابخانه:",error.message);
-    return error.message;
-  }
-  publishedBooks=data||[];
-  return null;
+function fillManhwaSelect(){
+  const select = document.getElementById("chapterManhwa");
+  if(!select) return;
+  select.innerHTML = "";
+  currentManhwas.forEach(book=>{
+    const option = document.createElement("option");
+    option.value = book.id;
+    option.textContent = book.title;
+    select.appendChild(option);
+  });
 }
 
-async function loadAllBooks(){
-  if(!(await isAdmin()))return;
-  const {data,error}=await db.from("manhwas")
-    .select("*").order("created_at",{ascending:false});
-  if(error)throw error;
-  allBooks=data||[];
-}
+async function uploadImage(file,path){
+  const {error} = await db.storage.from(BUCKET).upload(path,file,{
+    cacheControl:"3600",upsert:false
+  });
+  if(error) throw error;
 
-async function reloadData(){
-  await loadPublishedBooks();
-  renderBooks();
-  updateProfileUI();
-  await updateAdminUI();
-}
-
-function bookCard(book){
-  return `<article class="book-card">
-    <img src="${safeText(publicCover(book))}" alt="${safeText(book.title)}" loading="lazy">
-    <div class="book-info">
-      <strong>${safeText(book.title)}</strong>
-      <p>${safeText(book.genre||"بدون ژانر")}</p>
-      <p>${safeText((book.summary||"خلاصه‌ای ثبت نشده است.").slice(0,120))}</p>
-      <button onclick="openBook('${safeText(book.id)}')">خواندن آنلاین</button>
-    </div>
-  </article>`;
-}
-
-function renderBooks(){
-  const query=(document.getElementById("searchInput")?.value||"").trim().toLowerCase();
-  const filtered=publishedBooks.filter(b=>
-    (b.title||"").toLowerCase().includes(query)||
-    (b.genre||"").toLowerCase().includes(query)
-  );
-  document.getElementById("libraryBooks").innerHTML=filtered.map(bookCard).join("");
-  document.getElementById("homeBooks").innerHTML=publishedBooks.slice(0,4).map(bookCard).join("");
-  document.getElementById("libraryEmpty").classList.toggle("hidden",filtered.length>0);
-  document.getElementById("homeEmpty").textContent=publishedBooks.length?"":"هنوز مانهوا منتشر نشده است. پس از انتشار اولین مانهوا، اینجا نمایش داده می‌شود.";
-}
-
-/* بخش مدیریت */
-async function updateAdminUI(){
-  const gate=document.getElementById("adminGate");
-  const dashboard=document.getElementById("adminDashboard");
-  const status=document.getElementById("adminStatus");
-  if(!currentUser){
-    status.textContent="برای ورود به مدیریت ابتدا وارد حساب شو.";
-    gate.classList.remove("hidden");
-    dashboard.classList.add("hidden");
-    return;
-  }
-  const admin=await isAdmin();
-  if(!admin){
-    status.textContent="این حساب دسترسی مدیر ندارد.";
-    gate.classList.remove("hidden");
-    dashboard.classList.add("hidden");
-    return;
-  }
-  status.textContent="خوش آمدی، مدیر مانهوا لند.";
-  gate.classList.add("hidden");
-  dashboard.classList.remove("hidden");
-  try{
-    await loadAllBooks();
-    document.getElementById("statBooks").textContent=String(allBooks.length);
-    renderAdminBooks();
-    fillBookSelect();
-    await fillChapterSelect();
-  }catch(e){
-    showMessage("addBookMessage","خطا در دریافت مانهواها: "+e.message,"error");
-  }
+  const {data} = db.storage.from(BUCKET).getPublicUrl(path);
+  return data.publicUrl;
 }
 
 async function addManhwa(){
-  clearMessage("addBookMessage");
-  if(!(await isAdmin())){
-    showMessage("addBookMessage","دسترسی مدیر تأیید نشد.","error");
-    return;
-  }
-  const title=document.getElementById("newTitle").value.trim();
-  const summary=document.getElementById("newSummary").value.trim();
-  const genre=document.getElementById("newGenre").value.trim();
-  const file=document.getElementById("newCover").files[0];
-  const published=document.getElementById("newPublished").checked;
+  if(!adminUnlocked) return showPage("adminLogin");
+
+  const title = document.getElementById("manhwaTitle").value.trim();
+  const summary = document.getElementById("manhwaSummary").value.trim();
+  const genre = document.getElementById("manhwaGenre").value.trim();
+  const file = document.getElementById("manhwaCover").files[0];
+
   if(!title){
-    showMessage("addBookMessage","عنوان مانهوا را وارد کن.","error");
+    setStatus("manhwaStatus","اول نام مانهوا را وارد کن.");
     return;
   }
 
-  let coverPath=null;
-  let coverUrl=null;
-  if(file){
-    if(!file.type.startsWith("image/")){
-      showMessage("addBookMessage","لطفاً یک فایل تصویری انتخاب کن.","error");
-      return;
+  setStatus("manhwaStatus","در حال ذخیره...");
+  try{
+    let cover_url = null;
+
+    if(file){
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+      const path = "covers/" + Date.now() + "_" + safeName;
+      cover_url = await uploadImage(file,path);
     }
-    coverPath=currentUser.id+"/covers/"+Date.now()+"_"+file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
-    const {error:uploadError}=await db.storage.from(STORAGE_BUCKET)
-      .upload(coverPath,file,{contentType:file.type});
-    if(uploadError){
-      showMessage("addBookMessage","آپلود جلد ناموفق بود: "+uploadError.message,"error");
-      return;
-    }
-    coverUrl=db.storage.from(STORAGE_BUCKET).getPublicUrl(coverPath).data.publicUrl;
+
+    const {error} = await db.from("manhwas").insert([{
+      title,summary,genre,cover_url,published:true
+    }]);
+
+    if(error) throw error;
+
+    setStatus("manhwaStatus","مانهوا ذخیره شد.");
+    document.getElementById("manhwaTitle").value = "";
+    document.getElementById("manhwaSummary").value = "";
+    document.getElementById("manhwaGenre").value = "";
+    document.getElementById("manhwaCover").value = "";
+    await loadManhwas();
+  }catch(error){
+    console.error(error);
+    setStatus("manhwaStatus","ذخیره انجام نشد: " + error.message +
+      "\nدسترسی INSERT جدول manhwas و دسترسی آپلود Storage را بررسی کن.");
   }
-
-  const {error}=await db.from("manhwas").insert({
-    title,summary,genre,cover_path:coverPath,cover_url:coverUrl,
-    published,created_by:currentUser.id
-  });
-  if(error){
-    showMessage("addBookMessage","ذخیره مانهوا ناموفق بود: "+error.message,"error");
-    return;
-  }
-  ["newTitle","newSummary","newGenre","newCover"].forEach(id=>document.getElementById(id).value="");
-  showMessage("addBookMessage","مانهوا ذخیره شد.","success");
-  await reloadData();
 }
 
-function renderAdminBooks(){
-  const area=document.getElementById("adminBooks");
-  if(!allBooks.length){
-    area.innerHTML='<div class="empty">هنوز مانهوا اضافه نکرده‌ای.</div>';
-    return;
-  }
-  area.innerHTML=allBooks.map(b=>`<article class="book-card">
-    <img src="${safeText(publicCover(b))}" alt="${safeText(b.title)}" loading="lazy">
-    <div class="book-info">
-      <strong>${safeText(b.title)}</strong>
-      <p>${b.published?"وضعیت: منتشرشده":"وضعیت: پیش‌نویس"}</p>
-      <button class="btn-secondary" onclick="togglePublish('${safeText(b.id)}',${!b.published})">${b.published?"لغو انتشار":"انتشار"}</button>
-      <button class="btn-danger" onclick="deleteManhwa('${safeText(b.id)}')">حذف مانهوا</button>
-    </div>
-  </article>`).join("");
-}
-
-async function togglePublish(id,published){
-  if(!(await isAdmin()))return;
-  const {error}=await db.from("manhwas").update({published}).eq("id",id);
-  if(error){alert("خطا: "+error.message);return;}
-  await reloadData();
-}
-
-async function deleteManhwa(id){
-  if(!(await isAdmin()))return;
-  if(!confirm("این مانهوا حذف شود؟"))return;
-  const {error}=await db.from("manhwas").delete().eq("id",id);
-  if(error){alert("حذف ناموفق بود: "+error.message);return;}
-  await reloadData();
-}
-
-function fillBookSelect(){
-  const sel=document.getElementById("chapterBook");
-  const old=sel.value;
-  sel.innerHTML=allBooks.map(b=>`<option value="${safeText(b.id)}">${safeText(b.title)}</option>`).join("");
-  if(allBooks.some(b=>String(b.id)===old))sel.value=old;
-}
-
-/* افزودن فصل */
 async function addChapter(){
-  clearMessage("addChapterMessage");
-  if(!(await isAdmin())){
-    showMessage("addChapterMessage","دسترسی مدیر تأیید نشد.","error");
-    return;
-  }
-  const manhwaId=document.getElementById("chapterBook").value;
-  const title=document.getElementById("chapterTitle").value.trim();
-  const number=Number(document.getElementById("chapterNumber").value);
-  const published=document.getElementById("chapterPublished").checked;
-  if(!manhwaId||!title||!Number.isInteger(number)||number<1){
-    showMessage("addChapterMessage","مانهوا، عنوان و شماره معتبر فصل را وارد کن.","error");
-    return;
-  }
-  const {error}=await db.from("chapters").insert({
-    manhwa_id:manhwaId,title,chapter_number:number,published,created_by:currentUser.id
-  });
-  if(error){
-    showMessage("addChapterMessage","ثبت فصل ناموفق بود: "+error.message,"error");
-    return;
-  }
-  document.getElementById("chapterTitle").value="";
-  showMessage("addChapterMessage","فصل ذخیره شد.","success");
-  await fillChapterSelect();
-}
+  if(!adminUnlocked) return showPage("adminLogin");
 
-/* انتخاب فصل‌ها و آپلود صفحات */
-async function fillChapterSelect(){
-  const bookId=document.getElementById("chapterBook").value;
-  const select=document.getElementById("pageChapter");
-  if(!bookId){select.innerHTML="";return}
-  const {data,error}=await db.from("chapters")
-    .select("id,title,chapter_number").eq("manhwa_id",bookId)
-    .order("chapter_number",{ascending:true});
-  if(error){
-    select.innerHTML="";
-    console.error(error.message);
-    return;
-  }
-  select.innerHTML=(data||[]).map(c=>`<option value="${safeText(c.id)}">${safeText(c.title||("فصل "+c.chapter_number))}</option>`).join("");
-}
-document.getElementById("chapterBook").addEventListener("change",fillChapterSelect);
+  const manhwa_id = document.getElementById("chapterManhwa").value;
+  const title = document.getElementById("chapterTitle").value.trim();
+  const chapter_number = Number(document.getElementById("chapterNumber").value);
+  const files = Array.from(document.getElementById("chapterPages").files);
 
-async function uploadPages(){
-  clearMessage("uploadMessage");
-  if(!(await isAdmin())){
-    showMessage("uploadMessage","دسترسی مدیر تأیید نشد.","error");
+  if(!manhwa_id){
+    setStatus("chapterStatus","اول یک مانهوا اضافه کن.");
     return;
   }
-  const chapterId=document.getElementById("pageChapter").value;
-  const files=Array.from(document.getElementById("pageFiles").files||[]);
-  if(!chapterId||!files.length){
-    showMessage("uploadMessage","یک فصل و حداقل یک تصویر انتخاب کن.","error");
+  if(!title || !chapter_number || chapter_number < 1){
+    setStatus("chapterStatus","عنوان و شماره فصل را درست وارد کن.");
     return;
   }
-  const sorted=files.sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true,sensitivity:"base"}));
-  const status=document.getElementById("uploadMessage");
-  status.className="notice";
-  status.textContent="در حال آپلود صفحات...";
-  let success=0;
-  for(let i=0;i<sorted.length;i++){
-    const file=sorted[i];
-    if(!file.type.startsWith("image/"))continue;
-    const path=currentUser.id+"/pages/"+chapterId+"/"+String(i+1).padStart(4,"0")+"_"+file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
-    const {error:uploadError}=await db.storage.from(STORAGE_BUCKET).upload(path,file,{contentType:file.type});
-    if(uploadError){
-      status.textContent="آپلود در صفحه "+(i+1)+" متوقف شد: "+uploadError.message;
-      status.className="notice error";
-      return;
+
+  setStatus("chapterStatus","در حال ساخت فصل...");
+  try{
+    const {data:chapter,error:chapterError} = await db
+      .from("chapters")
+      .insert([{manhwa_id,title,chapter_number,published:true}])
+      .select()
+      .single();
+
+    if(chapterError) throw chapterError;
+
+    for(let i=0;i<files.length;i++){
+      setStatus("chapterStatus","در حال آپلود صفحه "+(i+1)+" از "+files.length+"...");
+      const file = files[i];
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+      const path = "chapters/" + chapter.id + "/" + (i+1) + "_" + safeName;
+      const image_url = await uploadImage(file,path);
+
+      const {error:pageError} = await db.from("chapter_pages").insert([{
+        chapter_id:chapter.id,
+        page_number:i+1,
+        image_url,
+        image_path:path
+      }]);
+
+      if(pageError) throw pageError;
     }
-    const imageUrl=db.storage.from(STORAGE_BUCKET).getPublicUrl(path).data.publicUrl;
-    const {error:insertError}=await db.from("chapter_pages").insert({
-      chapter_id:chapterId,page_number:i+1,image_path:path,image_url:imageUrl
-    });
-    if(insertError){
-      status.textContent="تصویر آپلود شد، اما ثبت اطلاعات صفحه ناموفق بود: "+insertError.message;
-      status.className="notice error";
-      return;
-    }
-    success++;
-    status.textContent="آپلود صفحات: "+success+" از "+sorted.length;
+
+    setStatus("chapterStatus","فصل و صفحات انتخاب‌شده ذخیره شدند.");
+    document.getElementById("chapterTitle").value = "";
+    document.getElementById("chapterPages").value = "";
+    await loadManhwas();
+  }catch(error){
+    console.error(error);
+    setStatus("chapterStatus","خطا: "+error.message+
+      "\nنام ستون‌ها و مجوزهای جدول‌های chapters و chapter_pages را بررسی کن.");
   }
-  document.getElementById("pageFiles").value="";
-  status.textContent=success+" صفحه با موفقیت ثبت شد.";
-  status.className="notice success";
 }
 
-/* مطالعه فصل‌ها */
-async function openBook(id){
-  activeBook=publishedBooks.find(b=>String(b.id)===String(id));
-  if(!activeBook)return;
-  document.getElementById("readerTitle").textContent=activeBook.title;
-  document.getElementById("readerSummary").textContent=activeBook.summary||"";
-  document.getElementById("readerPages").innerHTML="";
-  document.getElementById("readerMessage").textContent="";
-  document.getElementById("readerChapterSelect").innerHTML="";
-  document.getElementById("commentsList").innerHTML="";
-  document.getElementById("commentComposer").classList.add("hidden");
+async function openManhwa(book){
   showPage("reader");
-  await loadChaptersForReader();
-}
+  document.getElementById("readerTitle").textContent = book.title;
+  const list = document.getElementById("chapterList");
+  const pages = document.getElementById("readerPages");
+  list.textContent = "در حال دریافت فصل‌ها...";
+  pages.innerHTML = "";
 
-async function loadChaptersForReader(){
-  const sel=document.getElementById("readerChapterSelect");
-  const {data,error}=await db.from("chapters").select("id,title,chapter_number")
-    .eq("manhwa_id",activeBook.id).eq("published",true)
+  const {data:chapters,error} = await db.from("chapters")
+    .select("*")
+    .eq("manhwa_id",book.id)
+    .eq("published",true)
     .order("chapter_number",{ascending:true});
+
   if(error){
-    document.getElementById("readerMessage").textContent="خطا در دریافت فصل‌ها: "+error.message;
+    list.textContent = "خطا در دریافت فصل‌ها.";
+    console.error(error);
     return;
   }
-  sel.innerHTML=(data||[]).map(c=>`<option value="${safeText(c.id)}">${safeText(c.title||("فصل "+c.chapter_number))}</option>`).join("");
-  if(!data?.length){
-    document.getElementById("readerMessage").textContent="هنوز فصلی منتشر نشده است.";
+  list.innerHTML = "";
+
+  if(!chapters || !chapters.length){
+    list.textContent = "هنوز فصلی برای این مانهوا منتشر نشده است.";
     return;
   }
-  await loadChapter(data[0].id);
+
+  for(const chapter of chapters){
+    const btn = document.createElement("button");
+    btn.className = "secondary";
+    btn.style.margin = "5px";
+    btn.textContent = chapter.title || ("فصل "+chapter.chapter_number);
+    btn.onclick = ()=>loadChapterPages(chapter);
+    list.appendChild(btn);
+  }
 }
 
-async function loadChapter(chapterId){
-  activeChapterId=chapterId;
-  const area=document.getElementById("readerPages");
-  area.innerHTML="";
-  document.getElementById("readerMessage").textContent="در حال دریافت صفحات...";
-  const {data,error}=await db.from("chapter_pages").select("*")
-    .eq("chapter_id",chapterId).order("page_number",{ascending:true});
+async function loadChapterPages(chapter){
+  const pages = document.getElementById("readerPages");
+  pages.innerHTML = "<p>در حال بارگذاری صفحات...</p>";
+
+  const {data,error} = await db.from("chapter_pages")
+    .select("*")
+    .eq("chapter_id",chapter.id)
+    .order("page_number",{ascending:true});
+
   if(error){
-    document.getElementById("readerMessage").textContent="خطا در دریافت صفحات: "+error.message;
+    pages.textContent = "خطا در دریافت صفحات فصل.";
+    console.error(error);
     return;
   }
-  if(!data?.length){
-    document.getElementById("readerMessage").textContent="هنوز صفحه‌ای برای این فصل ثبت نشده است.";
-  }else{
-    document.getElementById("readerMessage").textContent="";
-    area.innerHTML=data.map(p=>{
-      const url=p.image_url||db.storage.from(STORAGE_BUCKET).getPublicUrl(p.image_path).data.publicUrl;
-      return `<img class="reader-page" src="${safeText(url)}" alt="صفحه ${Number(p.page_number)||""}" loading="lazy">`;
-    }).join("");
-  }
-  document.getElementById("commentComposer").classList.toggle("hidden",!currentUser);
-  document.getElementById("commentMessage").textContent=currentUser?"":"برای ثبت نظر وارد حساب خودت شو.";
-  await loadComments();
-}
 
-/* نظرات هر فصل */
-async function loadComments(){
-  const area=document.getElementById("commentsList");
-  if(!activeChapterId){area.innerHTML="";return}
-  const {data,error}=await db.from("comments").select("id,body,created_at,user_id")
-    .eq("chapter_id",activeChapterId).order("created_at",{ascending:true});
-  if(error){
-    area.innerHTML='<div class="empty">دریافت نظرات ناموفق بود: '+safeText(error.message)+'</div>';
+  pages.innerHTML = "";
+  if(!data || !data.length){
+    pages.textContent = "این فصل هنوز صفحه‌ای ندارد.";
     return;
   }
-  if(!data?.length){
-    area.innerHTML='<div class="empty">هنوز نظری ثبت نشده است. اولین نفر باش!</div>';
-    return;
-  }
-  area.innerHTML=data.map(c=>`<div class="comment">
-    <div class="comment-meta">${safeText(c.user_id===currentUser?.id?"نظر تو":"خواننده مانهوا")} · ${safeText(c.created_at?new Date(c.created_at).toLocaleDateString("fa-IR"):"")}</div>
-    <div>${safeText(c.body)}</div>
-  </div>`).join("");
-}
 
-async function postComment(){
-  if(!currentUser){
-    document.getElementById("commentMessage").textContent="برای ثبت نظر وارد حساب شو.";
-    return;
-  }
-  if(!activeChapterId)return;
-  const body=document.getElementById("commentBody").value.trim();
-  if(!body){
-    document.getElementById("commentMessage").textContent="متن نظر را وارد کن.";
-    return;
-  }
-  const {error}=await db.from("comments").insert({
-    chapter_id:activeChapterId,user_id:currentUser.id,body
-  });
-  if(error){
-    document.getElementById("commentMessage").textContent="نظر ثبت نشد: "+error.message;
-    return;
-  }
-  document.getElementById("commentBody").value="";
-  document.getElementById("commentMessage").textContent="نظر ثبت شد.";
-  await loadComments();
-}
-
-async function refreshAll(){
-  await reloadData();
-  if(await isAdmin()){
-    await loadAllBooks();
-    renderAdminBooks();
-    fillBookSelect();
-    await fillChapterSelect();
-  }
-}
-
-/* راه‌اندازی */
-async function init(){
-  const {data,error}=await db.auth.getSession();
-  if(error)console.error(error);
-  currentUser=data.session?.user||null;
-  if(currentUser)await ensureProfile();
-  await reloadData();
-  db.auth.onAuthStateChange((_event,session)=>{
-    setTimeout(async()=>{
-      currentUser=session?.user||null;
-      currentProfile=null;
-      if(currentUser)await ensureProfile();
-      await reloadData();
-    },0);
+  data.forEach(page=>{
+    const img = document.createElement("img");
+    img.className = "page-image";
+    img.alt = "صفحه "+page.page_number;
+    img.src = page.image_url || "";
+    pages.appendChild(img);
   });
 }
 
-/* برف متحرک */
-(function(){
-  const canvas=document.getElementById("snow");
-  const ctx=canvas.getContext("2d");
-  let width=0,height=0,flakes=[];
-  function resize(){
-    width=canvas.width=window.innerWidth;
-    height=canvas.height=window.innerHeight;
-    flakes=Array.from({length:Math.min(100,Math.floor(width/8))},()=>({
-      x:Math.random()*width,y:Math.random()*height,
-      r:Math.random()*1.8+.5,s:Math.random()*1+.3,d:Math.random()*.5-.25
-    }));
-  }
-  function draw(){
-    ctx.clearRect(0,0,width,height);
-    ctx.fillStyle="rgba(220,245,255,.75)";
-    for(const f of flakes){
-      ctx.beginPath();ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fill();
-      f.y+=f.s;f.x+=f.d;
-      if(f.y>height){f.y=-5;f.x=Math.random()*width}
-      if(f.x>width)f.x=0;
-      if(f.x<0)f.x=width;
-    }
-    requestAnimationFrame(draw);
-  }
-  window.addEventListener("resize",resize);
-  resize();draw();
-})();
-
-init();
+loadManhwas();
 </script>
 </body>
 </html>
