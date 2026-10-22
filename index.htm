@@ -15,654 +15,395 @@
 
 
 
+```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#071321">
 <title>مانهوا لند | Manhwa Land</title>
 
 <style>
-:root{
-  --bg:#071321;
-  --panel:#10243a;
-  --panel2:#142d46;
-  --blue:#9de4ff;
-  --white:#f3f9ff;
-  --muted:#b7c8d9;
-  --border:#294660;
-  --danger:#ff8e9b;
+:root {
+  --bg: #06101f;
+  --panel: #101f35;
+  --blue: #9be7ff;
+  --white: #f4faff;
 }
-*{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--white);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;
-  min-height:100vh;
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: Tahoma, Arial, sans-serif;
 }
-button,input,textarea,select{font:inherit}
-button{
-  cursor:pointer;border:0;border-radius:12px;padding:11px 16px;
-  background:var(--blue);color:#071321;font-weight:800;
+button, input { font: inherit; }
+button {
+  cursor: pointer;
+  border: 1px solid #5baedc;
+  color: white;
+  background: #18385a;
+  padding: 12px 18px;
+  border-radius: 12px;
 }
-button:disabled{opacity:.5;cursor:not-allowed}
-button.secondary{background:var(--panel2);color:var(--white);border:1px solid var(--border)}
-button.danger{background:#572637;color:#fff}
-input,textarea,select{
-  width:100%;padding:12px;margin:6px 0 12px;
-  border:1px solid var(--border);border-radius:11px;
-  background:#071827;color:white;outline:none;
+button:hover { background: #28608b; }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px;
+  background: #09182a;
+  border-bottom: 1px solid #24415f;
+  position: relative;
+  z-index: 2;
 }
-textarea{min-height:95px;resize:vertical}
-label{font-size:13px;color:var(--muted)}
-a{color:var(--blue)}
-header{
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:12px;padding:15px max(4%,calc((100% - 1100px)/2));
-  border-bottom:1px solid var(--border);background:#091827;
-  position:sticky;top:0;z-index:5;
+.logo { color: var(--blue); font-size: 22px; font-weight: bold; }
+nav { display: flex; flex-wrap: wrap; gap: 8px; }
+nav button { padding: 9px 12px; }
+main { max-width: 1100px; margin: auto; padding: 20px; }
+.hero {
+  min-height: 390px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 25px;
+  flex-wrap: wrap;
+  padding: 25px;
+  border: 1px solid #23476a;
+  border-radius: 22px;
+  background: radial-gradient(ellipse at top, #193c65, #071321 70%);
+  overflow: hidden;
 }
-.logo{font-size:22px;font-weight:900;color:var(--blue)}
-nav{display:flex;gap:7px;flex-wrap:wrap}
-nav button{padding:9px 12px}
-main{max-width:1100px;margin:auto;padding:20px 15px 70px}
-section{margin:18px 0}
-.panel{
-  background:var(--panel);border:1px solid var(--border);
-  border-radius:18px;padding:18px;margin-bottom:16px;
+.hero img {
+  width: min(100%, 330px);
+  height: 310px;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid #5baedc;
+  background: #132b46;
 }
-h1,h2,h3{line-height:1.6}
-h1{font-size:clamp(25px,5vw,42px)}
-p{line-height:1.9}
-.muted{color:var(--muted)}
-.small{font-size:12px}
-.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.row>*{flex:1}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:14px}
-.card{
-  min-width:0;background:var(--panel);border:1px solid var(--border);
-  border-radius:15px;overflow:hidden;cursor:pointer;
+.hero-text { max-width: 520px; }
+h1 { color: var(--blue); font-size: clamp(27px, 5vw, 44px); }
+p { line-height: 2; }
+section { margin-top: 28px; }
+.panel {
+  background: var(--panel);
+  border: 1px solid #294765;
+  border-radius: 16px;
+  padding: 18px;
+  margin: 12px 0;
 }
-.card img{width:100%;height:210px;object-fit:cover;background:#142d46}
-.card .inside{padding:12px}
-.card h3{margin:0 0 6px;font-size:16px}
-.hidden{display:none!important}
-.center{text-align:center}
-.hero{
-  text-align:center;position:relative;overflow:hidden;
-  padding:45px 20px;border-radius:23px;
-  background:linear-gradient(145deg,#102b46,#071321 72%);
-  border:1px solid #294660;min-height:300px;
+input {
+  width: 100%;
+  padding: 13px;
+  margin: 7px 0;
+  border-radius: 10px;
+  border: 1px solid #44617d;
+  background: #071321;
+  color: white;
 }
-.hero h1{color:var(--blue)}
-.snow{
-  position:absolute;top:-20px;color:#dff7ff;opacity:.7;
-  pointer-events:none;animation:fall linear infinite;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 14px;
 }
-@keyframes fall{to{transform:translateY(380px) rotate(360deg);opacity:.1}}
-.notice{padding:12px;border-radius:12px;background:#142d46;margin:10px 0;line-height:1.8}
-.error{color:var(--danger)}
-.success{color:var(--blue)}
-.reader-page{display:block;width:100%;height:auto;margin:0 auto 10px}
-.reader-frame{max-width:850px;margin:auto;background:#030a11}
-.page-number{color:var(--muted);font-size:13px;text-align:center;margin:8px}
-footer{text-align:center;color:var(--muted);padding:25px}
-hr{border:0;border-top:1px solid var(--border);margin:18px 0}
-#toast{
-  position:fixed;bottom:20px;left:15px;right:15px;z-index:20;
-  max-width:500px;margin:auto;padding:14px;border-radius:12px;
-  background:#17334c;border:1px solid var(--blue);display:none;
+.card {
+  background: #101f35;
+  border: 1px solid #294765;
+  border-radius: 14px;
+  padding: 12px;
+  overflow-wrap: anywhere;
 }
-@media(min-width:700px){.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}}
+.card img {
+  width: 100%;
+  height: 155px;
+  object-fit: cover;
+  border-radius: 9px;
+}
+.hidden { display: none !important; }
+#snow {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+#welcome {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  background: linear-gradient(#06101ff0, #0b2547f5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 22px;
+}
+#welcome img {
+  width: min(75vw, 270px);
+  height: 270px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #9be7ff;
+  box-shadow: 0 0 40px #54caff55;
+}
+#welcome h1 { margin-bottom: 5px; }
+#status { color: #a9e7ff; min-height: 25px; }
+footer { text-align: center; color: #9ab0c9; padding: 30px; }
 </style>
 </head>
+
 <body>
+<canvas id="snow"></canvas>
+
+<div id="welcome">
+  <img
+    src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80"
+    alt="تصویر آغازین هانا"
+    onerror="this.style.display='none'">
+  <h1>به مانهوا لند خوش اومدید!</h1>
+  <p>❄️ دنیایی از داستان‌ها، عشق و ماجراجویی ❄️</p>
+  <button onclick="enterSite()">🏰 ورود به قصر</button>
+</div>
 
 <header>
-  <div class="logo">❄ مانهوا لند</div>
-  <nav id="nav">
-    <button class="secondary" onclick="showPage('home')">خانه</button>
-    <button class="secondary" onclick="showPage('library')">کتابخانه</button>
-    <button class="secondary" onclick="showPage('profile')">پروفایل</button>
-    <button class="secondary hidden" id="adminNav" onclick="showPage('admin')">مدیریت</button>
-    <button onclick="showPage('account')" id="accountNav">ورود / ثبت‌نام</button>
+  <div class="logo">❄ Manhwa Land</div>
+  <nav>
+    <button onclick="showPage('home')">خانه</button>
+    <button onclick="showPage('library')">کتابخانه</button>
+    <button onclick="showPage('profile')">پروفایل</button>
+    <button onclick="showPage('login')">ورود / ثبت‌نام</button>
+    <button onclick="showPage('admin')">مدیریت</button>
   </nav>
 </header>
 
 <main>
-  <div id="welcome" class="hero">
-    <div id="snowLayer"></div>
-    <p>✧ دنیایی میان برف و قصه ✧</p>
-    <h1>به مانهوا لند خوش اومدید</h1>
-    <p>با هانا وارد قصری شو که داستان‌هایش هنوز نوشته نشده‌اند...</p>
-    <button onclick="enterSite()">ورود به قصر ❄</button>
-    <p class="small muted">Manhwa Land · دنیای داستان‌های تو</p>
+  <div id="home">
+    <div class="hero">
+      <div class="hero-text">
+        <h1>دنیای جادویی مانهوا</h1>
+        <p>به مانهوا لند خوش آمدید! داستان موردعلاقه‌ات را پیدا کن و وارد دنیایی تازه شو.</p>
+        <input id="search" placeholder="نام مانهوا را جست‌وجو کن..." oninput="searchTitles()">
+        <button onclick="showPage('library')">مشاهده کتابخانه</button>
+      </div>
+      <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80"
+           alt="منظره زمستانی"
+           onerror="this.style.display='none'">
+    </div>
+    <section>
+      <h2>📚 مانهواهای منتشرشده</h2>
+      <div id="homeBooks" class="grid"></div>
+    </section>
   </div>
 
-  <section id="home" class="hidden">
-    <div class="hero">
-      <p>❄ به دنیای مانهوا خوش اومدی ❄</p>
-      <h1>داستان بعدی تو منتظرته</h1>
-      <p>بگرد، بخون و وارد دنیای شخصیت‌های موردعلاقه‌ات شو.</p>
-      <button onclick="showPage('library')">رفتن به کتابخانه</button>
-    </div>
-    <h2>تازه‌های مانهوا</h2>
-    <div id="homeList" class="grid"></div>
-  </section>
+  <div id="library" class="hidden">
+    <h1>📚 کتابخانه مانهوا</h1>
+    <p>مانهواهای منتشرشده در اینجا نمایش داده می‌شوند.</p>
+    <div id="libraryBooks" class="grid"></div>
+  </div>
 
-  <section id="library" class="hidden">
-    <h1>کتابخانه مانهوا</h1>
-    <p class="muted">داستان موردعلاقه‌ات رو پیدا کن.</p>
-    <input id="searchBox" placeholder="جست‌وجوی نام مانهوا..." oninput="renderLibrary()">
-    <div id="libraryList" class="grid"></div>
-  </section>
-
-  <section id="account" class="hidden">
+  <div id="profile" class="hidden">
+    <h1>👤 پروفایل من</h1>
     <div class="panel">
-      <h1>ورود به مانهوا لند</h1>
-      <p class="muted">برای نظر دادن و ساخت پروفایل وارد حساب خودت شو.</p>
-      <label for="email">ایمیل</label>
-      <input id="email" type="email" autocomplete="email" placeholder="name@example.com">
-      <label for="password">رمز عبور</label>
-      <input id="password" type="password" autocomplete="current-password" placeholder="رمز عبور">
-      <div class="row">
-        <button onclick="signIn()">ورود</button>
-        <button class="secondary" onclick="signUp()">ساخت حساب</button>
-      </div>
-      <button class="secondary" style="width:100%;margin-top:10px" onclick="googleSignIn()">ورود با گوگل</button>
-      <p class="muted small">اگر تأیید ایمیل فعال باشد، ممکن است لازم باشد ایمیلت را تأیید کنی.</p>
+      <p>نام کاربری: <strong id="profileName">مانهوا دوست</strong></p>
+      <p>برای ورود یا ساخت حساب، بخش ورود / ثبت‌نام را باز کن.</p>
+      <button onclick="showPage('login')">ورود به حساب</button>
     </div>
-  </section>
+  </div>
 
-  <section id="profile" class="hidden">
-    <h1>پروفایل من</h1>
-    <div class="panel" id="profileContent"></div>
-  </section>
-
-  <section id="admin" class="hidden">
-    <h1>پنل مدیریت 👑</h1>
-    <div class="notice">این بخش فقط برای حساب‌هایی است که در پایگاه داده، نقش مدیر دارند.</div>
+  <div id="login" class="hidden">
+    <h1>ورود / ثبت‌نام</h1>
     <div class="panel">
-      <h2>ساخت مانهوا</h2>
-      <form id="manhwaForm">
-        <label>نام مانهوا</label>
-        <input id="mTitle" required maxlength="160" placeholder="نام داستان">
-        <label>خلاصه داستان</label>
-        <textarea id="mSummary" required maxlength="10000" placeholder="خلاصه مانهوا..."></textarea>
-        <label>ژانر</label>
-        <input id="mGenre" maxlength="160" placeholder="فانتزی، عاشقانه، درام...">
-        <label>تصویر جلد</label>
-        <input id="mCover" type="file" accept="image/*" required>
-        <label>وضعیت انتشار</label>
-        <select id="mPublished">
-          <option value="true">منتشر شود</option>
-          <option value="false">پیش‌نویس</option>
-        </select>
-        <button type="submit">ساخت مانهوا</button>
-      </form>
+      <input id="email" type="email" placeholder="ایمیل">
+      <input id="password" type="password" placeholder="رمز عبور">
+      <input id="displayName" placeholder="نام نمایشی (برای ثبت‌نام)">
+      <button onclick="register()">ثبت‌نام</button>
+      <button onclick="login()">ورود</button>
+      <button onclick="logout()">خروج</button>
+      <p id="authStatus"></p>
     </div>
+  </div>
 
+  <div id="admin" class="hidden">
+    <h1>🛡 مدیریت مانهوا</h1>
     <div class="panel">
-      <h2>افزودن فصل و صفحه‌ها</h2>
-      <form id="chapterForm">
-        <label>انتخاب مانهوا</label>
-        <select id="chapterManhwa" required></select>
-        <label>نام فصل</label>
-        <input id="chapterTitle" required maxlength="160" placeholder="مثلاً فصل اول">
-        <label>شماره فصل</label>
-        <input id="chapterNumber" type="number" min="1" value="1" required>
-        <label>تصاویر صفحات فصل (چند تصویر انتخاب کن)</label>
-        <input id="chapterImages" type="file" accept="image/*" multiple required>
-        <p class="muted small">تصاویر به ترتیب انتخاب‌شده آپلود می‌شوند. برای فصل‌های طولانی، اینترنت پایدار و فضای کافی لازم است.</p>
-        <button type="submit">ایجاد فصل و آپلود صفحات</button>
-      </form>
+      <p>برای ذخیره واقعی آثار و مدیریت امن، اتصال Supabase و مجوز مدیر باید تنظیم شده باشد.</p>
+      <input id="bookTitle" placeholder="نام مانهوا">
+      <input id="bookSummary" placeholder="خلاصه داستان">
+      <input id="bookGenre" placeholder="ژانر">
+      <label>تصویر جلد:</label>
+      <input id="bookCover" type="file" accept="image/*">
+      <button onclick="addLocalBook()">پیش‌نمایش مانهوا</button>
+      <p id="adminStatus"></p>
     </div>
-
-    <div class="panel">
-      <h2>مدیریت مانهواهای من</h2>
-      <div id="adminList"></div>
-    </div>
-  </section>
-
-  <section id="detail" class="hidden">
-    <button class="secondary" onclick="showPage('library')">← بازگشت به کتابخانه</button>
-    <div id="detailContent"></div>
-  </section>
+  </div>
 
   <section id="reader" class="hidden">
-    <button class="secondary" onclick="showPage('detail')">← بازگشت به مانهوا</button>
-    <div id="readerContent"></div>
+    <h2 id="readerTitle"></h2>
+    <div id="readerPages"></div>
+    <button onclick="showPage('library')">بازگشت به کتابخانه</button>
   </section>
+
+  <p id="status"></p>
 </main>
 
-<footer>❄ مانهوا لند · داستان‌هایت را زندگی کن ❄</footer>
-<div id="toast"></div>
+<footer>© 2026 مانهوا لند | ساخته‌شده با ❄️</footer>
 
-<!-- کتابخانه رسمی Supabase -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* =====================================================
-   تنظیمات اتصال:
-   آدرس پروژه و کلید عمومی anon یا publishable خودت را بگذار.
-   هرگز service_role یا secret key را اینجا قرار نده.
-   ===================================================== */
-const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
-const SUPABASE_KEY = "YOUR_SUPABASE_PUBLIC_ANON_OR_PUBLISHABLE_KEY";
-const BUCKET = "MANHWA-PAGES";
-
-let db = null;
+const pages = ['home', 'library', 'profile', 'login', 'admin', 'reader'];
+let books = [];
 let currentUser = null;
-let currentProfile = null;
-let manhwas = [];
-let chapters = [];
-let currentManhwa = null;
-let currentChapter = null;
-let busy = false;
 
-const $ = id => document.getElementById(id);
-const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
-  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-}[ch]));
-const isAdmin = () => currentProfile?.role === "admin";
-
-function toast(message, isError=false){
-  const el=$("toast");
-  el.textContent=message;
-  el.style.display="block";
-  el.style.borderColor=isError?"#ff8e9b":"#9de4ff";
-  setTimeout(()=>{el.style.display="none"},4500);
+function enterSite() {
+  document.getElementById('welcome').classList.add('hidden');
+  showPage('home');
 }
-function setBusy(value){
-  busy=value;
-  document.querySelectorAll("button").forEach(b=>{
-    if(b.dataset.ignoreBusy!=="1") b.disabled=value;
+
+function showPage(page) {
+  pages.forEach(id => {
+    document.getElementById(id).classList.toggle('hidden', id !== page);
   });
-}
-function enterSite(){
-  $("welcome").classList.add("hidden");
-  showPage("home");
-}
-function showPage(name){
-  ["home","library","account","profile","admin","detail","reader"].forEach(id=>{
-    $(id).classList.toggle("hidden",id!==name);
-  });
-  if(name==="admin" && !isAdmin()){
-    toast("این بخش مخصوص مدیر است.",true);
-    name="home";
-    $("admin").classList.add("hidden");
-    $("home").classList.remove("hidden");
-  }
-  if(name==="profile") renderProfile();
-  if(name==="admin" && isAdmin()) renderAdmin();
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function makeSnow(){
-  const layer=$("snowLayer");
-  for(let i=0;i<30;i++){
-    const s=document.createElement("span");
-    s.className="snow";
-    s.textContent="❄";
-    s.style.left=Math.random()*100+"%";
-    s.style.animationDuration=(5+Math.random()*8)+"s";
-    s.style.animationDelay=(-Math.random()*10)+"s";
-    s.style.fontSize=(9+Math.random()*14)+"px";
-    layer.appendChild(s);
-  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (page === 'library' || page === 'home') renderBooks();
 }
 
-async function init(){
-  makeSnow();
-  if(!window.supabase){
-    toast("کتابخانه اتصال بارگذاری نشد. اینترنت را بررسی کن.",true);
+function renderBooks() {
+  const html = books.map((b, i) => `
+    <div class="card">
+      ${b.cover ? `<img src="${b.cover}" alt="جلد مانهوا">` : ''}
+      <h3>${escapeHtml(b.title)}</h3>
+      <p>${escapeHtml(b.summary)}</p>
+      <p>${escapeHtml(b.genre)}</p>
+      <button onclick="openBook(${i})">مشاهده</button>
+    </div>`).join('');
+  document.getElementById('homeBooks').innerHTML = html || '<p>هنوز مانهوا‌ای اضافه نشده است.</p>';
+  document.getElementById('libraryBooks').innerHTML = html || '<p>کتابخانه فعلاً خالی است.</p>';
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+  }[c]));
+}
+
+function searchTitles() {
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  const filtered = books.filter(b => b.title.toLowerCase().includes(q));
+  document.getElementById('homeBooks').innerHTML = filtered.map((b, i) => `
+    <div class="card">
+      ${b.cover ? `<img src="${b.cover}" alt="جلد">` : ''}
+      <h3>${escapeHtml(b.title)}</h3><p>${escapeHtml(b.summary)}</p>
+    </div>`).join('') || '<p>نتیجه‌ای پیدا نشد.</p>';
+}
+
+function addLocalBook() {
+  const title = document.getElementById('bookTitle').value.trim();
+  const summary = document.getElementById('bookSummary').value.trim();
+  const genre = document.getElementById('bookGenre').value.trim();
+  const file = document.getElementById('bookCover').files[0];
+
+  if (!title) {
+    document.getElementById('adminStatus').textContent = 'اول نام مانهوا را بنویس.';
     return;
   }
-  if(SUPABASE_URL.startsWith("YOUR_") || SUPABASE_KEY.startsWith("YOUR_")){
-    toast("ابتدا آدرس و کلید عمومی Supabase را در کد وارد کن.",true);
-    renderLibrary();
+  const save = cover => {
+    books.push({ title, summary, genre, cover });
+    renderBooks();
+    document.getElementById('adminStatus').textContent =
+      'پیش‌نمایش اضافه شد؛ هنوز در سرور ذخیره نشده است.';
+  };
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = e => save(e.target.result);
+    reader.readAsDataURL(file);
+  } else save('');
+}
+
+function openBook(index) {
+  const b = books[index];
+  if (!b) return;
+  document.getElementById('readerTitle').textContent = b.title;
+  document.getElementById('readerPages').innerHTML =
+    `<div class="panel"><p>${escapeHtml(b.summary)}</p><p>فصل یا صفحه‌ای هنوز اضافه نشده است.</p></div>`;
+  showPage('reader');
+}
+
+function register() {
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const name = document.getElementById('displayName').value.trim() || 'مانهوا دوست';
+  if (!email || password.length < 6) {
+    document.getElementById('authStatus').textContent =
+      'ایمیل را وارد کن؛ رمز عبور باید حداقل ۶ حرف باشد.';
     return;
   }
-  try{
-    db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-    const {data:{session},error}=await db.auth.getSession();
-    if(error) throw error;
-    if(session) await loadUser(session.user);
-    db.auth.onAuthStateChange((_event,session)=>{
-      setTimeout(async()=>{
-        if(session) await loadUser(session.user);
-        else{
-          currentUser=null;currentProfile=null;
-          updateNav();renderProfile();
-        }
-      },0);
-    });
-    await loadData();
-  }catch(e){console.error(e);toast("خطا در اتصال: "+e.message,true)}
+  currentUser = { email, name };
+  document.getElementById('profileName').textContent = name;
+  document.getElementById('authStatus').textContent =
+    'این نسخه نمایشی است؛ برای حساب واقعی باید Supabase وصل شود.';
 }
-async function loadUser(user){
-  currentUser=user;
-  try{
-    let {data:profile,error}=await db.from("profiles")
-      .select("*").eq("id",user.id).maybeSingle();
-    if(error) throw error;
-    if(!profile){
-      const {data,error:insertError}=await db.from("profiles")
-        .insert({id:user.id,display_name:"مانهوا دوست",role:"user"})
-        .select().single();
-      if(insertError) throw insertError;
-      profile=data;
-    }
-    currentProfile=profile;
-  }catch(e){
-    console.error(e);
-    currentProfile=null;
-    toast("پروفایل بارگذاری نشد. جدول profiles و مجوزهای آن را بررسی کن.",true);
-  }
-  updateNav();
-  renderProfile();
-}
-function updateNav(){
-  $("adminNav").classList.toggle("hidden",!isAdmin());
-  $("accountNav").textContent=currentUser?"خروج از حساب":"ورود / ثبت‌نام";
-  $("accountNav").onclick=currentUser?signOut:()=>showPage("account");
-}
-async function signUp(){
-  if(!db)return toast("ابتدا اتصال Supabase را تنظیم کن.",true);
-  const email=$("email").value.trim(),password=$("password").value;
-  if(!email||password.length<6)return toast("ایمیل را وارد کن و رمز حداقل ۶ حرفی بگذار.",true);
-  try{
-    const {data,error}=await db.auth.signUp({email,password});
-    if(error)throw error;
-    if(data.session && data.user) await loadUser(data.user);
-    toast("ثبت‌نام انجام شد. اگر تأیید ایمیل فعال است، ایمیلت را بررسی کن.");
-  }catch(e){toast(e.message,true)}
-}
-async function signIn(){
-  if(!db)return toast("ابتدا اتصال Supabase را تنظیم کن.",true);
-  try{
-    const {data,error}=await db.auth.signInWithPassword({
-      email:$("email").value.trim(),password:$("password").value
-    });
-    if(error)throw error;
-    await loadUser(data.user);
-    await loadData();
-    showPage("home");
-    toast("خوش اومدی!");
-  }catch(e){toast(e.message,true)}
-}
-async function googleSignIn(){
-  if(!db)return toast("ابتدا اتصال Supabase را تنظیم کن.",true);
-  const {error}=await db.auth.signInWithOAuth({
-    provider:"google",
-    options:{redirectTo:location.origin+location.pathname}
-  });
-  if(error)toast(error.message,true);
-}
-async function signOut(){
-  if(!db)return;
-  const {error}=await db.auth.signOut();
-  if(error)return toast(error.message,true);
-  currentUser=null;currentProfile=null;
-  updateNav();renderProfile();showPage("home");toast("از حساب خارج شدی.");
-}
-function renderProfile(){
-  const el=$("profileContent");
-  if(!currentUser){
-    el.innerHTML='<p>برای دیدن پروفایل، ابتدا وارد حساب شو.</p><button onclick="showPage(\\'account\\')">ورود / ثبت‌نام</button>';
+
+function login() {
+  if (!document.getElementById('email').value.trim() ||
+      !document.getElementById('password').value) {
+    document.getElementById('authStatus').textContent = 'ایمیل و رمز عبور را وارد کن.';
     return;
   }
-  const name=escapeHTML(currentProfile?.display_name||"مانهوا دوست");
-  el.innerHTML=`
-    <p class="muted">نام نمایشی</p>
-    <h2>${name}</h2>
-    <p>ایمیل: ${escapeHTML(currentUser.email)}</p>
-    <p>نقش: ${isAdmin()?"مدیر":"کاربر"}</p>
-    <label>تغییر نام نمایشی</label>
-    <input id="displayNameInput" maxlength="60" value="${name}">
-    <button onclick="saveProfile()">ذخیره پروفایل</button>
-    <button class="secondary" onclick="signOut()">خروج از حساب</button>
-  `;
-}
-async function saveProfile(){
-  if(!db||!currentUser)return;
-  const name=$("displayNameInput").value.trim();
-  if(!name)return toast("نام را وارد کن.",true);
-  try{
-    const {error}=await db.from("profiles")
-      .update({display_name:name}).eq("id",currentUser.id);
-    if(error)throw error;
-    currentProfile.display_name=name;
-    renderProfile();toast("پروفایل ذخیره شد.");
-  }catch(e){toast(e.message,true)}
+  document.getElementById('authStatus').textContent =
+    'ورود واقعی هنوز به Supabase متصل نشده است.';
 }
 
-async function loadData(){
-  if(!db){renderLibrary();return}
-  try{
-    let q=db.from("manhwas").select("*").order("created_at",{ascending:false});
-    if(!isAdmin())q=q.eq("published",true);
-    const {data,error}=await q;
-    if(error)throw error;
-    manhwas=data||[];
-    const {data:cs,error:ce}=await db.from("chapters")
-      .select("*").order("chapter_number",{ascending:true});
-    if(ce)throw ce;
-    chapters=cs||[];
-    renderLibrary();
-    renderHome();
-    if(isAdmin())renderAdmin();
-  }catch(e){
-    console.error(e);
-    toast("دریافت کتابخانه ناموفق بود. جداول و مجوزهای Supabase را بررسی کن.",true);
-  }
+function logout() {
+  currentUser = null;
+  document.getElementById('authStatus').textContent = 'از نسخه نمایشی خارج شدی.';
 }
-function coverURL(m){
-  if(m.cover_url)return m.cover_url;
-  if(m.cover_path && db){
-    return db.storage.from(BUCKET).getPublicUrl(m.cover_path).data.publicUrl;
-  }
-  return "";
+
+renderBooks();
+
+/* برف متحرک */
+const canvas = document.getElementById('snow');
+const ctx = canvas.getContext('2d');
+let flakes = [];
+function resizeSnow() {
+  canvas.width = window.innerWidth * devicePixelRatio;
+  canvas.height = window.innerHeight * devicePixelRatio;
+  canvas.style.width = window.innerWidth + 'px';
+  canvas.style.height = window.innerHeight + 'px';
+  ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  flakes = Array.from({ length: 100 }, () => ({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    r: Math.random() * 3 + 1,
+    speed: Math.random() * 1.5 + 0.5,
+    drift: Math.random() * 1 - 0.5
+  }));
 }
-function renderCards(list){
-  if(!list.length)return '<div class="notice">هنوز مانهوا‌ای منتشر نشده است. به‌زودی داستان‌ها اینجا قرار می‌گیرند ❄</div>';
-  return list.map(m=>`
-    <article class="card" onclick="openManhwa('${m.id}')">
-      ${coverURL(m)?`<img loading="lazy" src="${escapeHTML(coverURL(m))}" alt="جلد مانهوا">`:'<div style="height:210px;display:grid;place-items:center">❄</div>'}
-      <div class="inside">
-        <h3>${escapeHTML(m.title)}</h3>
-        <p class="muted small">${escapeHTML(m.genre||"فانتزی")}</p>
-      </div>
-    </article>`).join("");
-}
-function renderLibrary(){
-  const term=($("searchBox")?.value||"").trim().toLowerCase();
-  const list=manhwas.filter(m=>
-    String(m.title||"").toLowerCase().includes(term)||
-    String(m.genre||"").toLowerCase().includes(term)
-  );
-  $("libraryList").innerHTML=renderCards(list);
-}
-function renderHome(){
-  $("homeList").innerHTML=renderCards(manhwas.filter(m=>m.published).slice(0,6));
-}
-function openManhwa(id){
-  currentManhwa=manhwas.find(m=>m.id===id);
-  if(!currentManhwa)return toast("مانهوا پیدا نشد.",true);
-  const list=chapters.filter(c=>c.manhwa_id===id&& (isAdmin()||c.published));
-  $("detailContent").innerHTML=`
-    <div class="panel">
-      ${coverURL(currentManhwa)?`<img src="${escapeHTML(coverURL(currentManhwa))}" style="width:min(100%,300px);max-height:420px;object-fit:contain;display:block;margin:auto" alt="جلد">`:""}
-      <h1>${escapeHTML(currentManhwa.title)}</h1>
-      <p class="muted">${escapeHTML(currentManhwa.genre||"")}</p>
-      <p>${escapeHTML(currentManhwa.summary||"بدون خلاصه")}</p>
-    </div>
-    <h2>فصل‌ها</h2>
-    ${list.length?list.map(c=>`
-      <div class="panel row">
-        <div><b>${escapeHTML(c.title)}</b><p class="muted small">فصل ${c.chapter_number}</p></div>
-        <button onclick="openChapter('${c.id}')">خواندن فصل</button>
-      </div>`).join(""):'<div class="notice">هنوز فصلی منتشر نشده است.</div>'}
-  `;
-  showPage("detail");
-}
-async function openChapter(id){
-  currentChapter=chapters.find(c=>c.id===id);
-  if(!currentChapter)return toast("فصل پیدا نشد.",true);
-  showPage("reader");
-  $("readerContent").innerHTML='<div class="panel center">در حال بارگذاری صفحات...</div>';
-  try{
-    const {data,error}=await db.from("chapter_pages")
-      .select("*").eq("chapter_id",id).order("page_number",{ascending:true});
-    if(error)throw error;
-    if(!data?.length){
-      $("readerContent").innerHTML='<div class="notice">صفحه‌ای برای این فصل ثبت نشده است.</div>';
-      return;
+function snowFrame() {
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  ctx.fillStyle = 'rgba(235,248,255,0.85)';
+  flakes.forEach(f => {
+    ctx.beginPath();
+    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+    ctx.fill();
+    f.y += f.speed;
+    f.x += f.drift;
+    if (f.y > window.innerHeight + 5) {
+      f.y = -5;
+      f.x = Math.random() * window.innerWidth;
     }
-    const pages=data.map(p=>{
-      const url=p.image_url || db.storage.from(BUCKET).getPublicUrl(p.image_path).data.publicUrl;
-      return `<img class="reader-page" loading="lazy" src="${escapeHTML(url)}" alt="صفحه ${p.page_number}">`;
-    }).join("");
-    $("readerContent").innerHTML=`
-      <h1 class="center">${escapeHTML(currentChapter.title)}</h1>
-      <div class="reader-frame">${pages}</div>
-      <div class="panel">
-        <h2>نظرات این فصل</h2>
-        <div id="comments"></div>
-        <div id="commentForm"></div>
-      </div>`;
-    await loadComments(id);
-  }catch(e){console.error(e);$("readerContent").innerHTML='<div class="notice error">خطا در بارگذاری صفحات. ساختار chapter_pages و دسترسی تصاویر را بررسی کن.</div>'}
-}
-async function loadComments(chapterId){
-  try{
-    const {data,error}=await db.from("comments")
-      .select("id,body,created_at,user_id,profiles(display_name)")
-      .eq("chapter_id",chapterId).order("created_at",{ascending:false});
-    if(error)throw error;
-    $("comments").innerHTML=(data||[]).map(c=>`
-      <div class="notice">
-        <b>${escapeHTML(c.profiles?.display_name||"مانهوا دوست")}</b>
-        <p>${escapeHTML(c.body)}</p>
-        ${currentUser&&currentUser.id===c.user_id?`<button class="danger" onclick="deleteComment('${c.id}')">حذف نظر من</button>`:""}
-      </div>`).join("")||'<p class="muted">هنوز نظری ثبت نشده.</p>';
-    $("commentForm").innerHTML=currentUser?`
-      <label>نظر تو</label><textarea id="commentBody" maxlength="2000" placeholder="نظرت را بنویس..."></textarea>
-      <button onclick="addComment('${chapterId}')">ثبت نظر</button>`:
-      '<p>برای ثبت نظر باید وارد حساب شوی.</p><button onclick="showPage(\\'account\\')">ورود</button>';
-  }catch(e){console.error(e);$("comments").textContent="بارگذاری نظرات ناموفق بود."}
-}
-async function addComment(chapterId){
-  if(!currentUser)return toast("اول وارد حساب شو.",true);
-  const body=$("commentBody").value.trim();
-  if(!body)return toast("متن نظر را وارد کن.",true);
-  try{
-    const {error}=await db.from("comments").insert({
-      chapter_id:chapterId,user_id:currentUser.id,body
-    });
-    if(error)throw error;
-    await loadComments(chapterId);toast("نظرت ثبت شد.");
-  }catch(e){toast(e.message,true)}
-}
-async function deleteComment(id){
-  if(!confirm("این نظر حذف شود؟"))return;
-  const {error}=await db.from("comments").delete().eq("id",id).eq("user_id",currentUser.id);
-  if(error)return toast(error.message,true);
-  await loadComments(currentChapter.id);toast("نظر حذف شد.");
-}
-
-async function uploadImage(file,path){
-  if(!file.type.startsWith("image/"))throw new Error("فقط فایل تصویر مجاز است.");
-  if(file.size>15*1024*1024)throw new Error("حجم هر تصویر باید کمتر از ۱۵ مگابایت باشد.");
-  const {data,error}=await db.storage.from(BUCKET).upload(path,file,{
-    cacheControl:"3600",upsert:false,contentType:file.type
+    if (f.x > window.innerWidth) f.x = 0;
+    if (f.x < 0) f.x = window.innerWidth;
   });
-  if(error)throw error;
-  return data.path;
+  requestAnimationFrame(snowFrame);
 }
-$("manhwaForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  if(!isAdmin())return toast("دسترسی مدیر لازم است.",true);
-  if(busy)return;
-  setBusy(true);
-  let uploadedPath=null;
-  try{
-    const file=$("mCover").files[0];
-    if(!file)throw new Error("جلد مانهوا را انتخاب کن.");
-    const id=crypto.randomUUID();
-    uploadedPath=await uploadImage(file,`covers/${id}-${file.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`);
-    const {error}=await db.from("manhwas").insert({
-      id,title:$("mTitle").value.trim(),summary:$("mSummary").value.trim(),
-      genre:$("mGenre").value.trim(),cover_path:uploadedPath,
-      published:$("mPublished").value==="true",created_by:currentUser.id
-    });
-    if(error)throw error;
-    $("manhwaForm").reset();
-    await loadData();toast("مانهوا ساخته شد.");
-  }catch(e){
-    console.error(e);toast("خطا: "+e.message,true);
-  }finally{setBusy(false)}
-});
-$("chapterForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  if(!isAdmin())return toast("دسترسی مدیر لازم است.",true);
-  if(busy)return;
-  const files=Array.from($("chapterImages").files);
-  if(!files.length)return toast("تصاویر فصل را انتخاب کن.",true);
-  if(files.length>250)return toast("در هر بار حداکثر ۲۵۰ تصویر انتخاب کن.",true);
-  setBusy(true);
-  const paths=[];
-  let chapterId=null;
-  try{
-    const manhwaId=$("chapterManhwa").value;
-    const number=Number($("chapterNumber").value);
-    const {data:chapter,error}=await db.from("chapters").insert({
-      manhwa_id:manhwaId,title:$("chapterTitle").value.trim(),
-      chapter_number:number,published:true,created_by:currentUser.id
-    }).select().single();
-    if(error)throw error;
-    chapterId=chapter.id;
-    for(let i=0;i<files.length;i++){
-      const f=files[i];
-      const path=await uploadImage(f,`chapters/${chapterId}/${String(i+1).padStart(4,"0")}-${f.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`);
-      paths.push({chapter_id:chapterId,page_number:i+1,image_path:path});
-    }
-    const {error:pageError}=await db.from("chapter_pages").insert(paths);
-    if(pageError)throw pageError;
-    $("chapterForm").reset();
-    await loadData();toast("فصل و "+files.length+" صفحه با موفقیت ثبت شدند.");
-  }catch(e){
-    console.error(e);
-    toast("آپلود کامل نشد: "+e.message+". ممکن است فصل ایجاد شده باشد اما بخشی از تصاویر هنوز ثبت نشده باشند.",true);
-  }finally{setBusy(false)}
-});
-async function renderAdmin(){
-  if(!isAdmin())return;
-  $("chapterManhwa").innerHTML=manhwas.map(m=>
-    `<option value="${m.id}">${escapeHTML(m.title)}</option>`).join("");
-  $("adminList").innerHTML=manhwas.map(m=>`
-    <div class="notice">
-      <b>${escapeHTML(m.title)}</b>
-      <p class="small">${m.published?"منتشرشده":"پیش‌نویس"}</p>
-      <div class="row">
-        <button class="secondary" onclick="togglePublished('${m.id}',${!m.published})">${m.published?"پیش‌نویس کردن":"انتشار"}</button>
-        <button class="danger" onclick="deleteManhwa('${m.id}')">حذف مانهوا</button>
-      </div>
-    </div>`).join("")||"هنوز مانهوا‌ای نساخته‌ای.";
-}
-async function togglePublished(id,value){
-  if(!isAdmin())return;
-  const {error}=await db.from("manhwas").update({published:value}).eq("id",id);
-  if(error)return toast(error.message,true);
-  await loadData();toast("وضعیت انتشار تغییر کرد.");
-}
-async function deleteManhwa(id){
-  if(!isAdmin())return;
-  if(!confirm("مانهوا و فصل‌های آن حذف شوند؟"))return;
-  const {error}=await db.from("manhwas").delete().eq("id",id);
-  if(error)return toast("حذف انجام نشد: "+error.message,true);
-  await loadData();toast("مانهوا حذف شد.");
-}
-
-init();
+window.addEventListener('resize', resizeSnow);
+resizeSnow();
+snowFrame();
 </script>
 </body>
 </html>
+```
