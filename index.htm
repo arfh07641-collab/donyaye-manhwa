@@ -244,12 +244,15 @@ footer {
 
 <body>
 
+<!-- صفحه آغازین هانا -->
 <div id="intro">
   <div id="snowContainer"></div>
   <div class="intro-content">
-    <img src="./Winter%20Princess%20at%20the%20Ice%20Castle.png"
-         alt="هانا، شاهزاده زمستان"
-         onerror="this.style.display='none'">
+    <img
+      src="./Winter%20Princess%20at%20the%20Ice%20Castle.png"
+      alt="هانا، شاهزاده زمستان"
+      onerror="this.style.display='none'"
+    >
     <h1>به مانهوا لند خوش اومدید!</h1>
     <p>دنیایی از داستان‌ها، قصرها و ماجراجویی‌ها</p>
     <button class="btn primary" onclick="enterSite()">❄ ورود به قصر ❄</button>
@@ -268,6 +271,7 @@ footer {
 </header>
 
 <main class="container">
+
   <section id="home">
     <div class="hero">
       <div>
@@ -277,12 +281,15 @@ footer {
         <button class="btn primary" onclick="showSection('library')">رفتن به کتابخانه</button>
       </div>
       <div>
-        <img class="hero-image"
-             src="./Winter%20Princess%20at%20the%20Ice%20Castle.png"
-             alt="هانا"
-             onerror="this.style.display='none'">
+        <img
+          class="hero-image"
+          src="./Winter%20Princess%20at%20the%20Ice%20Castle.png"
+          alt="هانا"
+          onerror="this.style.display='none'"
+        >
       </div>
     </div>
+
     <div class="section-title">
       <h2>تازه‌های کتابخانه</h2>
       <button class="btn" onclick="showSection('library')">همه مانهواها</button>
@@ -294,8 +301,8 @@ footer {
     <h1>کتابخانه مانهوا</h1>
     <p class="muted">مانهوا مورد نظرت رو جست‌وجو کن.</p>
     <input id="searchInput" type="search"
-           placeholder="جست‌وجوی نام مانهوا..."
-           oninput="renderBooks()">
+      placeholder="جست‌وجوی نام مانهوا..."
+      oninput="renderBooks()">
     <div id="libraryBooks" class="grid"></div>
     <div id="libraryStatus" class="status"></div>
   </section>
@@ -303,11 +310,16 @@ footer {
   <section id="admin" class="hidden">
     <h1>پنل مدیریت</h1>
     <p class="muted">برای افزودن مانهوا و فصل‌ها وارد پنل شو.</p>
+
     <div id="adminLogin" class="panel">
       <h2>ورود مدیر</h2>
-      <label for="adminPassword">رمز مدیریت</label>
-      <input id="adminPassword" type="password" placeholder="رمز مدیریت را وارد کن">
-      <button class="btn primary" onclick="adminLogin()">ورود</button>
+      <label for="adminEmail">ایمیل حساب مدیر در Supabase</label>
+      <input id="adminEmail" type="email" autocomplete="username" placeholder="ایمیل حساب مدیر" required>
+      <label for="accountPassword">رمز حساب Supabase</label>
+      <input id="accountPassword" type="password" autocomplete="current-password" placeholder="رمز حساب Supabase" required>
+      <label for="adminPassword">رمز مدیریت سایت</label>
+      <input id="adminPassword" type="password" autocomplete="off" placeholder="رمز مدیریت سایت را وارد کن">
+      <button class="btn primary" id="loginButton" onclick="adminLogin()">ورود امن به مدیریت</button>
       <div id="loginStatus" class="status"></div>
     </div>
 
@@ -317,29 +329,39 @@ footer {
           <h2>افزودن مانهوا</h2>
           <button class="btn danger" onclick="adminLogout()">خروج از مدیریت</button>
         </div>
+
         <label for="manhwaTitle">نام مانهوا</label>
         <input id="manhwaTitle" placeholder="نام مانهوا">
+
         <label for="manhwaSummary">خلاصه داستان</label>
         <textarea id="manhwaSummary" placeholder="خلاصه داستان مانهوا..."></textarea>
+
         <label for="manhwaGenre">ژانر</label>
         <input id="manhwaGenre" placeholder="فانتزی، عاشقانه، درام...">
+
         <label for="manhwaCover">تصویر جلد</label>
         <input id="manhwaCover" type="file" accept="image/*">
+
         <button class="btn primary" id="addManhwaBtn" onclick="addManhwa()">انتشار مانهوا</button>
         <div id="manhwaStatus" class="status"></div>
       </div>
-
-      <div class="panel">
+          <div class="panel">
         <h2>افزودن فصل</h2>
+
         <label for="chapterManhwa">انتخاب مانهوا</label>
         <select id="chapterManhwa"></select>
+
         <label for="chapterTitle">عنوان فصل</label>
         <input id="chapterTitle" placeholder="عنوان فصل">
+
         <label for="chapterNumber">شماره فصل</label>
         <input id="chapterNumber" type="number" min="1" value="1">
+
         <label for="chapterImages">تصاویر صفحات فصل</label>
         <input id="chapterImages" type="file" accept="image/*" multiple>
+
         <p class="muted small">تصاویر را به ترتیب انتخاب کن. برای فصل‌های بسیار بزرگ، بارگذاری را در چند نوبت انجام بده.</p>
+
         <button class="btn primary" id="addChapterBtn" onclick="addChapter()">بارگذاری و انتشار فصل</button>
         <div id="chapterStatus" class="status"></div>
       </div>
@@ -366,6 +388,7 @@ footer {
     <div id="readerStatus" class="status"></div>
     <div id="readerPages"></div>
   </section>
+
 </main>
 
 <footer>
@@ -378,16 +401,24 @@ footer {
 <div id="toast" class="hidden"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 const SUPABASE_URL = "https://hqyfzqbpodffbumsapdv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_CwpwboZko_55AEIi6RGe3A_Zo2JWy16";
 const STORAGE_BUCKET = "manhwa-pages";
+
+/*
+این رمز فقط پنل را در مرورگر باز می‌کند.
+برای امنیت واقعی باید مجوزهای Supabase و RLS تنظیم شوند.
+*/
 const ADMIN_PASSWORD = "۱۳۹۲۱۳۹۲۱۲";
 
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let allManhwas = [];
 let currentManhwaId = null;
+let currentManhwa = null;
+let currentChapter = null;
 let isAdmin = false;
 
 function $(id) {
@@ -399,7 +430,7 @@ function escapeHTML(value) {
     "&":"&amp;",
     "<":"&lt;",
     ">":"&gt;",
-    '"':"&quot;",
+        '"':"&quot;",
     "'":"&#39;"
   }[ch]));
 }
@@ -423,7 +454,9 @@ function showSection(sectionId) {
   ["home","library","admin","details","reader"].forEach(id => {
     $(id).classList.toggle("hidden", id !== sectionId);
   });
+
   window.scrollTo({top:0,behavior:"smooth"});
+
   if (sectionId === "library" || sectionId === "home") loadManhwas();
   if (sectionId === "admin" && isAdmin) refreshAdmin();
 }
@@ -434,25 +467,53 @@ function enterSite() {
   loadManhwas();
 }
 
-function adminLogin() {
-  if ($("adminPassword").value === ADMIN_PASSWORD) {
+async function adminLogin() {
+  const email = $("adminEmail").value.trim();
+  const accountPassword = $("accountPassword").value;
+  const sitePassword = $("adminPassword").value;
+  const button = $("loginButton");
+
+  if (!email || !accountPassword || !sitePassword) {
+    return setStatus("loginStatus", "ایمیل، رمز حساب Supabase و رمز مدیریت سایت را وارد کن.", true);
+  }
+  if (sitePassword !== ADMIN_PASSWORD) {
+    return setStatus("loginStatus", "رمز مدیریت سایت درست نیست.", true);
+  }
+
+  button.disabled = true;
+  setStatus("loginStatus", "در حال بررسی ورود به حساب Supabase...");
+  try {
+    const { data, error } = await db.auth.signInWithPassword({ email, password: accountPassword });
+    if (error) throw error;
+    if (!data?.session || !data?.user) throw new Error("ورود انجام نشد. دوباره بررسی کن.");
+
     isAdmin = true;
     $("adminLogin").classList.add("hidden");
     $("adminPanel").classList.remove("hidden");
+    $("accountPassword").value = "";
     $("adminPassword").value = "";
-    setStatus("loginStatus","");
-    refreshAdmin();
-    notify("وارد پنل مدیریت شدی.");
-  } else {
-    setStatus("loginStatus","رمز واردشده درست نیست.",true);
+    setStatus("loginStatus", "");
+    await refreshAdmin();
+    notify("ورود به حساب انجام شد.");
+  } catch (error) {
+    setStatus("loginStatus", "ورود ناموفق بود: " + errorMessage(error), true);
+  } finally {
+    button.disabled = false;
   }
 }
 
-function adminLogout() {
+async function adminLogout() {
+  try {
+    await db.auth.signOut();
+  } catch (error) {
+    console.error(error);
+  }
   isAdmin = false;
   $("adminPanel").classList.add("hidden");
   $("adminLogin").classList.remove("hidden");
-  notify("از پنل مدیریت خارج شدی.");
+  $("accountPassword").value = "";
+  $("adminPassword").value = "";
+  notify("از مدیریت خارج شدی.");
 }
 
 function errorMessage(error) {
@@ -561,8 +622,8 @@ async function addManhwa() {
   if (!title) return setStatus("manhwaStatus","نام مانهوا را وارد کن.",true);
 
   button.disabled = true;
-  setStatus("manhwaStatus","در حال انتشار مانهوا...");
 
+  setStatus("manhwaStatus","در حال انتشار مانهوا...");
   try {
     let coverUrl = "";
     if (file) {
@@ -592,8 +653,7 @@ async function addManhwa() {
     button.disabled = false;
   }
 }
-
-async function addChapter() {
+  async function addChapter() {
   if (!isAdmin) return notify("ابتدا وارد مدیریت شو.");
 
   const manhwaId = $("chapterManhwa").value;
@@ -646,15 +706,16 @@ async function addChapter() {
 
 async function openManhwa(id) {
   currentManhwaId = id;
+  currentManhwa = allManhwas.find(book => String(book.id) === String(id)) || null;
   showSection("details");
   $("manhwaDetails").innerHTML = '<div class="empty">در حال بارگذاری اطلاعات...</div>';
   $("chapterList").innerHTML = "";
   setStatus("detailsStatus", "");
 
   try {
-    const { data: book, error } = await db
-      .from("manhwas").select("*").eq("id", id).single();
+    const { data: book, error } = await db.from("manhwas").select("*").eq("id", id).single();
     if (error) throw error;
+    currentManhwa = book;
 
     $("manhwaDetails").innerHTML = `
       ${book.cover_url ? `<img src="${escapeHTML(book.cover_url)}" alt="${escapeHTML(book.title)}" style="width:min(100%,260px);border-radius:14px;display:block;margin:auto">` : ""}
@@ -683,6 +744,7 @@ async function openManhwa(id) {
 }
 
 async function readChapter(chapterId) {
+  currentChapter = chapterId;
   showSection("reader");
   $("readerTitle").textContent = "در حال بارگذاری فصل...";
   $("readerPages").innerHTML = "";
@@ -690,7 +752,10 @@ async function readChapter(chapterId) {
 
   try {
     const { data: chapter, error: chapterError } = await db
-      .from("chapters").select("*").eq("id", chapterId).single();
+      .from("chapters")
+      .select("*")
+      .eq("id", chapterId)
+      .single();
     if (chapterError) throw chapterError;
 
     $("readerTitle").textContent = chapter.title || ("فصل " + chapter.chapter_number);
@@ -705,7 +770,6 @@ async function readChapter(chapterId) {
     $("readerPages").innerHTML = (pages || []).map(page =>
       `<img src="${escapeHTML(page.image_url)}" alt="صفحه ${escapeHTML(page.page_number)}" loading="lazy">`
     ).join("") || '<div class="empty">تصویری برای این فصل ثبت نشده است.</div>';
-
     setStatus("readerStatus", "");
   } catch (error) {
     setStatus("readerStatus", "خطا در دریافت فصل: " + errorMessage(error), true);
@@ -720,7 +784,6 @@ function backToDetails() {
 function createSnow() {
   const container = $("snowContainer");
   if (!container) return;
-
   for (let i = 0; i < 35; i++) {
     const flake = document.createElement("span");
     flake.className = "snow";
@@ -733,9 +796,14 @@ function createSnow() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   createSnow();
   loadManhwas();
+  // اگر از قبل وارد حساب Supabase شده باشی، ایمیل نمایش داده می‌شود.
+  const { data } = await db.auth.getSession();
+  if (data?.session) {
+    $("adminEmail").value = data.session.user.email || "";
+  }
 });
 </script>
 </body>
