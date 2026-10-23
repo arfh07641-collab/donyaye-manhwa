@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -243,15 +244,12 @@ footer {
 
 <body>
 
-<!-- صفحه آغازین هانا -->
 <div id="intro">
   <div id="snowContainer"></div>
   <div class="intro-content">
-    <img
-      src="./Winter%20Princess%20at%20the%20Ice%20Castle.png"
-      alt="هانا، شاهزاده زمستان"
-      onerror="this.style.display='none'"
-    >
+    <img src="./Winter%20Princess%20at%20the%20Ice%20Castle.png"
+         alt="هانا، شاهزاده زمستان"
+         onerror="this.style.display='none'">
     <h1>به مانهوا لند خوش اومدید!</h1>
     <p>دنیایی از داستان‌ها، قصرها و ماجراجویی‌ها</p>
     <button class="btn primary" onclick="enterSite()">❄ ورود به قصر ❄</button>
@@ -270,7 +268,6 @@ footer {
 </header>
 
 <main class="container">
-
   <section id="home">
     <div class="hero">
       <div>
@@ -280,15 +277,12 @@ footer {
         <button class="btn primary" onclick="showSection('library')">رفتن به کتابخانه</button>
       </div>
       <div>
-        <img
-          class="hero-image"
-          src="./Winter%20Princess%20at%20the%20Ice%20Castle.png"
-          alt="هانا"
-          onerror="this.style.display='none'"
-        >
+        <img class="hero-image"
+             src="./Winter%20Princess%20at%20the%20Ice%20Castle.png"
+             alt="هانا"
+             onerror="this.style.display='none'">
       </div>
     </div>
-
     <div class="section-title">
       <h2>تازه‌های کتابخانه</h2>
       <button class="btn" onclick="showSection('library')">همه مانهواها</button>
@@ -300,8 +294,8 @@ footer {
     <h1>کتابخانه مانهوا</h1>
     <p class="muted">مانهوا مورد نظرت رو جست‌وجو کن.</p>
     <input id="searchInput" type="search"
-      placeholder="جست‌وجوی نام مانهوا..."
-      oninput="renderBooks()">
+           placeholder="جست‌وجوی نام مانهوا..."
+           oninput="renderBooks()">
     <div id="libraryBooks" class="grid"></div>
     <div id="libraryStatus" class="status"></div>
   </section>
@@ -309,7 +303,6 @@ footer {
   <section id="admin" class="hidden">
     <h1>پنل مدیریت</h1>
     <p class="muted">برای افزودن مانهوا و فصل‌ها وارد پنل شو.</p>
-
     <div id="adminLogin" class="panel">
       <h2>ورود مدیر</h2>
       <label for="adminPassword">رمز مدیریت</label>
@@ -324,40 +317,29 @@ footer {
           <h2>افزودن مانهوا</h2>
           <button class="btn danger" onclick="adminLogout()">خروج از مدیریت</button>
         </div>
-
         <label for="manhwaTitle">نام مانهوا</label>
         <input id="manhwaTitle" placeholder="نام مانهوا">
-
         <label for="manhwaSummary">خلاصه داستان</label>
         <textarea id="manhwaSummary" placeholder="خلاصه داستان مانهوا..."></textarea>
-
         <label for="manhwaGenre">ژانر</label>
         <input id="manhwaGenre" placeholder="فانتزی، عاشقانه، درام...">
-
         <label for="manhwaCover">تصویر جلد</label>
         <input id="manhwaCover" type="file" accept="image/*">
-
         <button class="btn primary" id="addManhwaBtn" onclick="addManhwa()">انتشار مانهوا</button>
         <div id="manhwaStatus" class="status"></div>
       </div>
 
       <div class="panel">
         <h2>افزودن فصل</h2>
-
         <label for="chapterManhwa">انتخاب مانهوا</label>
         <select id="chapterManhwa"></select>
-
         <label for="chapterTitle">عنوان فصل</label>
         <input id="chapterTitle" placeholder="عنوان فصل">
-
         <label for="chapterNumber">شماره فصل</label>
         <input id="chapterNumber" type="number" min="1" value="1">
-
         <label for="chapterImages">تصاویر صفحات فصل</label>
         <input id="chapterImages" type="file" accept="image/*" multiple>
-
         <p class="muted small">تصاویر را به ترتیب انتخاب کن. برای فصل‌های بسیار بزرگ، بارگذاری را در چند نوبت انجام بده.</p>
-
         <button class="btn primary" id="addChapterBtn" onclick="addChapter()">بارگذاری و انتشار فصل</button>
         <div id="chapterStatus" class="status"></div>
       </div>
@@ -384,7 +366,6 @@ footer {
     <div id="readerStatus" class="status"></div>
     <div id="readerPages"></div>
   </section>
-
 </main>
 
 <footer>
@@ -397,24 +378,16 @@ footer {
 <div id="toast" class="hidden"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
 const SUPABASE_URL = "https://hqyfzqbpodffbumsapdv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_CwpwboZko_55AEIi6RGe3A_Zo2JWy16";
 const STORAGE_BUCKET = "manhwa-pages";
-
-/*
-این رمز فقط پنل را در مرورگر باز می‌کند.
-برای امنیت واقعی باید مجوزهای Supabase و RLS تنظیم شوند.
-*/
 const ADMIN_PASSWORD = "۱۳۹۲۱۳۹۲۱۲";
 
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let allManhwas = [];
 let currentManhwaId = null;
-let currentManhwa = null;
-let currentChapter = null;
 let isAdmin = false;
 
 function $(id) {
@@ -450,9 +423,7 @@ function showSection(sectionId) {
   ["home","library","admin","details","reader"].forEach(id => {
     $(id).classList.toggle("hidden", id !== sectionId);
   });
-
   window.scrollTo({top:0,behavior:"smooth"});
-
   if (sectionId === "library" || sectionId === "home") loadManhwas();
   if (sectionId === "admin" && isAdmin) refreshAdmin();
 }
@@ -590,3 +561,182 @@ async function addManhwa() {
   if (!title) return setStatus("manhwaStatus","نام مانهوا را وارد کن.",true);
 
   button.disabled = true;
+  setStatus("manhwaStatus","در حال انتشار مانهوا...");
+
+  try {
+    let coverUrl = "";
+    if (file) {
+      const uploaded = await uploadImage(file, "covers");
+      coverUrl = uploaded.url;
+    }
+
+    const { error } = await db.from("manhwas").insert([{
+      title,
+      summary,
+      genre,
+      cover_url: coverUrl
+    }]);
+
+    if (error) throw error;
+
+    $("manhwaTitle").value = "";
+    $("manhwaSummary").value = "";
+    $("manhwaGenre").value = "";
+    $("manhwaCover").value = "";
+    setStatus("manhwaStatus", "مانهوا با موفقیت منتشر شد.");
+    await refreshAdmin();
+    notify("مانهوا منتشر شد.");
+  } catch (error) {
+    setStatus("manhwaStatus", "خطا در انتشار: " + errorMessage(error), true);
+  } finally {
+    button.disabled = false;
+  }
+}
+
+async function addChapter() {
+  if (!isAdmin) return notify("ابتدا وارد مدیریت شو.");
+
+  const manhwaId = $("chapterManhwa").value;
+  const title = $("chapterTitle").value.trim();
+  const number = Number($("chapterNumber").value);
+  const files = Array.from($("chapterImages").files || []);
+  const button = $("addChapterBtn");
+
+  if (!manhwaId) return setStatus("chapterStatus", "ابتدا یک مانهوا منتشر کن.", true);
+  if (!title) return setStatus("chapterStatus", "عنوان فصل را وارد کن.", true);
+  if (!Number.isInteger(number) || number < 1) {
+    return setStatus("chapterStatus", "شماره فصل باید عددی مثبت باشد.", true);
+  }
+  if (!files.length) return setStatus("chapterStatus", "تصاویر صفحات فصل را انتخاب کن.", true);
+
+  button.disabled = true;
+  setStatus("chapterStatus", "در حال ساخت فصل و بارگذاری تصاویر...");
+
+  try {
+    const { data: chapter, error: chapterError } = await db
+      .from("chapters")
+      .insert([{ manhwa_id: manhwaId, title, chapter_number: number }])
+      .select()
+      .single();
+
+    if (chapterError) throw chapterError;
+
+    for (let i = 0; i < files.length; i++) {
+      setStatus("chapterStatus", `در حال بارگذاری تصویر ${i + 1} از ${files.length}...`);
+      const uploaded = await uploadImage(files[i], `chapters/${chapter.id}`);
+      const { error: pageError } = await db.from("chapter_pages").insert([{
+        chapter_id: chapter.id,
+        page_number: i + 1,
+        image_url: uploaded.url
+      }]);
+      if (pageError) throw pageError;
+    }
+
+    $("chapterTitle").value = "";
+    $("chapterNumber").value = String(number + 1);
+    $("chapterImages").value = "";
+    setStatus("chapterStatus", `فصل ${number} با ${files.length} صفحه منتشر شد.`);
+    notify("فصل منتشر شد.");
+  } catch (error) {
+    setStatus("chapterStatus", "خطا در انتشار فصل: " + errorMessage(error), true);
+  } finally {
+    button.disabled = false;
+  }
+}
+
+async function openManhwa(id) {
+  currentManhwaId = id;
+  showSection("details");
+  $("manhwaDetails").innerHTML = '<div class="empty">در حال بارگذاری اطلاعات...</div>';
+  $("chapterList").innerHTML = "";
+  setStatus("detailsStatus", "");
+
+  try {
+    const { data: book, error } = await db
+      .from("manhwas").select("*").eq("id", id).single();
+    if (error) throw error;
+
+    $("manhwaDetails").innerHTML = `
+      ${book.cover_url ? `<img src="${escapeHTML(book.cover_url)}" alt="${escapeHTML(book.title)}" style="width:min(100%,260px);border-radius:14px;display:block;margin:auto">` : ""}
+      <h1>${escapeHTML(book.title)}</h1>
+      <p>${escapeHTML(book.summary || "خلاصه‌ای ثبت نشده است.")}</p>
+      <p class="muted">${escapeHTML(book.genre || "مانهوا")}</p>
+    `;
+
+    const { data: chapters, error: chapterError } = await db
+      .from("chapters")
+      .select("*")
+      .eq("manhwa_id", id)
+      .order("chapter_number", { ascending: true });
+
+    if (chapterError) throw chapterError;
+
+    $("chapterList").innerHTML = (chapters || []).map(chapter => `
+      <div class="chapter-item">
+        <span>${escapeHTML(chapter.title || ("فصل " + chapter.chapter_number))}</span>
+        <button class="btn primary" onclick="readChapter('${escapeHTML(chapter.id)}')">خواندن فصل</button>
+      </div>
+    `).join("") || '<div class="empty">هنوز فصلی برای این مانهوا منتشر نشده است.</div>';
+  } catch (error) {
+    setStatus("detailsStatus", "خطا در دریافت مانهوا: " + errorMessage(error), true);
+  }
+}
+
+async function readChapter(chapterId) {
+  showSection("reader");
+  $("readerTitle").textContent = "در حال بارگذاری فصل...";
+  $("readerPages").innerHTML = "";
+  setStatus("readerStatus", "در حال بارگذاری تصاویر فصل...");
+
+  try {
+    const { data: chapter, error: chapterError } = await db
+      .from("chapters").select("*").eq("id", chapterId).single();
+    if (chapterError) throw chapterError;
+
+    $("readerTitle").textContent = chapter.title || ("فصل " + chapter.chapter_number);
+
+    const { data: pages, error: pagesError } = await db
+      .from("chapter_pages")
+      .select("*")
+      .eq("chapter_id", chapterId)
+      .order("page_number", { ascending: true });
+    if (pagesError) throw pagesError;
+
+    $("readerPages").innerHTML = (pages || []).map(page =>
+      `<img src="${escapeHTML(page.image_url)}" alt="صفحه ${escapeHTML(page.page_number)}" loading="lazy">`
+    ).join("") || '<div class="empty">تصویری برای این فصل ثبت نشده است.</div>';
+
+    setStatus("readerStatus", "");
+  } catch (error) {
+    setStatus("readerStatus", "خطا در دریافت فصل: " + errorMessage(error), true);
+  }
+}
+
+function backToDetails() {
+  if (currentManhwaId) openManhwa(currentManhwaId);
+  else showSection("library");
+}
+
+function createSnow() {
+  const container = $("snowContainer");
+  if (!container) return;
+
+  for (let i = 0; i < 35; i++) {
+    const flake = document.createElement("span");
+    flake.className = "snow";
+    flake.textContent = "❄";
+    flake.style.left = Math.random() * 100 + "%";
+    flake.style.fontSize = (8 + Math.random() * 13) + "px";
+    flake.style.animationDuration = (7 + Math.random() * 12) + "s";
+    flake.style.animationDelay = (-Math.random() * 15) + "s";
+    container.appendChild(flake);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  createSnow();
+  loadManhwas();
+});
+</script>
+</body>
+</html>
